@@ -27,8 +27,8 @@ namespace HiQo.StaffManagement.DAL.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();//??;
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();//??;
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new CategoryConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());

@@ -49,9 +49,15 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IDepartmentRepository.cs" />
+    <Compile Include="Repositories\IPositionLevelRepository.cs" />
+    <Compile Include="Repositories\IPositionRepository.cs" />
+    <Compile Include="Repositories\IRoleRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
     <Folder Include="UoW\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

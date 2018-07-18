@@ -57,19 +57,21 @@
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
-    <Compile Include="Migrations\201807170849234_StaffManagementDB.cs" />
-    <Compile Include="Migrations\201807170849234_StaffManagementDB.Designer.cs">
-      <DependentUpon>201807170849234_StaffManagementDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201807171935304_Remove_CascadeDelete.cs" />
     <Compile Include="Migrations\201807171935304_Remove_CascadeDelete.Designer.cs">
       <DependentUpon>201807171935304_Remove_CascadeDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
+    <Compile Include="Repositories\PositionLevelRepository.cs" />
+    <Compile Include="Repositories\PositionRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
     <Folder Include="UoW\" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +81,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807170849234_StaffManagementDB.resx">
-      <DependentUpon>201807170849234_StaffManagementDB.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807171935304_Remove_CascadeDelete.resx">
       <DependentUpon>201807171935304_Remove_CascadeDelete.cs</DependentUpon>
     </EmbeddedResource>
