@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace HiQo.StaffManagement.DAL.Domain.Repositories
 {
-    public interface IBaseRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> GetAll();
 
@@ -16,6 +16,5 @@ namespace HiQo.StaffManagement.DAL.Domain.Repositories
         void Add(TEntity entity);
         void Remove(TEntity entity);
         void Update(TEntity entity);
-        int SaveChanges();
     }
 }

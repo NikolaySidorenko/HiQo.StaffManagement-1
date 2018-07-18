@@ -4,10 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using HiQo.StaffManagement.DAL.Context;
+using HiQo.StaffManagement.DAL.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public abstract class BaseRepository<TEntity> /*: IBaseRepository<TEntity>*/ where TEntity : class
+    public abstract class BaseRepository<TEntity>: IRepository<TEntity> where TEntity : class
     {
         private readonly StaffManagementContext _context;
         private readonly IDbSet<TEntity> _dbSet;
@@ -59,11 +60,6 @@ namespace HiQo.StaffManagement.DAL.Repositories
             }
 
             _dbSet.Remove(entityToDelete);
-        }
-
-        public virtual int SaveChanges()
-        {
-            return _context.SaveChanges();
         }
     }
 }
