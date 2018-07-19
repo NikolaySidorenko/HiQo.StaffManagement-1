@@ -69,6 +69,14 @@
     <Compile Include="Migrations\201807190716046_ChangeFK.Designer.cs">
       <DependentUpon>201807190716046_ChangeFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807190840481_CheckGenerateSQL.cs" />
+    <Compile Include="Migrations\201807190840481_CheckGenerateSQL.Designer.cs">
+      <DependentUpon>201807190840481_CheckGenerateSQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807192045338_FixFkAndProp.cs" />
+    <Compile Include="Migrations\201807192045338_FixFkAndProp.Designer.cs">
+      <DependentUpon>201807192045338_FixFkAndProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -97,6 +105,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807190716046_ChangeFK.resx">
       <DependentUpon>201807190716046_ChangeFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807190840481_CheckGenerateSQL.resx">
+      <DependentUpon>201807190840481_CheckGenerateSQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807192045338_FixFkAndProp.resx">
+      <DependentUpon>201807192045338_FixFkAndProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

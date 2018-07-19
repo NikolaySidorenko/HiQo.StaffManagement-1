@@ -10,7 +10,7 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         //    Users = new List<User>();
         //}
 
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
 
         public string Name { get; set; }
 

@@ -7,15 +7,21 @@ namespace HiQo.StaffManagement.DAL.Configuration
     {
         public CategoryConfiguration()
         {
-            Property(g => g.Id)
+            ToTable("Categories")
+                .HasKey(g => g.CategoryId)
+                .Property(g => g.CategoryId)
+                .HasColumnName("Id")
                 .IsRequired();
 
             Property(g => g.Name)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(30)
+                .HasColumnName("Name");
 
-            Property(g => g.DepartmentId)
-                .IsRequired();
+            HasMany(g => g.Users).WithRequired(x => x.Category).WillCascadeOnDelete(false);
+            HasMany(g => g.CategoryPositions).WithRequired(x => x.Category).WillCascadeOnDelete(false);
+
+            HasRequired(g => g.Department).WithMany(x => x.CategoryNames).HasForeignKey(g => g.DepartmentId);
         }
     }
 }

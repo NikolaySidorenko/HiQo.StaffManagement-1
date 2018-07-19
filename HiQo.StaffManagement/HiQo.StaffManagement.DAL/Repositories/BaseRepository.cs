@@ -42,10 +42,14 @@ namespace HiQo.StaffManagement.DAL.Repositories
         }
 
         public virtual IEnumerable<TEntity> GetAll()
-        {
+        {  
             return _dbSet.ToList();
         }
 
+        public virtual TEntity GetById(int id)
+        {
+            return _dbSet.Find(id);
+        }
         public virtual void Remove(object id)
         {
             var entityToDelete = _dbSet.Find(id);

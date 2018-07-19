@@ -9,7 +9,7 @@ namespace HiQo.StaffManagement.DAL.Context
     {
         public StaffManagementContext() : base("StaffManagementContext")
         {
-            Database.SetInitializer(
+           Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<StaffManagementContext, Migrations.Configuration>());
         }
 
@@ -27,8 +27,9 @@ namespace HiQo.StaffManagement.DAL.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();//??;
-            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            base.OnModelCreating(modelBuilder);//??
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new CategoryConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());

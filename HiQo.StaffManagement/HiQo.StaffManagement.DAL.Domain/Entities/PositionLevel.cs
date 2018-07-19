@@ -4,7 +4,7 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
 {
     public class PositionLevel
     {
-        public int Id { get; set; }
+        public int PositionLevelId { get; set; }
 
         public string Name { get; set; }
 

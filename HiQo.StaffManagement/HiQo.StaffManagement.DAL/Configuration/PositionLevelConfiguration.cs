@@ -7,15 +7,22 @@ namespace HiQo.StaffManagement.DAL.Configuration
     {
         public PositionLevelConfiguration()
         {
-            Property(g => g.Id)
+            ToTable("PositionLevels")
+                .HasKey(g => g.PositionLevelId)
+                .Property(g => g.PositionLevelId)
+                .HasColumnName("Id")
                 .IsRequired();
 
             Property(g => g.Level)
+                .HasColumnName("Level")
                 .IsOptional(); //TODO:Range 0-2
 
             Property(g => g.Name)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(30)
+                .HasColumnName("Name");
+
+            HasMany(g => g.Users).WithRequired(x => x.PositionLevel).WillCascadeOnDelete(false);
         }
     }
 }

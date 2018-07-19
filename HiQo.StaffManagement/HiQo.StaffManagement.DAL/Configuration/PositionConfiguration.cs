@@ -7,12 +7,18 @@ namespace HiQo.StaffManagement.DAL.Configuration
     {
         public PositionConfiguration()
         {
-            Property(g => g.Id)
+            ToTable("Positions")
+                .HasKey(g => g.PositionId)
+                .Property(g => g.PositionId)
+                .HasColumnName("Id")
                 .IsRequired();
 
             Property(g => g.Name)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(30)
+                .HasColumnName("Name");
+
+            HasMany(g => g.Users).WithRequired(x => x.Position).WillCascadeOnDelete(false);
         }
     }
 }

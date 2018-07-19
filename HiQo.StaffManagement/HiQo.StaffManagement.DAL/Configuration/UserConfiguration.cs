@@ -7,42 +7,54 @@ namespace HiQo.StaffManagement.DAL.Configuration
     {
         public UserConfiguration()
         {
-            Property(g => g.Id)
+            ToTable("Users")
+                .HasKey(g => g.UserId)
+                .Property(g => g.UserId)
+                .HasColumnName("Id")
                 .IsRequired();
 
             Property(g => g.FirstName)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("FirstName")
+                .HasMaxLength(30);
 
             Property(g => g.LastName)
                 .IsRequired()
+                .HasColumnName("LastName")
                 .HasMaxLength(30);
 
             Property(g => g.MainPhoneNumber)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("MainPhoneNumber")
+                .HasMaxLength(20);
 
             Property(g => g.SecondPhoneNumber)
-                .IsOptional();
+                .IsOptional()
+                .HasColumnName("SecondPhoneNumber")
+                .HasMaxLength(20);
 
             Property(g => g.Email)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("E-mail")
+                .HasMaxLength(40);
 
             Property(g => g.BirthDate)
-                .IsRequired();
+                .IsRequired()
+                .HasColumnName("BirthDate");
 
-            Property(g => g.PositionId)
-                .IsRequired();
+            HasRequired(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId)
+                .WillCascadeOnDelete(false);
 
-            Property(g => g.RoleId)
-                .IsRequired();
+            HasRequired(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
 
-            Property(g => g.CategoryId)
-                .IsRequired();
+            HasRequired(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId)
+                .WillCascadeOnDelete(false);
 
-            Property(g => g.DepartmentId)
-                .IsRequired();
+            HasRequired(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId)
+                .WillCascadeOnDelete(false);
 
-            Property(g => g.PositionLevelId)
-                .IsRequired();
+            HasRequired(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId)
+                .WillCascadeOnDelete(false);
         }
     }
 }
