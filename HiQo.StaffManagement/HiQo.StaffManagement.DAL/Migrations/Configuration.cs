@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 
@@ -31,26 +32,121 @@ namespace HiQo.StaffManagement.DAL.Migrations
             departments.Add(new Department {Name = "Quality Assurance", Id = 3});
             departments.Add(new Department {Name = "Business Analysis", Id = 4});
 
-            categories.Add(new Category {Name = "Administration staff", DepartmentId = 1, Id = 1});
-            categories.Add(new Category {Name = "Management", DepartmentId = 1, Id = 2});
-            categories.Add(new Category {Name = ".NET Development", DepartmentId = 2, Id = 3});
-            categories.Add(new Category {Name = "Java Development", DepartmentId = 2, Id = 4});
-            categories.Add(new Category {Name = "Python Development", DepartmentId = 2, Id = 5});
-            categories.Add(new Category {Name = "Front-End Development", DepartmentId = 2, Id = 6});
-            categories.Add(new Category {Name = "Quality Assurance", DepartmentId = 3, Id = 7});
-            categories.Add(new Category {Name = "Business Analysis", DepartmentId = 4, Id = 8});
+            categories.Add(new Category
+            {
+                Name = "Administration staff",
+                DepartmentId = departments.First(g => g.Name == "Resource Management").Id,
+                Id = 1
+            });
+            categories.Add(new Category
+            {
+                Name = "Management",
+                DepartmentId = departments.First(g => g.Name == "Resource Management").Id,
+                Id = 2
+            });
+            categories.Add(new Category
+            {
+                Name = ".NET Development",
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id,
+                Id = 3
+            });
+            categories.Add(new Category
+            {
+                Name = "Java Development",
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id,
+                Id = 4
+            });
+            categories.Add(new Category
+            {
+                Name = "Python Development",
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id,
+                Id = 5
+            });
+            categories.Add(new Category
+            {
+                Name = "Front-End Development",
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id,
+                Id = 6
+            });
+            categories.Add(new Category
+            {
+                Name = "Quality Assurance",
+                DepartmentId = departments.First(g => g.Name == "Quality Assurance").Id,
+                Id = 7
+            });
+            categories.Add(new Category
+            {
+                Name = "Business Analysis",
+                DepartmentId = departments.First(g => g.Name == "Business Analysis").Id,
+                Id = 8
+            });
 
-            positions.Add(new Position {Name = "English Teacher", CategoryId = 1, Id = 1});
-            positions.Add(new Position {Name = "Human Resource Manager", CategoryId = 1, Id = 2});
-            positions.Add(new Position {Name = "Accountant", CategoryId = 1, Id = 3});
-            positions.Add(new Position {Name = "Chief Executive Officer", CategoryId = 2, Id = 4});
-            positions.Add(new Position {Name = "Director of Delivery", CategoryId = 2, Id = 5});
-            positions.Add(new Position {Name = ".NET Developer", CategoryId = 3, Id = 6});
-            positions.Add(new Position {Name = "Java Developer", CategoryId = 4, Id = 7});
-            positions.Add(new Position {Name = "Python Developer", CategoryId = 5, Id = 8});
-            positions.Add(new Position {Name = "Front-End Developer", CategoryId = 6, Id = 9});
-            positions.Add(new Position {Name = "QA Engineer", CategoryId = 7, Id = 10});
-            positions.Add(new Position {Name = "Business analyst", CategoryId = 8, Id = 11});
+            positions.Add(new Position
+            {
+                Name = "English Teacher",
+                CategoryId = categories.First(g => g.Name == "Administration staff").Id,
+                Id = 1
+            });
+            positions.Add(new Position
+            {
+                Name = "Human Resource Manager",
+                CategoryId = categories.First(g => g.Name == "Administration staff").Id,
+                Id = 2
+            });
+            positions.Add(new Position
+            {
+                Name = "Accountant",
+                CategoryId = categories.First(g => g.Name == "Administration staff").Id,
+                Id = 3
+            });
+            positions.Add(new Position
+            {
+                Name = "Chief Executive Officer",
+                CategoryId = categories.First(g => g.Name == "Management").Id,
+                Id = 4
+            });
+            positions.Add(new Position
+            {
+                Name = "Director of Delivery",
+                CategoryId = categories.First(g => g.Name == "Management").Id,
+                Id = 5
+            });
+            positions.Add(new Position
+            {
+                Name = ".NET Developer",
+                CategoryId = categories.First(g => g.Name == ".NET Development").Id,
+                Id = 6
+            });
+            positions.Add(new Position
+            {
+                Name = "Java Developer",
+                CategoryId = categories.First(g => g.Name == "Java Development").Id,
+                Id = 7
+            });
+            positions.Add(new Position
+            {
+                Name = "Python Developer",
+                CategoryId = categories.First(g => g.Name == "Python Development").Id,
+                Id = 8
+            });
+            positions.Add(new Position
+            {
+                Name = "Front-End Developer",
+                CategoryId = categories.First(g => g.Name == "Front-End Development").Id,
+                Id = 9
+            });
+            positions.Add(new Position
+            {
+                Name = "QA Engineer",
+                CategoryId = categories.First(g => g.Name == "Quality Assurance").Id,
+                Id = 10
+            });
+            positions.Add(new Position
+            {
+                Name = "Business analyst",
+                CategoryId = categories.First(g => g.Name == "Business Analysis").Id,
+                Id = 11
+            });
 
             positionLevels.Add(new PositionLevel {Name = "Intern", Level = null, Id = 1});
             positionLevels.Add(new PositionLevel {Name = "Junior", Level = 0, Id = 2});
@@ -71,11 +167,11 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 BirthDate = new DateTime(1997, 10, 21),
                 MainPhoneNumber = "+375445353430",
                 Email = "kirilldudkov@gmail.com",
-                RoleId = 1,
-                PositionLevelId = 1,
-                PositionId = 6,
-                CategoryId = 3,
-                DepartmentId = 2
+                RoleId = roles.First(g => g.Name == "User").Id,
+                PositionLevelId = positions.First(g => g.Name == "Intern").Id,
+                PositionId = positions.First(g => g.Name == ".NET Developer").Id,
+                CategoryId = categories.First(g => g.Name == ".NET Development").Id,
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id
             });
             users.Add(new User
             {
@@ -85,11 +181,11 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 BirthDate = new DateTime(1999, 5, 20),
                 MainPhoneNumber = "+375291112223",
                 Email = "nsidorenko@gmail.com",
-                RoleId = 1,
-                PositionLevelId = 1,
-                PositionId = 6,
-                CategoryId = 3,
-                DepartmentId = 2
+                RoleId = roles.First(g => g.Name == "User").Id,
+                PositionLevelId = positions.First(g => g.Name == "Intern").Id,
+                PositionId = positions.First(g => g.Name == ".NET Developer").Id,
+                CategoryId = categories.First(g => g.Name == ".NET Development").Id,
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id
             });
             users.Add(new User
             {
@@ -99,11 +195,11 @@ namespace HiQo.StaffManagement.DAL.Migrations
                 BirthDate = new DateTime(1999, 7, 8),
                 MainPhoneNumber = "+375294445556",
                 Email = "dkarabanovich@gmail.com",
-                RoleId = 1,
-                PositionLevelId = 1,
-                PositionId = 6,
-                CategoryId = 3,
-                DepartmentId = 2
+                RoleId = roles.First(g => g.Name == "User").Id,
+                PositionLevelId = positions.First(g => g.Name == "Intern").Id,
+                PositionId = positions.First(g => g.Name == ".NET Developer").Id,
+                CategoryId = categories.First(g => g.Name == ".NET Development").Id,
+                DepartmentId = departments.First(g => g.Name == "Software Development").Id
             });
 
             roles.ForEach(g => context.Roles.AddOrUpdate(g));
