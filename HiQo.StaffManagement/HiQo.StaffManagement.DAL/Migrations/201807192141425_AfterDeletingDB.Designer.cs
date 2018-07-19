@@ -7,13 +7,13 @@ namespace HiQo.StaffManagement.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FixFkAndProp : IMigrationMetadata
+    public sealed partial class AfterDeletingDB : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixFkAndProp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AfterDeletingDB));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807192045338_FixFkAndProp"; }
+            get { return "201807192141425_AfterDeletingDB"; }
         }
         
         string IMigrationMetadata.Source

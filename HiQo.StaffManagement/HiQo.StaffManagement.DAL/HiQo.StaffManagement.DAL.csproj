@@ -57,25 +57,9 @@
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
-    <Compile Include="Migrations\201807171935304_Remove_CascadeDelete.cs" />
-    <Compile Include="Migrations\201807171935304_Remove_CascadeDelete.Designer.cs">
-      <DependentUpon>201807171935304_Remove_CascadeDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807182139491_AddDataToTheDatabase.cs" />
-    <Compile Include="Migrations\201807182139491_AddDataToTheDatabase.Designer.cs">
-      <DependentUpon>201807182139491_AddDataToTheDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807190716046_ChangeFK.cs" />
-    <Compile Include="Migrations\201807190716046_ChangeFK.Designer.cs">
-      <DependentUpon>201807190716046_ChangeFK.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807190840481_CheckGenerateSQL.cs" />
-    <Compile Include="Migrations\201807190840481_CheckGenerateSQL.Designer.cs">
-      <DependentUpon>201807190840481_CheckGenerateSQL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807192045338_FixFkAndProp.cs" />
-    <Compile Include="Migrations\201807192045338_FixFkAndProp.Designer.cs">
-      <DependentUpon>201807192045338_FixFkAndProp.cs</DependentUpon>
+    <Compile Include="Migrations\201807192141425_AfterDeletingDB.cs" />
+    <Compile Include="Migrations\201807192141425_AfterDeletingDB.Designer.cs">
+      <DependentUpon>201807192141425_AfterDeletingDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,20 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807171935304_Remove_CascadeDelete.resx">
-      <DependentUpon>201807171935304_Remove_CascadeDelete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807182139491_AddDataToTheDatabase.resx">
-      <DependentUpon>201807182139491_AddDataToTheDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807190716046_ChangeFK.resx">
-      <DependentUpon>201807190716046_ChangeFK.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807190840481_CheckGenerateSQL.resx">
-      <DependentUpon>201807190840481_CheckGenerateSQL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807192045338_FixFkAndProp.resx">
-      <DependentUpon>201807192045338_FixFkAndProp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807192141425_AfterDeletingDB.resx">
+      <DependentUpon>201807192141425_AfterDeletingDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@ using HiQo.StaffManagement.DAL.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public abstract class BaseRepository<TEntity>: IRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly StaffManagementContext _context;
         private readonly IDbSet<TEntity> _dbSet;
@@ -42,28 +42,26 @@ namespace HiQo.StaffManagement.DAL.Repositories
         }
 
         public virtual IEnumerable<TEntity> GetAll()
-        {  
+        {
             return _dbSet.ToList();
         }
 
-        public virtual TEntity GetById(int id)
+        public TEntity GetById(int id)
         {
             return _dbSet.Find(id);
-        }
-        public virtual void Remove(object id)
-        {
-            var entityToDelete = _dbSet.Find(id);
-            Remove(entityToDelete);
         }
 
         public virtual void Remove(TEntity entityToDelete)
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached)
-            {
-                _dbSet.Attach(entityToDelete);
-            }
+            if (_context.Entry(entityToDelete).State == EntityState.Detached) _dbSet.Attach(entityToDelete);
 
             _dbSet.Remove(entityToDelete);
+        }
+
+        public virtual void Remove(object id)
+        {
+            var entityToDelete = _dbSet.Find(id);
+            Remove(entityToDelete);
         }
     }
 }
