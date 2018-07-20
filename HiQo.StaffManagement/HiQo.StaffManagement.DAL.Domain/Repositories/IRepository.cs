@@ -17,5 +17,6 @@ namespace HiQo.StaffManagement.DAL.Domain.Repositories
         void Remove(TEntity entity);
         void Update(TEntity entity);
         TEntity GetById(int id);
+        //SaveChange
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 using FakeItEasy;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
@@ -11,26 +11,27 @@ namespace HiQo.StaffManagement.DAL.Tests
     public class UserRepositoryTest
     {
         private readonly IUserRepository _userRepository = new UserRepository(new StaffManagementContext());
-        private readonly IUserRepository fakeRepository;
+        private readonly IUserRepository _fakeRepository;
 
         public UserRepositoryTest()
         {
-            fakeRepository = A.Fake<IUserRepository>();
+            _fakeRepository = A.Fake<IUserRepository>();
         }
 
-        [Fact]
-        public void TestMethod()
+        [Theory]
+        [InlineData(1)]
+        public void GetById_Id_ObjFound(int id)
         {
-            var fakeObjUser = _userRepository.GetById(1);
+            var objUser = _userRepository.GetById(id);
 
-            A.CallTo(fakeRepository)
-                .Where(call => call.Method.Name == "GetById")
-                .WithReturnType<User>()
-                .Returns(fakeObjUser);
+            //A.CallTo(fakeRepository)
+            //    .Where(call => call.Method.Name == "GetById")
+            //    .WithReturnType<User>()
+            //    .Returns(fakeObjUser);
 
-            var response = fakeRepository.GetById(1);
+            A.CallTo(() => _fakeRepository.GetById(id)).Returns(objUser);
 
-            Assert.Equal(fakeObjUser, response);
+            Assert.Equal(objUser, _fakeRepository.GetById(id));
         }
     }
 }

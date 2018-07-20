@@ -68,6 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryRepositoryTest.cs" />
+    <Compile Include="DepartmentRepositoryTest.cs" />
+    <Compile Include="PositionLevelRepositoryTest.cs" />
+    <Compile Include="PositionRepositoryTest.cs" />
+    <Compile Include="RoleRepositoryTest.cs" />
     <Compile Include="UserRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
