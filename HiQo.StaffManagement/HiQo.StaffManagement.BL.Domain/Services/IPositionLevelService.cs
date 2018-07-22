@@ -8,20 +8,20 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 {
     public interface IPositionLevelService
     {
-        PositionLevelDTO GetById(int id);
+        PositionLevelDto GetById(int id);
 
-        IEnumerable<PositionLevelDTO> GetAll();
+        IEnumerable<PositionLevelDto> GetAll();
 
-        IEnumerable<PositionLevelDTO> Get(
-            Expression<Func<PositionLevelDTO, bool>> filter = null,
-            Func<IQueryable<PositionLevelDTO>, IOrderedQueryable<PositionLevelDTO>> orderBy = null);
+        IEnumerable<PositionLevelDto> Get(
+            Expression<Func<PositionLevelDto, bool>> filter = null,
+            Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy = null);
 
-        void Add(PositionLevelDTO entity);
+        void Add(PositionLevelDto entity);
 
-        void Remove(PositionLevelDTO entity);
+        void Remove(PositionLevelDto entity);
 
         void Remove(int id);
 
-        void Update(PositionLevelDTO entity);
+        void Update(PositionLevelDto entity);
     }
 }

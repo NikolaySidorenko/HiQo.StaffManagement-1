@@ -2,12 +2,12 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Models
 {
-    public class RoleDTO
+    public class RoleDto
     {
         public int RoleId { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<UserDTO> Users { get; set; }
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }

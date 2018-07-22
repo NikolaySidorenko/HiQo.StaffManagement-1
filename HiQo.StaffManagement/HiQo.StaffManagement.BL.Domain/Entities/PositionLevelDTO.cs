@@ -2,7 +2,7 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Models
 {
-    public class PositionLevelDTO
+    public class PositionLevelDto
     {
         public int PositionLevelId { get; set; }
 
@@ -10,7 +10,6 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public int? Level { get; set; }
 
-        public ICollection<UserDTO> Users { get; set; }
-
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }

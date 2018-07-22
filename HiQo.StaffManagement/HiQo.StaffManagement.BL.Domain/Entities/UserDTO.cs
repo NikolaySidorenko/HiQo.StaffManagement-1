@@ -2,7 +2,7 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Models
 {
-    public class UserDTO
+    public class UserDto
     {
         public int UserId { get; set; }
 
@@ -18,14 +18,16 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public string Email { get; set; }
 
-        public DepartmentDTO Department { get; set; }
+        public string Department { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        public string Category { get; set; }
 
-        public PositionDTO Position { get; set; }
+        public string Position { get; set; }
 
-        public PositionLevelDTO PositionLevel { get; set; }
+        public string PositionLevel { get; set; }
 
-        public RoleDTO Role { get; set; }
+        public int Rating { get; set; }
+
+        public string Role { get; set; }
     }
 }

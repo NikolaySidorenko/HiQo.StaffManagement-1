@@ -2,14 +2,14 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Models
 {
-    public class PositionDTO
+    public class PositionDto
     {
         public int PositionId { get; set; }
 
         public string Name { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        public string Category { get; set; }
 
-        public ICollection<UserDTO> Users { get; set; }
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }

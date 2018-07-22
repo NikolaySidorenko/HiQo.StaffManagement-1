@@ -8,9 +8,9 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public string Name { get; set; }
 
-        public DepartmentDTO Department { get; set; }
+        public DepartmentDto Department { get; set; }
 
-        public ICollection<PositionDTO> CategoryPositions { get; set; }
-        public ICollection<UserDTO> Users { get; set; }
+        public ICollection<PositionDto> CategoryPositions { get; set; }
+        public ICollection<UserDto> Users { get; set; }
     }
 }
