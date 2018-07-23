@@ -2,7 +2,7 @@
 
 namespace HiQo.StaffManagement.DAL.Domain.Repositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository
     {
     }
 }

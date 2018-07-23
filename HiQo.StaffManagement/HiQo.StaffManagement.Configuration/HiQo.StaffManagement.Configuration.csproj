@@ -48,6 +48,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DependencyResolver\BusinessLogicInstaller.cs" />
+    <Compile Include="DependencyResolver\ControllersInstaller.cs" />
+    <Compile Include="DependencyResolver\IocContainer.cs" />
+    <Compile Include="DependencyResolver\WindsorControllerFactory.cs" />
+    <Compile Include="Mappings\CategoryMapping.cs" />
+    <Compile Include="Mappings\MapperConfig.cs" />
     <Compile Include="Mappings\PositionLevelMapping.cs" />
     <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +88,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DependencyResolver\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

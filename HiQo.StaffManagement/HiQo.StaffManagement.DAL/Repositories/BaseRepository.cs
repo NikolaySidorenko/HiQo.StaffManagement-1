@@ -8,59 +8,57 @@ using HiQo.StaffManagement.DAL.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class BaseRepository : IRepository
     {
         private readonly StaffManagementContext _context;
-        private readonly IDbSet<TEntity> _dbSet;
 
-        protected BaseRepository(StaffManagementContext context)
+        public BaseRepository(StaffManagementContext context)
         {
             _context = context;
-            _dbSet = context.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity entity)
+        public void Add<TEntity>(TEntity entity) where TEntity : class
         {
-            _dbSet.Add(entity);
+            _context.Set<TEntity>().Add(entity);
         }
 
-        public virtual void Update(TEntity entity)
+        public void Update<TEntity>(TEntity entity) where TEntity : class
         {
-            _dbSet.Attach(entity);
+            _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual IEnumerable<TEntity> Get(
+        public IEnumerable<TEntity> Get<TEntity>(
             Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null) where TEntity : class
         {
-            IQueryable<TEntity> query = _dbSet;
+            IQueryable<TEntity> query = _context.Set<TEntity>();
 
             if (filter != null) query = query.Where(filter);
 
             return orderBy != null ? orderBy(query).ToList() : query.ToList();
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class
         {
-            return _dbSet.ToList();
+            return _context.Set<TEntity>().ToList();
         }
 
-        public TEntity GetById(int id)
+        public TEntity GetById<TEntity>(int id) where TEntity : class
         {
-            return _dbSet.Find(id);
+            return _context.Set<TEntity>().Find(id);
         }
 
-        public virtual void Remove(TEntity entityToDelete)
+        public void Remove<TEntity>(TEntity entityToDelete) where TEntity : class
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached) _dbSet.Attach(entityToDelete);
+            if (_context.Entry(entityToDelete).State == EntityState.Detached) _context.Set<TEntity>().Attach(entityToDelete);
 
-            _dbSet.Remove(entityToDelete);
+            _context.Set<TEntity>().Remove(entityToDelete);
         }
 
-        public virtual void Remove(object id)
+        public void Remove<TEntity>(int id) where TEntity : class
         {
-            var entityToDelete = _dbSet.Find(id);
+            var entityToDelete = _context.Set<TEntity>().Find(id);
             Remove(entityToDelete);
         }
     }

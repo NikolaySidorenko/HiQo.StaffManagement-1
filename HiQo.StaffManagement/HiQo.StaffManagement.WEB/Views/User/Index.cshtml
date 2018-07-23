@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Models.UserDto>
+@{
+    ViewBag.Title = "Users";
+}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">BirthDate</th>
+                <th scope="col">MainPhoneNumber</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Department</th>
+                <th scope="col">Category</th>
+                <th scope="col">Position</th>
+                <th scope="col">PositionLevel</th>
+                <th scope="col">Rating</th>
+
+            </tr>
+        </thead>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    <p>@obj.UserId</p>
+                </td>
+                <td>
+                    <p>@obj.FirstName</p>
+                </td>
+                <td>
+                    <p>@obj.LastName</p>
+                </td>
+                <td>
+                    <p>@obj.BirthDate</p>
+                </td>
+                <td>
+                    <p>@obj.MainPhoneNumber</p>
+                </td>
+                <td>
+                    <p>@obj.Email</p>
+                </td>
+                <td>
+                    <p>@obj.Department</p>
+                </td>
+                <td>
+                    <p>@obj.Category</p>
+                </td>
+                <td>
+                    <p>@obj.Position</p>
+                </td>
+                <td>
+                    <p>@obj.PositionLevel</p>
+                </td>
+                <td>
+                    <p>
+
+                        @if (obj.Rating == 0)
+                        {
+                            var dash = "-";
+                            @dash
+                            ;
+                        }
+                        else
+                        {
+                            @obj.Rating
+                            ;
+                        }
+                    </p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

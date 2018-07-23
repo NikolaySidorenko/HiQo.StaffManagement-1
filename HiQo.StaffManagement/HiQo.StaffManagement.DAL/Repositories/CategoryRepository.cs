@@ -4,9 +4,9 @@ using HiQo.StaffManagement.DAL.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
-        public CategoryRepository(StaffManagementContext context) : base(context)
+        public CategoryRepository(StaffManagementContext context)
         {
         }
     }

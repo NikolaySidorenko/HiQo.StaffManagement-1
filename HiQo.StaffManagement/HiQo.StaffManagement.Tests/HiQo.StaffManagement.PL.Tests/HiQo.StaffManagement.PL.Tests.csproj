@@ -44,12 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\HiQo.StaffManagement.WEB\HiQo.StaffManagement.WEB.csproj">
-      <Project>{0bf8acf5-4fac-4656-bef7-cba13814d68a}</Project>
-      <Name>HiQo.StaffManagement.WEB</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using HiQo.StaffManagement.Configuration.DependencyResolver;
+using HiQo.StaffManagement.Configuration.Mappings;
 
 namespace HiQo.StaffManagement.WEB
 {
@@ -12,7 +14,8 @@ namespace HiQo.StaffManagement.WEB
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            MapperConfig.Initialize();
+            MapperConfig.ConfigureAutomapper();
+           // IocContainer.Setup();
         }
     }
 }

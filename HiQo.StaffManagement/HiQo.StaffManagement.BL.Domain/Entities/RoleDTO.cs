@@ -8,6 +8,6 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public string Name { get; set; }
 
-        public IEnumerable<UserDto> Users { get; set; }
+        //public IEnumerable<UserDto> Users { get; set; }
     }
 }

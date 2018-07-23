@@ -10,6 +10,6 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public int? Level { get; set; }
 
-        public IEnumerable<UserDto> Users { get; set; }
+       // public IEnumerable<UserDto> Users { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public string Category { get; set; }
 
-        public IEnumerable<UserDto> Users { get; set; }
+        //public IEnumerable<UserDto> Users { get; set; }
     }
 }

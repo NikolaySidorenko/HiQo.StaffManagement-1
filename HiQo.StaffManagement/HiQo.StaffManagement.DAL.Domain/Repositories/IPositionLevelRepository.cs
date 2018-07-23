@@ -2,8 +2,7 @@
 
 namespace HiQo.StaffManagement.DAL.Domain.Repositories
 {
-    public interface IPositionLevelRepository : IRepository<PositionLevel>
+    public interface IPositionLevelRepository
     {
-
     }
 }

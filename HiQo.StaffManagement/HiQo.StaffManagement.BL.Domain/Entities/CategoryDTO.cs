@@ -2,15 +2,15 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Models
 {
-    public class CategoryDTO
+    public class CategoryDto
     {
         public int CategoryId { get; set; }
 
         public string Name { get; set; }
 
-        public DepartmentDto Department { get; set; }
+        public string Department { get; set; }
 
-        public ICollection<PositionDto> CategoryPositions { get; set; }
-        public ICollection<UserDto> Users { get; set; }
+        //public ICollection<PositionDto> CategoryPositions { get; set; }
+        //public ICollection<UserDto> Users { get; set; }
     }
 }

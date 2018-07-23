@@ -14,8 +14,9 @@ namespace HiQo.StaffManagement.Configuration.Mappings
                 .ForMember(dest => dest.Position, opt => opt.MapFrom(src => src.Position.Name))
                 .ForMember(dest => dest.PositionLevel, opt => opt.MapFrom(src => src.PositionLevel.Name))
                 .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.PositionLevel.Level))
-                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name));
-                //.ReverseMap()?
+                .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role.Name))
+                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
+                .ReverseMap();
         }
     }
 }

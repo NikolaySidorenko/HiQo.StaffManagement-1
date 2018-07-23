@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.WEB", "HiQo.StaffManagement.WEB\HiQo.StaffManagement.WEB.csproj", "{0BF8ACF5-4FAC-4656-BEF7-CBA13814D68A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL", "HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj", "{0438201F-93BE-4AC8-A631-E30C8D3EF523}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Domain", "HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj", "{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}"
@@ -23,16 +21,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.PL.Tests", "HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\HiQo.StaffManagement.PL.Tests.csproj", "{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.WEB", "HiQo.StaffManagement.WEB\HiQo.StaffManagement.WEB.csproj", "{B59F49DE-AB79-4B2B-8971-C57335F47888}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BF8ACF5-4FAC-4656-BEF7-CBA13814D68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BF8ACF5-4FAC-4656-BEF7-CBA13814D68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BF8ACF5-4FAC-4656-BEF7-CBA13814D68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BF8ACF5-4FAC-4656-BEF7-CBA13814D68A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +61,10 @@ Global
 		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
