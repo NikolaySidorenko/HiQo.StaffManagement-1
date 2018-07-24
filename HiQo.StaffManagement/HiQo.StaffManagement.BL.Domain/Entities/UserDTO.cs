@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HiQo.StaffManagement.BL.Domain.Models
+namespace HiQo.StaffManagement.BL.Domain.Entities
 {
     public class UserDto
     {

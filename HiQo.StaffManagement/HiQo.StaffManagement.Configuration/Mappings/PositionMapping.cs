@@ -4,12 +4,12 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.Configuration.Mappings
 {
-    public class CategoryMapping : Profile
+    public class PositionMapping : Profile
     {
-        public CategoryMapping()
+        public PositionMapping()
         {
-            CreateMap<Category, CategoryDto>()
-                .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.Department))
+            CreateMap<Position, PositionDto>()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
                 .ReverseMap();
         }
     }

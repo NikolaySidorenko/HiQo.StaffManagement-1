@@ -1,7 +1,30 @@
-﻿
+﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Entities.PositionDto>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Positions";
 }
 
-<h2>Index</h2>
-
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+            </tr>
+        </thead>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    <p>@obj.PositionId</p>
+                </td>
+                <td>
+                    <p>@obj.Name</p>
+                </td>
+                <td>
+                    <p>@obj.Category.Name</p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

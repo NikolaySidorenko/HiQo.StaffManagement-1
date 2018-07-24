@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Models.UserDto>
+﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Entities.UserDto>
 @{
     ViewBag.Title = "Users";
 }
@@ -57,7 +57,7 @@
                 <td>
                     <p>
 
-                        @if (obj.Rating == 0)
+                        @if (obj.PositionLevel == "Intern")
                         {
                             var dash = "-";
                             @dash

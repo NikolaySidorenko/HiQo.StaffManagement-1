@@ -9,7 +9,7 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         public string Name { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
 

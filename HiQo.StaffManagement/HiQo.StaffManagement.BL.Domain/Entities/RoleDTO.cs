@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace HiQo.StaffManagement.BL.Domain.Models
-{
+namespace HiQo.StaffManagement.BL.Domain.Entities
+{ 
     public class RoleDto
     {
         public int RoleId { get; set; }

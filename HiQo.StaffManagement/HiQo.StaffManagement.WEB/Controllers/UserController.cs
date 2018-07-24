@@ -1,24 +1,23 @@
-﻿using HiQo.StaffManagement.DAL.Context;
-using System.Web.Mvc;
-using HiQo.StaffManagement.BL.Services;
-using HiQo.StaffManagement.DAL.Domain.Repositories;
-using HiQo.StaffManagement.DAL.Repositories;
+﻿using System.Web.Mvc;
+using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.WEB.Controllers
 {
     public class UserController : Controller
     {
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         // GET: User
         public ActionResult Index()
         {
-            using (StaffManagementContext context = new StaffManagementContext())
-            {
-                IUserRepository userRepository = new UserRepository(context);
-                IRepository baseRepository = new Repository(context);
-                UserService service = new UserService(userRepository, baseRepository);
-                var obj = service.GetAll();
-                return View(obj);
-            }
+            var listOfUsers = _userService.GetAll();
+
+            return View(listOfUsers);
         }
     }
 }

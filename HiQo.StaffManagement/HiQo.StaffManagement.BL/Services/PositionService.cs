@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using HiQo.StaffManagement.BL.Domain.Models;
+using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
@@ -10,11 +10,11 @@ namespace HiQo.StaffManagement.BL.Services
     public class PositionService : IPositionService
     {
         private readonly IRepository _repository;
-        private readonly IPositionService _positionService;
+        private readonly IPositionRepository _positionRepository;
 
-        public PositionService(IPositionService positionService, IRepository repository)
+        public PositionService(IPositionRepository positionRepository, IRepository repository)
         {
-            _positionService = positionService;
+            _positionRepository = positionRepository;
             _repository = repository;
         }
 

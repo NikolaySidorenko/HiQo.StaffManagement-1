@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HiQo.StaffManagement.BL.Domain.Models
+﻿namespace HiQo.StaffManagement.BL.Domain.Entities
 {
     public class PositionDto
     {
@@ -8,7 +6,7 @@ namespace HiQo.StaffManagement.BL.Domain.Models
 
         public string Name { get; set; }
 
-        public string Category { get; set; }
+        public CategoryDto Category { get; set; }
 
         //public IEnumerable<UserDto> Users { get; set; }
     }

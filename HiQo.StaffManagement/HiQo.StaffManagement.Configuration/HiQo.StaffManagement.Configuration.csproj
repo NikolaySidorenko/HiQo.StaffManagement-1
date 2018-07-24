@@ -65,6 +65,8 @@
     <Compile Include="Mappings\DepartmentMapping.cs" />
     <Compile Include="Mappings\MapperConfig.cs" />
     <Compile Include="Mappings\PositionLevelMapping.cs" />
+    <Compile Include="Mappings\PositionMapping.cs" />
+    <Compile Include="Mappings\RoleMapping.cs" />
     <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

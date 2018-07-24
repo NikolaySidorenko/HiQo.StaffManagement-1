@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using HiQo.StaffManagement.BL.Domain.Models;
+using HiQo.StaffManagement.BL.Domain.Entities;
+
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
