@@ -10,6 +10,8 @@ namespace HiQo.StaffManagement.Configuration.Mappings
         {
             CreateMap<Category, CategoryDto>()
                 .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.Department))
+                .ForMember(dest => dest.CategoryPositions, opt => opt.MapFrom(src => src.CategoryPositions))
+                .ForMember(dest => dest.Users, opt => opt.MapFrom(src => src.Users))
                 .ReverseMap();
         }
     }

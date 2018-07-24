@@ -8,8 +8,8 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
 
         public string Name { get; set; }
 
-        //public IEnumerable<CategoryDto> CategoryNames { get; set; }
+        public IEnumerable<CategoryDto> CategoryNames { get; set; }
 
-        //public IEnumerable<UserDto> Users { get; set; }
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }

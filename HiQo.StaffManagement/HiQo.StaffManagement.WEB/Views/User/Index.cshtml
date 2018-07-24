@@ -43,30 +43,28 @@
                     <p>@obj.Email</p>
                 </td>
                 <td>
-                    <p>@obj.Department</p>
+                    <p>@obj.Department.Name</p>
                 </td>
                 <td>
-                    <p>@obj.Category</p>
+                    <p>@obj.Category.Name</p>
                 </td>
                 <td>
-                    <p>@obj.Position</p>
+                    <p>@obj.Position.Name</p>
                 </td>
                 <td>
-                    <p>@obj.PositionLevel</p>
+                    <p>@obj.PositionLevel.Name</p>
                 </td>
                 <td>
                     <p>
 
-                        @if (obj.PositionLevel == "Intern")
+                        @if (obj.PositionLevel.Name == "Intern")
                         {
                             var dash = "-";
-                            @dash
-                            ;
+                            @dash;
                         }
                         else
                         {
-                            @obj.Rating
-                            ;
+                            @obj.PositionLevel.Level;
                         }
                     </p>
                 </td>

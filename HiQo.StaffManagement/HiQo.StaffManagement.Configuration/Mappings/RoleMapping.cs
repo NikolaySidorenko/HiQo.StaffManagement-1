@@ -10,6 +10,7 @@ namespace HiQo.StaffManagement.Configuration.Mappings
         public RoleMapping()
         {
             CreateMap<Role, RoleDto>()
+                .ForMember(dest => dest.Users, opt => opt.MapFrom(src => src.Users))
                 .ReverseMap();
         }
     }

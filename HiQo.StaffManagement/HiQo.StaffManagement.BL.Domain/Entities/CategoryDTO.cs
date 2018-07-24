@@ -11,7 +11,7 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
         public int DepartmentId { get; set; }
         public DepartmentDto Department { get; set; }
 
-        //public ICollection<PositionDto> CategoryPositions { get; set; }
-        //public ICollection<UserDto> Users { get; set; }
+        public ICollection<PositionDto> CategoryPositions { get; set; }
+        public ICollection<UserDto> Users { get; set; }
     }
 }
