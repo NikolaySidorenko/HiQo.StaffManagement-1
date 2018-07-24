@@ -12,7 +12,7 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
         {
             _container = new WindsorContainer().Install(FromAssembly.This());
 
-            WindsorControllerFactory controllerFactory = new WindsorControllerFactory(_container.Kernel);
+            var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
     }

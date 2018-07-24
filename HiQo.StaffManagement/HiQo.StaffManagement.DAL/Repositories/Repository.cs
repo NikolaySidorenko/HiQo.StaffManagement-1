@@ -8,11 +8,11 @@ using HiQo.StaffManagement.DAL.Domain.Repositories;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
-    public class BaseRepository : IRepository
+    public class Repository : IRepository
     {
         private readonly StaffManagementContext _context;
 
-        public BaseRepository(StaffManagementContext context)
+        public Repository(StaffManagementContext context)
         {
             _context = context;
         }

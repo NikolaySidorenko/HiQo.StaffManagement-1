@@ -12,45 +12,45 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class PositionLevelService : IPositionLevelService
     {
-        private readonly IRepository _baseRepository;
+        private readonly IRepository _repository;
         private readonly IPositionLevelRepository _positionLevelRepository;
 
-        public PositionLevelService(IPositionLevelRepository positionLevelRepository, IRepository baseRepository)
+        public PositionLevelService(IPositionLevelRepository positionLevelRepository, IRepository repository)
         {
             _positionLevelRepository = positionLevelRepository;
-            _baseRepository = baseRepository;
+            _repository = repository;
         }
 
         public PositionLevelDto GetById(int id)
         {
-            return Mapper.Map<PositionLevel, PositionLevelDto>(_baseRepository.GetById<PositionLevel>(id));
+            return Mapper.Map<PositionLevel, PositionLevelDto>(_repository.GetById<PositionLevel>(id));
         }
 
         public IEnumerable<PositionLevelDto> GetAll()
         {
             return Mapper.Map<IEnumerable<PositionLevel>, IEnumerable<PositionLevelDto>>(
-                _baseRepository.GetAll<PositionLevel>());
+                _repository.GetAll<PositionLevel>());
         }
 
         public void Add(PositionLevelDto entity)
         {
-            _baseRepository.Add(Mapper.Map<PositionLevel>(entity));
+            _repository.Add(Mapper.Map<PositionLevel>(entity));
         }
 
         public void Remove(PositionLevelDto entity)
         {
-            _baseRepository.Remove(Mapper.Map<PositionLevel>(entity));
+            _repository.Remove(Mapper.Map<PositionLevel>(entity));
         }
 
         public void Remove(int id)
         {
-            var entity = _baseRepository.GetById<PositionLevel>(id);
-            _baseRepository.Remove(entity);
+            var entity = _repository.GetById<PositionLevel>(id);
+            _repository.Remove(entity);
         }
 
         public void Update(PositionLevelDto entity)
         {
-            _baseRepository.Update(Mapper.Map<PositionLevel>(entity));
+            _repository.Update(Mapper.Map<PositionLevel>(entity));
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,

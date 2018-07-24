@@ -9,45 +9,45 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class RoleService : IRoleService
     {
-        private readonly IRepository _baseRepository;
+        private readonly IRepository _repository;
         private readonly IRoleRepository _roleRepository;
 
-        public RoleService(IRoleRepository roleRepository, IRepository baseRepository)
+        public RoleService(IRoleRepository roleRepository, IRepository repository)
         {
             _roleRepository = roleRepository;
-            _baseRepository = baseRepository;
+            _repository = repository;
         }
 
         public RoleDto GetById(int id)
         {
-            return Mapper.Map<Role, RoleDto>(_baseRepository.GetById<Role>(id));
+            return Mapper.Map<Role, RoleDto>(_repository.GetById<Role>(id));
         }
 
         public IEnumerable<RoleDto> GetAll()
         {
             return Mapper.Map<IEnumerable<Role>, IEnumerable<RoleDto>>(
-                _baseRepository.GetAll<Role>());
+                _repository.GetAll<Role>());
         }
 
         public void Add(RoleDto entity)
         {
-            _baseRepository.Add(Mapper.Map<Role>(entity));
+            _repository.Add(Mapper.Map<Role>(entity));
         }
 
         public void Remove(RoleDto entity)
         {
-            _baseRepository.Remove(Mapper.Map<Role>(entity));
+            _repository.Remove(Mapper.Map<Role>(entity));
         }
 
         public void Remove(int id)
         {
-            var entity = _baseRepository.GetById<Role>(id);
-            _baseRepository.Remove(entity);
+            var entity = _repository.GetById<Role>(id);
+            _repository.Remove(entity);
         }
 
         public void Update(RoleDto entity)
         {
-            _baseRepository.Update(Mapper.Map<Role>(entity));
+            _repository.Update(Mapper.Map<Role>(entity));
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,

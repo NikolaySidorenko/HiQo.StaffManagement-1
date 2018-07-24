@@ -10,7 +10,7 @@ namespace HiQo.StaffManagement.DAL.Tests
 {
     public class UserRepositoryTest
     {
-        private readonly IRepository _Repository = new BaseRepository(new StaffManagementContext());
+        private readonly IRepository _Repository = new Repository(new StaffManagementContext());
         private readonly IRepository _fakeRepository;
 
         public UserRepositoryTest()

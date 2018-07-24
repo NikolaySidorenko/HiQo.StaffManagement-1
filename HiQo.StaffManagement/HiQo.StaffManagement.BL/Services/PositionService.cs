@@ -9,45 +9,45 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class PositionService : IPositionService
     {
-        private readonly IRepository _baseRepository;
+        private readonly IRepository _repository;
         private readonly IPositionService _positionService;
 
-        public PositionService(IPositionService positionService, IRepository baseRepository)
+        public PositionService(IPositionService positionService, IRepository repository)
         {
             _positionService = positionService;
-            _baseRepository = baseRepository;
+            _repository = repository;
         }
 
         public PositionDto GetById(int id)
         {
-            return Mapper.Map<Position, PositionDto>(_baseRepository.GetById<Position>(id));
+            return Mapper.Map<Position, PositionDto>(_repository.GetById<Position>(id));
         }
 
         public IEnumerable<PositionDto> GetAll()
         {
             return Mapper.Map<IEnumerable<Position>, IEnumerable<PositionDto>>(
-                _baseRepository.GetAll<Position>());
+                _repository.GetAll<Position>());
         }
 
         public void Add(PositionDto entity)
         {
-            _baseRepository.Add(Mapper.Map<Position>(entity));
+            _repository.Add(Mapper.Map<Position>(entity));
         }
 
         public void Remove(PositionDto entity)
         {
-            _baseRepository.Remove(Mapper.Map<Position>(entity));
+            _repository.Remove(Mapper.Map<Position>(entity));
         }
 
         public void Remove(int id)
         {
-            var entity = _baseRepository.GetById<Position>(id);
-            _baseRepository.Remove(entity);
+            var entity = _repository.GetById<Position>(id);
+            _repository.Remove(entity);
         }
 
         public void Update(PositionDto entity)
         {
-            _baseRepository.Update(Mapper.Map<Position>(entity));
+            _repository.Update(Mapper.Map<Position>(entity));
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,

@@ -14,7 +14,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
             using (StaffManagementContext context = new StaffManagementContext())
             {
                 IUserRepository userRepository = new UserRepository(context);
-                IRepository baseRepository = new BaseRepository(context);
+                IRepository baseRepository = new Repository(context);
                 UserService service = new UserService(userRepository, baseRepository);
                 var obj = service.GetAll();
                 return View(obj);

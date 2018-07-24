@@ -15,7 +15,7 @@ namespace HiQo.StaffManagement.WEB
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             MapperConfig.ConfigureAutomapper();
-           // IocContainer.Setup();
+            IocContainer.Setup();
         }
     }
 }

@@ -9,45 +9,45 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class UserService : IUserService
     {
-        private readonly IRepository _baseRepository;
+        private readonly IRepository _repository;
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository, IRepository baseRepository)
+        public UserService(IUserRepository userRepository, IRepository repository)
         {
             _userRepository = userRepository;
-            _baseRepository = baseRepository;
+            _repository = repository;
         }
 
         public UserDto GetById(int id)
         {
-            return Mapper.Map<User, UserDto>(_baseRepository.GetById<User>(id));
+            return Mapper.Map<User, UserDto>(_repository.GetById<User>(id));
         }
 
         public IEnumerable<UserDto> GetAll()
         {
             return Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(
-                _baseRepository.GetAll<User>());
+                _repository.GetAll<User>());
         }
 
         public void Add(UserDto entity)
         {
-            _baseRepository.Add(Mapper.Map<User>(entity));
+            _repository.Add(Mapper.Map<User>(entity));
         }
 
         public void Remove(UserDto entity)
         {
-            _baseRepository.Remove(Mapper.Map<User>(entity));
+            _repository.Remove(Mapper.Map<User>(entity));
         }
 
         public void Remove(int id)
         {
-            var entity = _baseRepository.GetById<User>(id);
-            _baseRepository.Remove(entity);
+            var entity = _repository.GetById<User>(id);
+            _repository.Remove(entity);
         }
 
         public void Update(UserDto entity)
         {
-            _baseRepository.Update(Mapper.Map<User>(entity));
+            _repository.Update(Mapper.Map<User>(entity));
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,

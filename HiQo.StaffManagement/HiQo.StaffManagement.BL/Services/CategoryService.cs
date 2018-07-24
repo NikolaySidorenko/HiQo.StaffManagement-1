@@ -9,45 +9,45 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IRepository _baseRepository;
+        private readonly IRepository _repository;
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(ICategoryRepository categoryRepository, IRepository baseRepository)
+        public CategoryService(ICategoryRepository categoryRepository, IRepository repository)
         {
             _categoryRepository = categoryRepository;
-            _baseRepository = baseRepository;
+            _repository = repository;
         }
 
         public CategoryDto GetById(int id)
         {
-            return Mapper.Map<Category, CategoryDto>(_baseRepository.GetById<Category>(id));
+            return Mapper.Map<Category, CategoryDto>(_repository.GetById<Category>(id));
         }
 
         public IEnumerable<CategoryDto> GetAll()
         {
             return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDto>>(
-                _baseRepository.GetAll<Category>());
+                _repository.GetAll<Category>());
         }
 
         public void Add(CategoryDto entity)
         {
-            _baseRepository.Add(Mapper.Map<Category>(entity));
+            _repository.Add(Mapper.Map<Category>(entity));
         }
 
         public void Remove(CategoryDto entity)
         {
-            _baseRepository.Remove(Mapper.Map<Category>(entity));
+            _repository.Remove(Mapper.Map<Category>(entity));
         }
 
         public void Remove(int id)
         {
-            var entity = _baseRepository.GetById<Category>(id);
-            _baseRepository.Remove(entity);
+            var entity = _repository.GetById<Category>(id);
+            _repository.Remove(entity);
         }
 
         public void Update(CategoryDto entity)
         {
-            _baseRepository.Update(Mapper.Map<Category>(entity));
+            _repository.Update(Mapper.Map<Category>(entity));
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,

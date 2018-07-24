@@ -57,11 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyResolver\BusinessLogicInstaller.cs" />
+    <Compile Include="DependencyResolver\DependencyResolverInstaller.cs" />
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
     <Compile Include="DependencyResolver\WindsorControllerFactory.cs" />
     <Compile Include="Mappings\CategoryMapping.cs" />
+    <Compile Include="Mappings\DepartmentMapping.cs" />
     <Compile Include="Mappings\MapperConfig.cs" />
     <Compile Include="Mappings\PositionLevelMapping.cs" />
     <Compile Include="Mappings\UserMapping.cs" />

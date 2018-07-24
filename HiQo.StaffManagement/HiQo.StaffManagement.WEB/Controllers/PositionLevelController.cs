@@ -10,23 +10,20 @@ namespace HiQo.StaffManagement.WEB.Controllers
 {
     public class PositionLevelController : Controller
     {
+        private readonly IPositionLevelService _positionLevelService;
 
-        //public PositionLevelController(PositionLevelService positionLevelService)
-        //{
-        //    _positionLevelService = positionLevelService;
-        //}
+        public PositionLevelController(IPositionLevelService positionLevelService)
+        {
+            _positionLevelService = positionLevelService;
+        }
 
         // GET: PositionLevel
         public ActionResult Index()
         {
-            using (StaffManagementContext context = new StaffManagementContext())
-            {
-                IPositionLevelRepository positionLevelRepository = new PositionLevelRepository(context);
-                IRepository baseRepository = new BaseRepository(context);
-                PositionLevelService service = new PositionLevelService(positionLevelRepository,baseRepository);
-                var obj = service.GetAll();
-                return View(obj);
-            }
+
+           var q = _positionLevelService.GetAll();
+
+            return View();
         }
     }
 }
