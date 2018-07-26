@@ -1,31 +1,23 @@
-﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Entities.UserDto>
+﻿@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.UserViewModel>
 @{
     ViewBag.Title = "Users";
 }
-
+<h2>Users</h2>
 <div>
     <table class="table">
         <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">BirthDate</th>
-                <th scope="col">MainPhoneNumber</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Department</th>
-                <th scope="col">Category</th>
-                <th scope="col">Position</th>
-                <th scope="col">PositionLevel</th>
-                <th scope="col">Rating</th>
-
-            </tr>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">More info</th>
+        </tr>
         </thead>
         @foreach (var obj in Model)
         {
             <tr>
                 <td>
-                    <p>@obj.UserId</p>
+                    <p></p>
                 </td>
                 <td>
                     <p>@obj.FirstName</p>
@@ -34,39 +26,10 @@
                     <p>@obj.LastName</p>
                 </td>
                 <td>
-                    <p>@obj.BirthDate.ToShortDateString()</p>
-                </td>
-                <td>
-                    <p>@obj.MainPhoneNumber</p>
-                </td>
-                <td>
-                    <p>@obj.Email</p>
-                </td>
-                <td>
-                    <p>@obj.Department.Name</p>
-                </td>
-                <td>
-                    <p>@obj.Category.Name</p>
-                </td>
-                <td>
-                    <p>@obj.Position.Name</p>
-                </td>
-                <td>
-                    <p>@obj.PositionLevel.Name</p>
-                </td>
-                <td>
-                    <p>
-
-                        @if (obj.PositionLevel.Name == "Intern")
-                        {
-                            var dash = "-";
-                            @dash;
-                        }
-                        else
-                        {
-                            @obj.PositionLevel.Level;
-                        }
-                    </p>
+                    @using (Html.BeginForm("GetProfile", "User", new {id = obj}, FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary">Press</button>
+                    }
                 </td>
             </tr>
         }

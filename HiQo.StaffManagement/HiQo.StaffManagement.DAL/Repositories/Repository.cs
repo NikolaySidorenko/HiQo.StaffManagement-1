@@ -61,5 +61,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
             var entityToDelete = _context.Set<TEntity>().Find(id);
             Remove(entityToDelete);
         }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

@@ -26,6 +26,9 @@ namespace HiQo.StaffManagement.WEB
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/Styles/css").Include(
+                "~/Content/body.css"));
         }
     }
 }

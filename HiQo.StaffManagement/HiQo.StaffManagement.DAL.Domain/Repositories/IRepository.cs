@@ -17,6 +17,6 @@ namespace HiQo.StaffManagement.DAL.Domain.Repositories
         void Remove<TEntity>(TEntity entity) where TEntity : class;
         void Update<TEntity>(TEntity entity) where TEntity : class;
         TEntity GetById<TEntity>(int id) where TEntity : class;
-        //SaveChange
+        void SaveChanges();
     }
 }
