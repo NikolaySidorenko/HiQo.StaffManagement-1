@@ -28,11 +28,6 @@ namespace HiQo.StaffManagement.DAL.Configuration
                 .HasColumnName("MainPhoneNumber")
                 .HasMaxLength(20);
 
-            Property(g => g.SecondPhoneNumber)
-                .IsOptional()
-                .HasColumnName("SecondPhoneNumber")
-                .HasMaxLength(20);
-
             Property(g => g.Email)
                 .IsRequired()
                 .HasColumnName("E-mail")

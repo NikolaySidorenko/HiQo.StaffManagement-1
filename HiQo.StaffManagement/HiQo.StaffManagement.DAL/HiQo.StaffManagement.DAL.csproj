@@ -57,9 +57,9 @@
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
-    <Compile Include="Migrations\201807192141425_AfterDeletingDB.cs" />
-    <Compile Include="Migrations\201807192141425_AfterDeletingDB.Designer.cs">
-      <DependentUpon>201807192141425_AfterDeletingDB.cs</DependentUpon>
+    <Compile Include="Migrations\201807262210020_SetupSQLExpress.cs" />
+    <Compile Include="Migrations\201807262210020_SetupSQLExpress.Designer.cs">
+      <DependentUpon>201807262210020_SetupSQLExpress.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,8 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807192141425_AfterDeletingDB.resx">
-      <DependentUpon>201807192141425_AfterDeletingDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807262210020_SetupSQLExpress.resx">
+      <DependentUpon>201807262210020_SetupSQLExpress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿@model HiQo.StaffManagement.Core.ViewModels.UserViewModel
+﻿@model HiQo.StaffManagement.Core.ViewModels.UserInformationViewModel
 @{
     ViewBag.Title = "UserProfile";
 }
@@ -7,41 +7,34 @@
 <div class="panel panel-default">
     <div class="panel-heading">@Model.FirstName @Model.LastName</div>
     <div class="panel-body">
-        @using (Html.BeginForm("UpdateProfile", "User", FormMethod.Post))
+        <p>
+            <text>First Name:@Html.DisplayFor(g => g.FirstName)</text>
+        </p>
+        <p>
+            <text>Last Name:@Html.DisplayFor(g => g.LastName)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 0.5px; width: 100%;"/>
+        <p>
+            <text>Positon:@Html.DisplayFor(g => g.Position)</text>
+        </p>
+        <p>
+            <text>Category:@Html.DisplayFor(g => g.Category)</text>
+        </p>
+        <p>
+            <text>Department:@Html.DisplayFor(g => g.Department)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
+        <p>
+            <text>Phone number:@Html.DisplayFor(g => g.MainPhoneNumber)</text>
+        </p>
+        <p>
+            <text>Email: @Html.DisplayFor(g => g.Email)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
+
+        @using (Html.BeginForm("Update", "User", new { id = Model.UserId }, FormMethod.Get))
         {
-            <p>
-                <text>First Name:@Html.EditorFor(g => g.FirstName, Model.FirstName)</text>
-            </p>
-            <p>
-                <text>First Name:@Html.EditorFor(g => g.LastName, Model.LastName)</text>
-            </p>
-            @*<p>
-                <text>Birthdate:@Html.EditorFor(g => g.BirthDate, 
-                    new { @Model = Model.BirthDate.ToString("yyyy/MM/dd")) } </text>
-            </p>*@
-            <hr style="background-color: black; color: black; height: 0.5px; width: 100%;"/>
-            <p>
-                <text>Positon:@Html.TextBoxFor(g => g.Position)</text>
-            </p>
-            <p>
-                <text>Category:@Html.TextBoxFor(g => g.Category)</text>
-            </p>
-            <p>
-                <text>Department:@Html.TextBoxFor(g => g.Department, Model.Department)</text>
-            </p>
-            <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
-            <p>
-                <text>Phone number:@Html.EditorFor(g => g.MainPhoneNumber, Model.MainPhoneNumber)</text>
-            </p>
-            <p>
-                <text>Email: @Html.EditorFor(g => g.Email)</text>
-            </p>
-
-            <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
-             @*TODO:for Admin<p><text>Role:@Html.EditorFor(g => g.Role, @Model.Role.Name)</text></p>*@
-
-            <input type="submit" class="btn btn-primary">
+             <input type="submit" class="btn btn-default" value="Update" />
         }
-
     </div>
 </div>

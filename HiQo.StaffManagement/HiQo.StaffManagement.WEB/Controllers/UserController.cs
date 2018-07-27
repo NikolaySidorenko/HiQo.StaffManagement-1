@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -20,25 +21,27 @@ namespace HiQo.StaffManagement.WEB.Controllers
         {
             var listOfUsers = _userService.GetAll();
 
-            return View(listOfUsers);
+            return View(Mapper.Map<IEnumerable<UserDto>, List<UserInformationViewModel>>(listOfUsers));
         }
 
         [HttpGet]
         public ActionResult GetProfile(int id)
         {
             var userDto = _userService.GetById(id);
-            var user = Mapper.Map<UserDto, UserViewModel>(userDto);
+            var user = Mapper.Map<UserDto, UserInformationViewModel>(userDto);
             return View("UserProfile",user);
         }
 
         [HttpGet]
-        public ActionResult UpdateProfile()
+        public ActionResult Update(int id)
         {
-            return View();
+            var userDto = _userService.GetById(id);
+            var user = Mapper.Map<UserDto, UserIdViewModel>(userDto);
+            return View(user);
         }
 
         [HttpPost]
-        public ActionResult UpdateProfile(UserViewModel user)
+        public ActionResult Update(UserIdViewModel user)
         {
             if (ModelState.IsValid)
             {

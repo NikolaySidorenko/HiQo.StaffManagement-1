@@ -14,8 +14,6 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
 
         public string MainPhoneNumber { get; set; }
 
-        public string SecondPhoneNumber { get; set; }
-
         public string Email { get; set; }
 
         public int DepartmentId { get; set; }

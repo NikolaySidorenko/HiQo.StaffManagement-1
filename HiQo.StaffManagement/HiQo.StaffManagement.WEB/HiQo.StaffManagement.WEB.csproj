@@ -51,7 +51,6 @@
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -202,6 +201,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -223,7 +223,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -253,7 +255,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\UserProfile.cshtml" />
-    <Content Include="Views\User\UpdateProfile.cshtml" />
+    <Content Include="Views\User\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,10 +269,6 @@
       <Project>{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}</Project>
       <Name>HiQo.StaffManagement.BL.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj">
-      <Project>{583F6F73-910F-4AA2-A177-748497E50DEC}</Project>
-      <Name>HiQo.StaffManagement.BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HiQo.StaffManagement.Configuration\HiQo.StaffManagement.Configuration.csproj">
       <Project>{340b94d7-1d55-4c14-9b02-7b701d6b34d4}</Project>
       <Name>HiQo.StaffManagement.Configuration</Name>
@@ -278,14 +276,6 @@
     <ProjectReference Include="..\HiQo.StaffManagement.Core\HiQo.StaffManagement.Core.csproj">
       <Project>{11b365cd-4ceb-44b8-af03-98c2e12e33bd}</Project>
       <Name>HiQo.StaffManagement.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
-      <Project>{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}</Project>
-      <Name>HiQo.StaffManagement.DAL.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
-      <Project>{0438201F-93BE-4AC8-A631-E30C8D3EF523}</Project>
-      <Name>HiQo.StaffManagement.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -313,7 +303,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>7340</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6880/</IISUrl>
+          <IISUrl>http://localhost:7340/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
