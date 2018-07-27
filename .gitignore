@@ -328,3 +328,19 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+ApplicationInsights\.config
+
+Content/
+
+favicon\.ico
+
+fonts/
+
+Global\.asax
+
+Scripts/
+
+Views/
+
+Web\.config

@@ -49,8 +49,7 @@
   <ItemGroup>
     <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\UserIdViewModel.cs" />
-    <Compile Include="ViewModels\UserInformationViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

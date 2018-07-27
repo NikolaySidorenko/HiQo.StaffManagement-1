@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.UserInformationViewModel>
+﻿@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.UserViewModel>
 
 @{
     ViewBag.Title = "Users";
@@ -27,7 +27,7 @@
                     <p>@obj.LastName</p>
                 </td>
                 <td>
-                    @using (Html.BeginForm("GetProfile", "User", new {id = obj.UserId}, FormMethod.Get))
+                    @using (Html.BeginForm("Update", "User", new {id = obj.UserId}, FormMethod.Get))
                     {
                         <button type="submit" class="btn btn-primary">Press</button>
                     }

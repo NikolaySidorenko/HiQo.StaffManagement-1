@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -50,6 +51,12 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<Category>(entity));
         }
 
+        public Dictionary<int, string> GetDictionary()
+        {
+            var listOfCategories = _repository.GetAll<Category>();
+
+            return listOfCategories.ToDictionary(category => category.CategoryId, category => category.Name);
+        }
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
         //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
         //{

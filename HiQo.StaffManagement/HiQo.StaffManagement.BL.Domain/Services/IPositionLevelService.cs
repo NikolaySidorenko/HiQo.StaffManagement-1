@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using HiQo.StaffManagement.BL.Domain.Entities;
-
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
@@ -24,5 +20,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         void Remove(int id);
 
         void Update(PositionLevelDto entity);
+
+        Dictionary<int, string> GetDictionary();
     }
 }

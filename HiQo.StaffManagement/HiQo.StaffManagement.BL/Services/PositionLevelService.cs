@@ -53,6 +53,14 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<PositionLevel>(entity));
         }
 
+        public Dictionary<int, string> GetDictionary()
+        {
+            var listOfPositionLevels = _repository.GetAll<PositionLevel>();
+
+            return listOfPositionLevels.ToDictionary(positionlevel => positionlevel.PositionLevelId,
+                positionlevel => positionlevel.Name + " " + positionlevel.Level.ToString());
+
+        }
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
         //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
         //{

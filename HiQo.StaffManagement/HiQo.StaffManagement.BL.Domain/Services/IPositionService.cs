@@ -20,5 +20,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         void Remove(int id);
 
         void Update(PositionDto entity);
+
+        Dictionary<int, string> GetDictionary();
     }
 }
