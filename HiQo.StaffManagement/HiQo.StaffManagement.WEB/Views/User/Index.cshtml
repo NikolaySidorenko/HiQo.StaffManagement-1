@@ -35,4 +35,10 @@
             </tr>
         }
     </table>
+    
+    @using (Html.BeginForm("Create", "User", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary">Create</button>
+    }
+
 </div>

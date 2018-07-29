@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HiQo.StaffManagement.Core.ViewModels
 {
@@ -11,6 +12,8 @@ namespace HiQo.StaffManagement.Core.ViewModels
 
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
         public string MainPhoneNumber { get; set; }

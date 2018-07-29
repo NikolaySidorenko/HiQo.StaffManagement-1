@@ -48,20 +48,40 @@ namespace HiQo.StaffManagement.WEB.Controllers
             user.DictionaryOfPositionLevels = _positionLevelService.GetDictionary();
             user.DictionaryOfRoles = _roleService.GetDictionary();
 
-            return View(user);
+            return View("Creation",user);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var user = new UserViewModel
+            {
+                DictionaryOfDepartments = _departmentService.GetDictionary(),
+                DictionaryOfCategories = _categoryService.GetDictionary(),
+                DictionaryOfPositions = _positionService.GetDictionary(),
+                DictionaryOfPositionLevels = _positionLevelService.GetDictionary(),
+                DictionaryOfRoles = _roleService.GetDictionary()
+            };
+
+            return View("Creation",user);
         }
 
         [HttpPost]
-        public ActionResult Update(UserViewModel user)
+        public ActionResult CreationUser(UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                //var user = _userService.GetById(updatedUser.UserId);
-                //user = updatedUser;
-                //_userService.Update(user);
+                if (user.UserId != 0)
+                {
+                    _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                }
+                else
+                {
+                    _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
+                }
             }
 
-            return View();
+            return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
         }
     }
 }

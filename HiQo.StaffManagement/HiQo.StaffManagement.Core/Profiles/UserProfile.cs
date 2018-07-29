@@ -13,11 +13,23 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.CurrentDepartmentId, opt => opt.MapFrom(src => src.DepartmentId))
                 .ForMember(dest => dest.CurrentCategoryId, opt => opt.MapFrom(src => src.Category.CategoryId))
                 .ForMember(dest => dest.CurrentPositionId, opt => opt.MapFrom(src => src.Position.PositionId))
-                .ForMember(dest => dest.CurrentPositionLevelId, opt => opt.MapFrom(src => src.PositionLevel.PositionLevelId))
-                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate.Date))
-                .ForMember(dest => dest.CurrentRoleId, opt => opt.MapFrom(src => src.RoleId))
-                .ReverseMap();
+                .ForMember(dest => dest.CurrentPositionLevelId,
+                    opt => opt.MapFrom(src => src.PositionLevel.PositionLevelId))
+                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
+                .ForMember(dest => dest.CurrentRoleId, opt => opt.MapFrom(src => src.RoleId));
 
+            CreateMap<UserViewModel, UserDto>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.CurrentDepartmentId))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CurrentCategoryId))
+                .ForMember(dest => dest.MainPhoneNumber, opt => opt.MapFrom(src => src.MainPhoneNumber))
+                .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
+                .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
+                .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId));
         }
     }
 }

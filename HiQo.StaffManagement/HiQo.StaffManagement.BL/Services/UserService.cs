@@ -32,6 +32,7 @@ namespace HiQo.StaffManagement.BL.Services
         public void Add(UserDto entity)
         {
             _repository.Add(Mapper.Map<User>(entity));
+            _repository.SaveChanges();
         }
 
         public void Remove(UserDto entity)
@@ -48,6 +49,7 @@ namespace HiQo.StaffManagement.BL.Services
         public void Update(UserDto entity)
         {
             _repository.Update(Mapper.Map<User>(entity));
+            _repository.SaveChanges();
         }
 
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
