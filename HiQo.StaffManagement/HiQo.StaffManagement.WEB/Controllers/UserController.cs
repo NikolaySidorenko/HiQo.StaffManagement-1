@@ -42,28 +42,19 @@ namespace HiQo.StaffManagement.WEB.Controllers
             var userDto = _userService.GetById(id);
             var user = Mapper.Map<UserDto, UserViewModel>(userDto);
 
-            user.DictionaryOfDepartments = _departmentService.GetDictionary();
-            user.DictionaryOfCategories = _categoryService.GetDictionary();
-            user.DictionaryOfPositions = _positionService.GetDictionary();
-            user.DictionaryOfPositionLevels = _positionLevelService.GetDictionary();
-            user.DictionaryOfRoles = _roleService.GetDictionary();
+            InitializeDictionary(user);
 
-            return View("Creation",user);
+            return View("Creation", user);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            var user = new UserViewModel
-            {
-                DictionaryOfDepartments = _departmentService.GetDictionary(),
-                DictionaryOfCategories = _categoryService.GetDictionary(),
-                DictionaryOfPositions = _positionService.GetDictionary(),
-                DictionaryOfPositionLevels = _positionLevelService.GetDictionary(),
-                DictionaryOfRoles = _roleService.GetDictionary()
-            };
+            var user = new UserViewModel();
 
-            return View("Creation",user);
+            InitializeDictionary(user);
+
+            return View("Creation", user);
         }
 
         [HttpPost]
@@ -72,16 +63,21 @@ namespace HiQo.StaffManagement.WEB.Controllers
             if (ModelState.IsValid)
             {
                 if (user.UserId != 0)
-                {
                     _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
-                }
                 else
-                {
                     _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
-                }
             }
 
             return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
+        }
+
+        private void InitializeDictionary(UserViewModel user)
+        {
+            user.DictionaryOfDepartments = _departmentService.GetDictionary();
+            user.DictionaryOfCategories = _categoryService.GetDictionary();
+            user.DictionaryOfPositions = _positionService.GetDictionary();
+            user.DictionaryOfPositionLevels = _positionLevelService.GetDictionary();
+            user.DictionaryOfRoles = _roleService.GetDictionary();
         }
     }
 }

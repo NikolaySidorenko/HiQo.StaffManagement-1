@@ -57,6 +57,7 @@ namespace HiQo.StaffManagement.BL.Services
 
             return listOfCategories.ToDictionary(category => category.CategoryId, category => category.Name);
         }
+
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
         //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
         //{

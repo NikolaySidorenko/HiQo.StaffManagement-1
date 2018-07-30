@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -52,6 +54,13 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.SaveChanges();
         }
 
+        public IEnumerable<UserDto> GetListOfBirthdays()
+        {
+            var users = _repository.GetAll<User>().Where(user =>
+                user.BirthDate.Day == DateTime.Today.Day && user.BirthDate.Month == DateTime.Today.Month);
+
+            return Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
+        }
         //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
         //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
         //{

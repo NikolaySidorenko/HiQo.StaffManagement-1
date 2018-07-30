@@ -30,6 +30,8 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
                 .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
                 .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId));
+
+            CreateMap<UserDto, UserBirthdayViewModel>();
         }
     }
 }

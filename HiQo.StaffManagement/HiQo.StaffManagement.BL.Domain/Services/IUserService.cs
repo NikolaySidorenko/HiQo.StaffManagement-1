@@ -20,5 +20,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         void Remove(int id);
 
         void Update(UserDto entity);
+
+        IEnumerable<UserDto> GetListOfBirthdays();
     }
 }

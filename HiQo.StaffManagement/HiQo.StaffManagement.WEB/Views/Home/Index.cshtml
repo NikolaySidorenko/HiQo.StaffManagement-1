@@ -1,9 +1,21 @@
-﻿@{
+﻿@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.UserBirthdayViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
-<br/>
+<br />
 <div class="btn-group">
-    <button type="button" class="btn btn-dark">@Html.ActionLink("User","Index","User")</button>
+    <button type="button" class="btn btn-dark">@Html.ActionLink("User", "Index", "User")</button>
     <button type="button" class="btn btn-dark">@Html.ActionLink("Departments", "Index", "Department")</button>
     <button type="button" class="btn btn-dark"> @Html.ActionLink("Positons", "Index", "Position")</button>
+</div>
+<div class="panel panel-default"  style="float: right">
+    <div class="panel-heading">
+        <text>Happy birthday</text>
+    </div>
+    <div class="panel-body">
+        @foreach (var user in Model)
+        {
+            <p><a href="~/User/Update/@user.UserId">@user.FirstName @user.LastName</a></p>  
+        }
+    </div>
 </div>
