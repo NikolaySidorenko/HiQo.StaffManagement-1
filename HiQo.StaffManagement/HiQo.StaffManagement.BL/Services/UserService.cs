@@ -40,12 +40,14 @@ namespace HiQo.StaffManagement.BL.Services
         public void Remove(UserDto entity)
         {
             _repository.Remove(Mapper.Map<User>(entity));
+            _repository.SaveChanges();
         }
 
         public void Remove(int id)
         {
             var entity = _repository.GetById<User>(id);
             _repository.Remove(entity);
+            _repository.SaveChanges();
         }
 
         public void Update(UserDto entity)

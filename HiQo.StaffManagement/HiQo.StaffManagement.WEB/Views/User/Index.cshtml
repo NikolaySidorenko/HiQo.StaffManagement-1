@@ -27,7 +27,7 @@
                     <p>@obj.LastName</p>
                 </td>
                 <td>
-                    @using (Html.BeginForm("Update", "User", new {id = obj.UserId}, FormMethod.Get))
+                    @using (Html.BeginForm("Profile", "User", new {id = obj.UserId}, FormMethod.Get))
                     {
                         <button type="submit" class="btn btn-primary">Press</button>
                     }
@@ -36,9 +36,9 @@
         }
     </table>
     
-    @using (Html.BeginForm("Create", "User", FormMethod.Get))
+    @*@using (Html.BeginForm("Create", "User", FormMethod.Get))
     {
         <button type="submit" class="btn btn-primary">Create</button>
-    }
+    }*@
 
 </div>

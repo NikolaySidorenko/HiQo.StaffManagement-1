@@ -51,15 +51,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
 
         public void Remove<TEntity>(TEntity entityToDelete) where TEntity : class
         {
-            if (_context.Entry(entityToDelete).State == EntityState.Detached) _context.Set<TEntity>().Attach(entityToDelete);
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+                _context.Set<TEntity>().Attach(entityToDelete);
 
             _context.Set<TEntity>().Remove(entityToDelete);
-        }
-
-        public void Remove<TEntity>(int id) where TEntity : class
-        {
-            var entityToDelete = _context.Set<TEntity>().Find(id);
-            Remove(entityToDelete);
         }
 
         public void SaveChanges()

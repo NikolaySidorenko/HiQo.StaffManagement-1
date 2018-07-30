@@ -4,9 +4,9 @@
 }
 <br />
 <div class="btn-group">
-    <button type="button" class="btn btn-dark">@Html.ActionLink("User", "Index", "User")</button>
-    <button type="button" class="btn btn-dark">@Html.ActionLink("Departments", "Index", "Department")</button>
-    <button type="button" class="btn btn-dark"> @Html.ActionLink("Positons", "Index", "Position")</button>
+    <button type="button" class="btn btn-default">@Html.ActionLink("User", "Index", "User", new { area = ""}, null)</button>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Departments", "Index", "Department", new { area = ""}, null)</button>
+    <button type="button" class="btn btn-default">@Html.ActionLink("Positons", "Index", "Position", new { area = ""}, null)</button>
 </div>
 <div class="panel panel-default"  style="float: right">
     <div class="panel-heading">
@@ -14,8 +14,8 @@
     </div>
     <div class="panel-body">
         @foreach (var user in Model)
-        {
-            <p><a href="~/User/Update/@user.UserId">@user.FirstName @user.LastName</a></p>  
+        { 
+            @Html.ActionLink(@user.FirstName+" "+@user.LastName,"Profile","User", new { area="" , id = user.UserId},null)
         }
     </div>
 </div>

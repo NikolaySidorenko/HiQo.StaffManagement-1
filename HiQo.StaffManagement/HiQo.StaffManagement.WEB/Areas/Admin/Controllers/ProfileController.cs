@@ -5,9 +5,9 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
 
-namespace HiQo.StaffManagement.WEB.Controllers
+namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class ProfileController : Controller
     {
         private readonly ICategoryService _categoryService;
         private readonly IDepartmentService _departmentService;
@@ -16,16 +16,16 @@ namespace HiQo.StaffManagement.WEB.Controllers
         private readonly IRoleService _roleService;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService, IDepartmentService departmentService,
-            ICategoryService categoryService, IPositionService positionService,
-            IPositionLevelService positionLevelService, IRoleService roleService)
+        public ProfileController(ICategoryService categoryService, IDepartmentService departmentService,
+            IPositionLevelService positionLevelService, IPositionService positionService, IRoleService roleService,
+            IUserService userService)
         {
-            _userService = userService;
-            _departmentService = departmentService;
             _categoryService = categoryService;
-            _positionService = positionService;
+            _departmentService = departmentService;
             _positionLevelService = positionLevelService;
+            _positionService = positionService;
             _roleService = roleService;
+            _userService = userService;
         }
 
         public ActionResult Index()
@@ -43,27 +43,37 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
             InitializeDictionary(user);
 
-            return View(user);
+            return View("Creation", user);
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            var user = new UserViewModel();
+
+            InitializeDictionary(user);
+
+            return View("Creation", user);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            _userService.Remove(id);
+            return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
+        }
         [HttpPost]
         public ActionResult Creation(UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                 _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                if (user.UserId != 0)
+                    _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                else
+                    _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
             }
 
             return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
-        }
-
-        [HttpGet]
-        public ActionResult Profile(int id)
-        {
-            var user = Mapper.Map<UserDto, UserViewModel>(_userService.GetById(id));
-            InitializeDictionary(user);
-
-            return View(user);
         }
 
         private void InitializeDictionary(UserViewModel user)

@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System.Web.Mvc;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
@@ -9,7 +10,7 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(AllTypes.FromAssemblyNamed("HiQo.StaffManagement.WEB")
-                .Pick().If(t => t.Name.EndsWith("Controller"))
+                .BasedOn<IController>()
                 .Configure(configurer => configurer.Named(configurer.Implementation.Name))
                 .LifestylePerWebRequest());
         }
