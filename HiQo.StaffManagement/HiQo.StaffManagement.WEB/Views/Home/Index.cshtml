@@ -15,7 +15,7 @@
     <div class="panel-body">
         @foreach (var user in Model)
         { 
-            @Html.ActionLink(@user.FirstName+" "+@user.LastName,"Profile","User", new { area="" , id = user.UserId},null)
+            @Html.ActionLink(@user.FirstName+" "+@user.LastName,"Profiles","User", new { area="" , id = user.UserId},null)
         }
     </div>
 </div>

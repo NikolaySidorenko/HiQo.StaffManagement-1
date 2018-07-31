@@ -19,7 +19,7 @@ namespace HiQo.StaffManagement.BL.Tests
         [Fact]
         public void Add_UserDto_ShouldReturnNewUser()
         {
-            var user = new UserDto()
+            var user = new UserDto
             {
                 FirstName = "user",
                 LastName = "usero",
@@ -56,8 +56,6 @@ namespace HiQo.StaffManagement.BL.Tests
                 CategoryId = 3,
                 DepartmentId = 2
             };
-
-          
 
 
         }

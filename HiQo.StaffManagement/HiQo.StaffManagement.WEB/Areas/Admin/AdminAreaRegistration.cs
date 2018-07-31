@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Reflection;
+using System.Web.Mvc;
 
 namespace HiQo.StaffManagement.WEB.Areas.Admin
 {
@@ -18,7 +19,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin
                 name:"Admin_default",
                 url:"Admin/{controller}/{action}/{id}",
                 defaults: new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "HiQo.StaffManagement.WEB.Areas.Admin.Controllers" }
+                namespaces: new[] { Assembly.GetExecutingAssembly().GetName().Name + ".Areas.Admin.Controllers" }
             );
         }
     }

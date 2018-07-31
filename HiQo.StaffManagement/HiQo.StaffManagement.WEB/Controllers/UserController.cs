@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
@@ -7,31 +8,21 @@ using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WEB.Controllers
-{
+{//Factory Service?
     public class UserController : Controller
     {
-        private readonly ICategoryService _categoryService;
-        private readonly IDepartmentService _departmentService;
-        private readonly IPositionLevelService _positionLevelService;
-        private readonly IPositionService _positionService;
-        private readonly IRoleService _roleService;
         private readonly IUserService _userService;
+        private readonly IUpsertService _upsertService;
 
-        public UserController(IUserService userService, IDepartmentService departmentService,
-            ICategoryService categoryService, IPositionService positionService,
-            IPositionLevelService positionLevelService, IRoleService roleService)
+        public UserController(IUserService userService, IUpsertService upsertService)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
-            _departmentService = departmentService ?? throw new ArgumentNullException(nameof(departmentService));
-            _categoryService = categoryService ?? throw new ArgumentNullException(nameof(categoryService));
-            _positionService = positionService ?? throw new ArgumentNullException(nameof(positionLevelService));
-            _positionLevelService = positionLevelService ?? throw new ArgumentNullException(nameof(positionLevelService));
-            _roleService = roleService ?? throw new ArgumentNullException(nameof(roleService));
+            _upsertService = upsertService ?? throw new ArgumentNullException(nameof(userService));
         }
 
         public ActionResult Index()
         {
-            var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+            var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll());
 
             return View(listOfUsersForView);
         }
@@ -72,11 +63,11 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
         private void InitializeDictionary(UserViewModel user)
         {
-            user.DictionaryOfDepartments = _departmentService.NameByIdDictionary();
-            user.DictionaryOfCategories = _categoryService.NameByIdDictionary();
-            user.DictionaryOfPositions = _positionService.NameByIdDictionary();
-            user.DictionaryOfPositionLevels = _positionLevelService.NameByIdDictionary();
-            user.DictionaryOfRoles = _roleService.NameByIdDictionary();
+            user.DictionaryOfDepartments = _upsertService.getDictionaryNameByIdDepartment();
+            user.DictionaryOfCategories = _upsertService.getDictionaryNameByIdCategory();
+            user.DictionaryOfPositions = _upsertService.getDictionaryNameByIdPosition();
+            user.DictionaryOfPositionLevels = _upsertService.getDictionaryNameByIdPositionLevel();
+            user.DictionaryOfRoles = _upsertService.getDictionaryNameByIdRole();
         }
     }
 }

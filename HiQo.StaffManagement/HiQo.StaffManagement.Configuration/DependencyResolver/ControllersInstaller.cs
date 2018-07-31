@@ -5,15 +5,20 @@ using Castle.Windsor;
 
 namespace HiQo.StaffManagement.Configuration.DependencyResolver
 {
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!1
     public class ControllersInstaller : IWindsorInstaller
     {
+        private readonly string _assemblyProjectName;
+
+        public ControllersInstaller(string assemblyName)
+        {
+            _assemblyProjectName = assemblyName;
+        }
+
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            //!!!!!
-            container.Register(AllTypes.FromAssemblyNamed("HiQo.StaffManagement.WEB")
+            container.Register(Classes.FromAssemblyNamed(_assemblyProjectName)
                 .BasedOn<IController>()
-                .Configure(configurer => configurer.Named(configurer.Implementation.Name))
+                .Configure(configurer => configurer.Named(configurer.Implementation.FullName))
                 .LifestylePerWebRequest());
         }
     }

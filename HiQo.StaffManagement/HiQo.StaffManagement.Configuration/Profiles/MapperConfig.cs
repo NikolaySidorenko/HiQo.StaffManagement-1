@@ -16,7 +16,7 @@ namespace HiQo.StaffManagement.Configuration.Profiles
         {
             var profilesOfConfiguration = typeof(MapperConfig).Assembly.GetTypes().Where(x => typeof(Profile).IsAssignableFrom(x));
 
-            var profilesOfCore = typeof(UserProfile).Assembly.GetTypes().Where(x => typeof(Profile).IsAssignableFrom(x));
+            var profilesOfCore = typeof(Core.Profiles.UserProfile).Assembly.GetTypes().Where(x => typeof(Profile).IsAssignableFrom(x));
 
             foreach (var profile in profilesOfConfiguration)
             {

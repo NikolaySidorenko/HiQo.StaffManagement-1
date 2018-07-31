@@ -14,9 +14,10 @@ namespace HiQo.StaffManagement.WEB
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes, Assembly.GetExecutingAssembly().GetName().Name);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleConfigJs.RegisterBundles(BundleTable.Bundles);
+            BundleConfigCss.RegisterBundles(BundleTable.Bundles);
             MapperConfig.ConfigureAutomapper();
-            IocContainer.Setup();
+            IocContainer.Setup(Assembly.GetExecutingAssembly().GetName().Name);
         }
     }
 }

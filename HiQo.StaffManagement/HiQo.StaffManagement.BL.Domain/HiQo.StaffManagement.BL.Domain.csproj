@@ -52,6 +52,7 @@
     <Compile Include="Services\IPositionLevelService.cs" />
     <Compile Include="Services\IPositionService.cs" />
     <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\IUpsertService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
   <ItemGroup />

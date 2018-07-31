@@ -57,6 +57,7 @@
     <Compile Include="Services\PositionLevelService.cs" />
     <Compile Include="Services\PositionService.cs" />
     <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\UpsertService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
