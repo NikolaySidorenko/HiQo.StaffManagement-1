@@ -30,9 +30,10 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var listOfUsers = _userService.GetAll();
+            var listOfUsersForView =
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
 
-            return View(Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(listOfUsers));
+            return View(listOfUsersForView);
         }
 
         [HttpGet]
@@ -60,29 +61,40 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             _userService.Remove(id);
-            return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
+            var listOfUsersForView =
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+
+            return View("Index", listOfUsersForView);
         }
+
         [HttpPost]
         public ActionResult Creation(UserViewModel user)
         {
             if (ModelState.IsValid)
             {
                 if (user.UserId != 0)
+                {
                     _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                }
                 else
+                {
                     _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
+                }
             }
 
-            return View("Index", Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll()));
+            var listOfUsersForView =
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+
+            return View("Index", listOfUsersForView);
         }
 
         private void InitializeDictionary(UserViewModel user)
         {
-            user.DictionaryOfDepartments = _departmentService.GetDictionary();
-            user.DictionaryOfCategories = _categoryService.GetDictionary();
-            user.DictionaryOfPositions = _positionService.GetDictionary();
-            user.DictionaryOfPositionLevels = _positionLevelService.GetDictionary();
-            user.DictionaryOfRoles = _roleService.GetDictionary();
+            user.DictionaryOfDepartments = _departmentService.NameByIdDictionary();
+            user.DictionaryOfCategories = _categoryService.NameByIdDictionary();
+            user.DictionaryOfPositions = _positionService.NameByIdDictionary();
+            user.DictionaryOfPositionLevels = _positionLevelService.NameByIdDictionary();
+            user.DictionaryOfRoles = _roleService.NameByIdDictionary();
         }
     }
 }

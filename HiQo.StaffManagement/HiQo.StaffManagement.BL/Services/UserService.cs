@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -58,21 +59,17 @@ namespace HiQo.StaffManagement.BL.Services
 
         public IEnumerable<UserDto> GetListOfBirthdays()
         {
-            var users = _repository.GetAll<User>().Where(user =>
-                user.BirthDate.Day == DateTime.Today.Day && user.BirthDate.Month == DateTime.Today.Month);
+            var listOfUsers = Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(_repository.Get<User>().Where(user =>
+                user.BirthDate.Day == DateTime.Today.Day && user.BirthDate.Month == DateTime.Today.Month));
 
-            return Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(users);
+            return listOfUsers;
         }
-        //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
-        //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
-        //{
-        //    var query =
-        //        Mapper.Map<IQueryable<PositionLevel>, IQueryable<PositionLevelDto>>(
-        //            _baseRepository.GetAll<PositionLevel>());
 
-        //    if (filter != null) query = query.Where(filter);
+        public bool IsExists(int id)
+        {
+            var user = _repository.GetById<User>(id);
 
-        //    return orderBy != null ? orderBy(query).ToList() : query.ToList();
-        //}
+            return user != null;
+        }
     }
 }

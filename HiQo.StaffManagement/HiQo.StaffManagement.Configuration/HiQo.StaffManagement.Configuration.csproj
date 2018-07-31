@@ -61,13 +61,13 @@
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
     <Compile Include="DependencyResolver\WindsorControllerFactory.cs" />
-    <Compile Include="Mappings\CategoryMapping.cs" />
-    <Compile Include="Mappings\DepartmentMapping.cs" />
-    <Compile Include="Mappings\MapperConfig.cs" />
-    <Compile Include="Mappings\PositionLevelMapping.cs" />
-    <Compile Include="Mappings\PositionMapping.cs" />
-    <Compile Include="Mappings\RoleMapping.cs" />
-    <Compile Include="Mappings\UserMapping.cs" />
+    <Compile Include="Profiles\CategoryProfile.cs" />
+    <Compile Include="Profiles\DepartmentProfile.cs" />
+    <Compile Include="Profiles\MapperConfig.cs" />
+    <Compile Include="Profiles\PositionLevelProfile.cs" />
+    <Compile Include="Profiles\PositionProfile.cs" />
+    <Compile Include="Profiles\RoleProfile.cs" />
+    <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

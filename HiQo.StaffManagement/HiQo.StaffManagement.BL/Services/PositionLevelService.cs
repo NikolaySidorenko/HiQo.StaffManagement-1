@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -53,7 +51,7 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<PositionLevel>(entity));
         }
 
-        public Dictionary<int, string> GetDictionary()
+        public Dictionary<int, string> NameByIdDictionary()
         {
             var listOfPositionLevels = _repository.GetAll<PositionLevel>();
 
@@ -61,16 +59,5 @@ namespace HiQo.StaffManagement.BL.Services
                 positionlevel => positionlevel.Name + " " + positionlevel.Level.ToString());
 
         }
-        //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
-        //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
-        //{
-        //    var query =
-        //        Mapper.Map<IQueryable<PositionLevel>, IQueryable<PositionLevelDto>>(
-        //            _baseRepository.GetAll<PositionLevel>());
-
-        //    if (filter != null) query = query.Where(filter);
-
-        //    return orderBy != null ? orderBy(query).ToList() : query.ToList();
-        //}
     }
 }

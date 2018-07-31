@@ -21,6 +21,6 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Update(PositionDto entity);
 
-        Dictionary<int, string> GetDictionary();
+        Dictionary<int, string> NameByIdDictionary();
     }
 }

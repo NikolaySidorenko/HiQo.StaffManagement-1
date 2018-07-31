@@ -51,23 +51,11 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<Category>(entity));
         }
 
-        public Dictionary<int, string> GetDictionary()
+        public Dictionary<int, string> NameByIdDictionary()
         {
             var listOfCategories = _repository.GetAll<Category>();
 
             return listOfCategories.ToDictionary(category => category.CategoryId, category => category.Name);
         }
-
-        //public IEnumerable<PositionLevelDto> Get(Expression<Func<PositionLevelDto, bool>> filter,
-        //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy)
-        //{
-        //    var query =
-        //        Mapper.Map<IQueryable<PositionLevel>, IQueryable<PositionLevelDto>>(
-        //            _baseRepository.GetAll<PositionLevel>());
-
-        //    if (filter != null) query = query.Where(filter);
-
-        //    return orderBy != null ? orderBy(query).ToList() : query.ToList();
-        //}
     }
 }

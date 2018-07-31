@@ -9,6 +9,7 @@ using HiQo.StaffManagement.DAL.Repositories;
 
 namespace HiQo.StaffManagement.Configuration.DependencyResolver
 {
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!
     public class DependencyResolverInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)

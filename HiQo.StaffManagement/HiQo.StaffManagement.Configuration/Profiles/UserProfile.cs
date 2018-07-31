@@ -2,11 +2,11 @@
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 
-namespace HiQo.StaffManagement.Configuration.Mappings
+namespace HiQo.StaffManagement.Configuration.Profiles
 {
-    public class UserMapping : Profile
+    public class UserProfile : Profile
     {
-        public UserMapping()
+        public UserProfile()
         {
             CreateMap<User, UserDto>()
                 .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.Department))

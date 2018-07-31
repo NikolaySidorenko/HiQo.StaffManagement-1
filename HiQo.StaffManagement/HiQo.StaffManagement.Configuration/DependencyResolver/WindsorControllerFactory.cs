@@ -12,7 +12,7 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
 
         public WindsorControllerFactory(IKernel kernel)
         {
-            this._kernel = kernel;
+            _kernel = kernel;
         }
 
         public override void ReleaseController(IController controller)

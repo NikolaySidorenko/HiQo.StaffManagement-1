@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FakeItEasy, Version=2.3.1.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FakeItEasy.2.3.1\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,10 +58,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="UserServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
+      <Project>{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}</Project>
+      <Name>HiQo.StaffManagement.BL.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj">
       <Project>{583f6f73-910f-4aa2-a177-748497e50dec}</Project>
       <Name>HiQo.StaffManagement.BL</Name>

@@ -28,7 +28,6 @@ namespace HiQo.StaffManagement.Core.ViewModels
 
         public int CurrentPositionId { get; set; }
         public Dictionary<int,string> DictionaryOfPositions { get; set; }
-
         
         public int CurrentPositionLevelId { get; set; }
         public Dictionary<int, string> DictionaryOfPositionLevels { get; set; }

@@ -14,20 +14,20 @@
             <th scope="col">More info</th>
         </tr>
         </thead>
-        @foreach (var obj in Model)
+        @foreach (var user in Model)
         {
             <tr>
                 <td>
-                    <p>@obj.UserId</p>
+                    <p>@user.UserId</p>
                 </td>
                 <td>
-                    <p>@obj.FirstName</p>
+                    <p>@user.FirstName</p>
                 </td>
                 <td>
-                    <p>@obj.LastName</p>
+                    <p>@user.LastName</p>
                 </td>
                 <td>
-                    @using (Html.BeginForm("Profile", "User", new {id = obj.UserId}, FormMethod.Get))
+                    @using (Html.BeginForm("Profiles", "User", new {id = user.UserId}, FormMethod.Get))
                     {
                         <button type="submit" class="btn btn-primary">Press</button>
                     }
@@ -35,10 +35,5 @@
             </tr>
         }
     </table>
-    
-    @*@using (Html.BeginForm("Create", "User", FormMethod.Get))
-    {
-        <button type="submit" class="btn btn-primary">Create</button>
-    }*@
 
 </div>

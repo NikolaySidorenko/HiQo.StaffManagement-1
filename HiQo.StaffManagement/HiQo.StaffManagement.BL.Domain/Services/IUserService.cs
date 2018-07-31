@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
@@ -9,10 +12,6 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         IEnumerable<UserDto> GetAll();
 
-        //IEnumerable<PositionLevelDto> Get(
-        //    Expression<Func<PositionLevelDto, bool>> filter = null,
-        //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy = null);
-
         void Add(UserDto entity);
 
         void Remove(UserDto entity);
@@ -22,5 +21,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         void Update(UserDto entity);
 
         IEnumerable<UserDto> GetListOfBirthdays();
+
+        bool IsExists(int id);
     }
 }
