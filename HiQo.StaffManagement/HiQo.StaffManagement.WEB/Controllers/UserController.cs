@@ -22,7 +22,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
         public ActionResult Index()
         {
-            var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(_userService.GetAll());
+            var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
 
             return View(listOfUsersForView);
         }

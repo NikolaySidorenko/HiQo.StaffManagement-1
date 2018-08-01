@@ -29,8 +29,8 @@ namespace HiQo.StaffManagement.DAL.Repositories
         }
 
         public IEnumerable<TEntity> Get<TEntity>(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null) where TEntity : class
+            Expression<Func<TEntity, bool>> filter,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy) where TEntity : class
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
 

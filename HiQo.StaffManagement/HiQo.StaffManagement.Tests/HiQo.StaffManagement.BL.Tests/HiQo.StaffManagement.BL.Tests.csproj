@@ -33,11 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FakeItEasy, Version=2.3.1.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\FakeItEasy.2.3.1\lib\net40\FakeItEasy.dll</HintPath>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FakeItEasy, Version=4.0.0.0, Culture=neutral, PublicKeyToken=eff28e2146d5fd2c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FakeItEasy.4.7.1\lib\net45\FakeItEasy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,8 +65,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
@@ -69,6 +76,18 @@
     <ProjectReference Include="..\..\HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj">
       <Project>{583f6f73-910f-4aa2-a177-748497e50dec}</Project>
       <Name>HiQo.StaffManagement.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HiQo.StaffManagement.Configuration\HiQo.StaffManagement.Configuration.csproj">
+      <Project>{340B94D7-1D55-4C14-9B02-7B701D6B34D4}</Project>
+      <Name>HiQo.StaffManagement.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
+      <Project>{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}</Project>
+      <Name>HiQo.StaffManagement.DAL.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
+      <Project>{0438201F-93BE-4AC8-A631-E30C8D3EF523}</Project>
+      <Name>HiQo.StaffManagement.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -10,15 +10,13 @@
     margin-top: 1%;
 }
 
-#panel-default-float {
+.birthday-panel {
     float: right;
 }
+
 .dividing-line {
     background-color: black;
     color: black;
     height: 1px;
     width: 100%; 
-}
-.birthday-body {
-    color: aliceblue;
 }

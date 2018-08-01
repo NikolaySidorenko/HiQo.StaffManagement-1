@@ -34,13 +34,8 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void Add(UserDto entity)
         {
-            _repository.Add(Mapper.Map<User>(entity));
-            _repository.SaveChanges();
-        }
-
-        public void Remove(UserDto entity)
-        {
-            _repository.Remove(Mapper.Map<User>(entity));
+            var user = Mapper.Map<User>(entity);
+            _repository.Add(user);
             _repository.SaveChanges();
         }
 
