@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
@@ -13,7 +14,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
         public HomeController(IUserService userService)
         {
-            _userService = userService;
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }
 
         public ActionResult Index()

@@ -94,12 +94,14 @@ namespace HiQo.StaffManagement.BL.Tests
             MapperConfig.ConfigureAutomapper();
             var id = 666;
 
-            var user = new UserDto
+            var user = new User
             {
                 UserId = id
-            }; 
+            };
 
-            _userService.Add(user);
+            _userService.Add(Mapper.Map<UserDto>(user));
+
+            //A.CallTo(() => _repository.Add<User>(user)).MustHaveHappenedOnceExactly();
 
             A.CallTo(_repository).Where(call => call.Method.Name == nameof(_repository.Add) && call.Method.IsGenericMethod)
                 .WithVoidReturnType().MustHaveHappenedOnceExactly();

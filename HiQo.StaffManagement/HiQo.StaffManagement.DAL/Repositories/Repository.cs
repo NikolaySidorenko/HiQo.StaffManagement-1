@@ -14,16 +14,26 @@ namespace HiQo.StaffManagement.DAL.Repositories
 
         public Repository(StaffManagementContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public void Add<TEntity>(TEntity entity) where TEntity : class
         {
+            if (entity is null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Set<TEntity>().Add(entity);
         }
 
         public void Update<TEntity>(TEntity entity) where TEntity : class
         {
+            if (entity is null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
             _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
         }
@@ -34,7 +44,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
 
-            if (filter != null) query = query.Where(filter);
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
 
             return orderBy != null ? orderBy(query).ToList() : query.ToList();
         }
@@ -51,15 +64,30 @@ namespace HiQo.StaffManagement.DAL.Repositories
 
         public void Remove<TEntity>(TEntity entityToDelete) where TEntity : class
         {
+            if (entityToDelete is null)
+            {
+                throw new ArgumentNullException(nameof(entityToDelete));
+            }
+
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            {
                 _context.Set<TEntity>().Attach(entityToDelete);
+            }
 
             _context.Set<TEntity>().Remove(entityToDelete);
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                //TODO:Log?
+                throw new Exception(exception.Message);
+            }
         }
     }
 }

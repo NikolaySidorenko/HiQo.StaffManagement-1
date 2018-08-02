@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
@@ -8,7 +9,7 @@ using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WEB.Controllers
-{//Factory Service?
+{
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -23,7 +24,6 @@ namespace HiQo.StaffManagement.WEB.Controllers
         public ActionResult Index()
         {
             var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
-
             return View(listOfUsersForView);
         }
 

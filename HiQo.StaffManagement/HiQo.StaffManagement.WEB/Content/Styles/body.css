@@ -10,13 +10,12 @@
     margin-top: 1%;
 }
 
-.birthday-panel {
-    float: right;
-}
+.birthday-panel { float: right; }
 
 .dividing-line {
     background-color: black;
     color: black;
     height: 1px;
-    width: 100%; 
+    width: 100%;
 }
+
