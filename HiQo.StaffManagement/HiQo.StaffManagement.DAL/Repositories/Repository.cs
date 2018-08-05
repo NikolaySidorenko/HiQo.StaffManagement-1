@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
 
@@ -82,6 +84,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
             try
             {
                 _context.SaveChanges();
+            }
+            catch (DbUpdateException exception) //Network safe
+            {
+
             }
             catch (Exception exception)
             {

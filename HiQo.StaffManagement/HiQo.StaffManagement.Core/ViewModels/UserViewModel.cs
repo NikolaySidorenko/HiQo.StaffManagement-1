@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using HiQo.StaffManagement.Core.FluentValidator;
 
 namespace HiQo.StaffManagement.Core.ViewModels
 {
+    [FluentValidation.Attributes.Validator(typeof(UserValidator))]
     public class UserViewModel
     {
         public int UserId { get; set; }
@@ -12,8 +13,6 @@ namespace HiQo.StaffManagement.Core.ViewModels
 
         public string LastName { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
 
         public string MainPhoneNumber { get; set; }

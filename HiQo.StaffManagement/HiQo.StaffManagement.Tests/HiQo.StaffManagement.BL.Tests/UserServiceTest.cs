@@ -101,7 +101,7 @@ namespace HiQo.StaffManagement.BL.Tests
 
             _userService.Add(Mapper.Map<UserDto>(user));
 
-            //A.CallTo(() => _repository.Add<User>(user)).MustHaveHappenedOnceExactly();
+            A.CallTo(() => _repository.Add<User>(user)).MustHaveHappenedOnceExactly();//Fake map?
 
             A.CallTo(_repository).Where(call => call.Method.Name == nameof(_repository.Add) && call.Method.IsGenericMethod)
                 .WithVoidReturnType().MustHaveHappenedOnceExactly();

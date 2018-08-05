@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.DependencyResolver;
 using HiQo.StaffManagement.Configuration.Profiles;
 using NLog;
@@ -23,14 +24,16 @@ namespace HiQo.StaffManagement.WEB
             BundleConfigCss.RegisterBundles(BundleTable.Bundles);
             MapperConfig.ConfigureAutomapper();
             IocContainer.Setup(Assembly.GetExecutingAssembly().GetName().Name);
+            FluentValidationModelValidatorProvider.Configure();
         }
 
-        protected void Application_BeginRequest(object sender, EventArgs a)
-        {
-            var message = HttpContext.Current.Request.Headers["User-Agent"];
-            var mes = HttpContext.Current.Request.UrlReferrer;
-            logger.Info(mes);
-        }
+        //protected void Application_BeginRequest(object sender, EventArgs a)
+        //{
+        //    var message = HttpContext.Current.Request.Headers["User-Agent"];
+        //    var mes = HttpContext.Current.Request.Url;
+        //    logger.Info(mes);
+        //}
+
         //protected void Application_Error(object sender, EventArgs e)
         //{
         //    var exception = Server.GetLastError();

@@ -7,9 +7,11 @@ using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
+using HiQo.StaffManagement.WEB.App_Start.Filters;
 
 namespace HiQo.StaffManagement.WEB.Controllers
 {
+    [LogActionFilter]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

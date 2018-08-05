@@ -18,7 +18,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
         }
 
         public ActionResult Index()
-        {
+        { 
             var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserBirthdayViewModel>>(_userService.GetListOfBirthdays());
             return View(users);
         }

@@ -1,31 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.Core.FluentValidator;
 using HiQo.StaffManagement.Core.ViewModels;
+using HiQo.StaffManagement.WEB.App_Start.Filters;
 
 namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 {
+    [LogActionFilter]
     public class ProfileController : Controller
     {
-        private readonly ICategoryService _categoryService;
-        private readonly IDepartmentService _departmentService;
-        private readonly IPositionLevelService _positionLevelService;
-        private readonly IPositionService _positionService;
-        private readonly IRoleService _roleService;
+        private readonly IUpsertService _upsertService;
         private readonly IUserService _userService;
+        private readonly UserValidator _validator;
 
-        public ProfileController(ICategoryService categoryService, IDepartmentService departmentService,
-            IPositionLevelService positionLevelService, IPositionService positionService, IRoleService roleService,
-            IUserService userService)
+        public ProfileController(IUserService userService, IUpsertService upsertService)
         {
-            _categoryService = categoryService;
-            _departmentService = departmentService;
-            _positionLevelService = positionLevelService;
-            _positionService = positionService;
-            _roleService = roleService;
             _userService = userService;
+            _upsertService = upsertService;
+            _validator = new UserValidator();
         }
 
         public ActionResult Index()
@@ -69,8 +65,10 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult Creation(UserViewModel user)
-        {
-            if (ModelState.IsValid)
+        {          
+            ValidationResult result = _validator.Validate(user);
+
+            if (result.IsValid)
             {
                 if (user.UserId != 0)
                 {
@@ -80,21 +78,28 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
                 {
                     _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
                 }
+
+                var listOfUsersForView =
+                    Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+
+                return View("Index", listOfUsersForView);
+            }
+            else
+            {
+                InitializeDictionary(user);
+                return View(user);
             }
 
-            var listOfUsersForView =
-                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
-
-            return View("Index", listOfUsersForView);
+           
         }
 
         private void InitializeDictionary(UserViewModel user)
         {
-            user.DictionaryOfDepartments = _departmentService.NameByIdDictionary();
-            user.DictionaryOfCategories = _categoryService.NameByIdDictionary();
-            user.DictionaryOfPositions = _positionService.NameByIdDictionary();
-            user.DictionaryOfPositionLevels = _positionLevelService.NameByIdDictionary();
-            user.DictionaryOfRoles = _roleService.NameByIdDictionary();
+            user.DictionaryOfDepartments = _upsertService.getDictionaryNameByIdDepartment();
+            user.DictionaryOfCategories = _upsertService.getDictionaryNameByIdCategory();
+            user.DictionaryOfPositions = _upsertService.getDictionaryNameByIdPosition();
+            user.DictionaryOfPositionLevels = _upsertService.getDictionaryNameByIdPositionLevel();
+            user.DictionaryOfRoles = _upsertService.getDictionaryNameByIdRole();
         }
     }
 }
