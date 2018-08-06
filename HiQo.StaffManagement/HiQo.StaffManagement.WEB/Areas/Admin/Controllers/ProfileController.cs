@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation;
 using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -15,13 +16,13 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
     {
         private readonly IUpsertService _upsertService;
         private readonly IUserService _userService;
-        private readonly UserValidator _validator;
+        private readonly IValidator<UserViewModel> _validator;
 
-        public ProfileController(IUserService userService, IUpsertService upsertService)
+        public ProfileController(IUserService userService, IUpsertService upsertService, IValidator<UserViewModel> userViewModelValidator)
         {
             _userService = userService;
             _upsertService = upsertService;
-            _validator = new UserValidator();
+            _validator = userViewModelValidator;
         }
 
         public ActionResult Index()
@@ -65,7 +66,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         [HttpPost]
         public ActionResult Creation(UserViewModel user)
-        {          
+        {               
             ValidationResult result = _validator.Validate(user);
 
             if (result.IsValid)
@@ -90,7 +91,6 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
                 return View(user);
             }
 
-           
         }
 
         private void InitializeDictionary(UserViewModel user)

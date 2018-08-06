@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Linq.Expressions;
 using FluentValidation;
 using HiQo.StaffManagement.Core.ViewModels;
 using HiQo.StaffManagement.DAL.Context;
@@ -12,16 +11,21 @@ namespace HiQo.StaffManagement.Core.FluentValidator
 {
     public class UserValidator : AbstractValidator<UserViewModel>
     {
-        private readonly IRepository repository = new Repository(new StaffManagementContext());
+        private readonly IRepository _repository/* = new Repository(new StaffManagementContext())*/;
 
         public UserValidator()
         {
+        }
+
+        public UserValidator(IRepository repository) : this()
+        {
+            _repository = repository;
+
             RuleFor(g => g.FirstName)
                 .NotEmpty().WithMessage("First name is required")
                 .Length(1, 25).WithMessage("The number of characters must be from 2 to 25")
                 .Matches("^[a-zA-Z]+$").WithMessage("First name сan't contain numbers");
-           
-
+          
             RuleFor(g => g.LastName)
                 .NotEmpty().WithMessage("Last name is required")
                 .Length(1, 25).WithMessage("The number of characters must be from 2 to 25")
@@ -55,13 +59,12 @@ namespace HiQo.StaffManagement.Core.FluentValidator
                 .NotEmpty().WithMessage("Select a role");
 
             RuleFor(g => g).Must(ExistenceOfFirstAndLastName).WithMessage("This user already exists");
-
         }
 
-        private bool ExistenceOfFirstAndLastName(UserViewModel userVM)
+        private bool ExistenceOfFirstAndLastName(UserViewModel userVm)
         {
-            var user = repository.Get<User>()
-                .Where(g => g.FirstName == userVM.FirstName && g.LastName == userVM.LastName && userVM.UserId == 0);
+            var user = _repository.Get<User>()
+                .Where(g => g.FirstName == userVm.FirstName && g.LastName == userVm.LastName && userVm.UserId == 0);
 
             return !user.Any();
         }

@@ -57,6 +57,7 @@
     <Compile Include="Configuration\RoleConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
+    <Compile Include="Exceptions\SaveChangesException.cs" />
     <Compile Include="Migrations\201807262210020_SetupSQLExpress.cs" />
     <Compile Include="Migrations\201807262210020_SetupSQLExpress.Designer.cs">
       <DependentUpon>201807262210020_SetupSQLExpress.cs</DependentUpon>

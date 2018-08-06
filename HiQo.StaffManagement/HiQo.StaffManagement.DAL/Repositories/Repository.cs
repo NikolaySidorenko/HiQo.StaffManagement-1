@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Net;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
+using HiQo.StaffManagement.DAL.Exceptions;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
@@ -85,9 +86,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
             {
                 _context.SaveChanges();
             }
-            catch (DbUpdateException exception) //Network safe
+            catch (SaveChangesException exception) //Network safe  // TODO:Custom exception
             {
-
+                //Log
+                throw;
             }
             catch (Exception exception)
             {

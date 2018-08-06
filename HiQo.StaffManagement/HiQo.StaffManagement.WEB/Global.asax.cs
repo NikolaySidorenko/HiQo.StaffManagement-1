@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.DependencyResolver;
+using HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolver;
 using HiQo.StaffManagement.Configuration.Profiles;
 using NLog;
 
@@ -13,7 +14,7 @@ namespace HiQo.StaffManagement.WEB
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private Logger logger = LogManager.GetLogger(nameof(MvcApplication));
+        //private Logger logger = LogManager.GetLogger(nameof(MvcApplication));
 
         protected void Application_Start()
         {
@@ -27,20 +28,5 @@ namespace HiQo.StaffManagement.WEB
             FluentValidationModelValidatorProvider.Configure();
         }
 
-        //protected void Application_BeginRequest(object sender, EventArgs a)
-        //{
-        //    var message = HttpContext.Current.Request.Headers["User-Agent"];
-        //    var mes = HttpContext.Current.Request.Url;
-        //    logger.Info(mes);
-        //}
-
-        //protected void Application_Error(object sender, EventArgs e)
-        //{
-        //    var exception = Server.GetLastError();
-
-        //    var errorHandler = DependencyResolver.Current.GetService<ApplicationErrorHandler>();
-
-        //    errorHandler.Handle(Request, Response, exception);
-        //}
     }
 }

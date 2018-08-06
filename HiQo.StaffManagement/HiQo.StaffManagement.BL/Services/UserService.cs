@@ -17,8 +17,8 @@ namespace HiQo.StaffManagement.BL.Services
 
         public UserService(IUserRepository userRepository, IRepository repository)
         {
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository)); ;
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository)); ;
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public UserDto GetById(int id)

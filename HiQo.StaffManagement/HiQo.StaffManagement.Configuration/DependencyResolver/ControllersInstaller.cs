@@ -2,6 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using FluentValidation;
 
 namespace HiQo.StaffManagement.Configuration.DependencyResolver
 {
