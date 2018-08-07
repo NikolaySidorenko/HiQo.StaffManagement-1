@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using HiQo.StaffManagement.Core.FluentValidator;
 
 namespace HiQo.StaffManagement.Core.ViewModels
 {
-    [FluentValidation.Attributes.Validator(typeof(UserValidator))]
     public class UserViewModel
     {
         public int UserId { get; set; }

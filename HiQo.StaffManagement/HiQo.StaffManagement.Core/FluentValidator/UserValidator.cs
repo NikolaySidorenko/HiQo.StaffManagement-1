@@ -2,10 +2,8 @@
 using System.Linq;
 using FluentValidation;
 using HiQo.StaffManagement.Core.ViewModels;
-using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
-using HiQo.StaffManagement.DAL.Repositories;
 
 namespace HiQo.StaffManagement.Core.FluentValidator
 {
@@ -13,11 +11,11 @@ namespace HiQo.StaffManagement.Core.FluentValidator
     {
         private readonly IRepository _repository/* = new Repository(new StaffManagementContext())*/;
 
-        public UserValidator()
-        {
-        }
+        //public UserValidator()
+        //{
+        //}
 
-        public UserValidator(IRepository repository) : this()
+        public UserValidator(IRepository repository) /*: this()*/
         {
             _repository = repository;
 

@@ -1,14 +1,11 @@
 ﻿using System.Web.Mvc;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Castle.Windsor.Installer;
 using FluentValidation;
 using FluentValidation.Mvc;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
 using HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolver;
-using HiQo.StaffManagement.Core.FluentValidator;
-using HiQo.StaffManagement.Core.ViewModels;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
 using HiQo.StaffManagement.DAL.Repositories;
@@ -33,13 +30,12 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
             DependencyRepositoriesResolver();
             DependencyContextsResolver();
 
-            WindsorValidatorFactory factory = new WindsorValidatorFactory(_container.Kernel);
-
-            var fvProvider = new FluentValidationModelValidatorProvider(factory);
-            ModelValidatorProviders.Providers.Add(fvProvider);
-
             var controllerFactory = new WindsorControllerFactory(_container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+
+            FluentValidationModelValidatorProvider.Configure(provider => {
+                provider.ValidatorFactory = _container.Resolve<IValidatorFactory>();
+            });
         }
 
         private static void DependencyServicesResolver()

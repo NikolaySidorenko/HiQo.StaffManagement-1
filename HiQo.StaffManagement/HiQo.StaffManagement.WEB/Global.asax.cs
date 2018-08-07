@@ -13,9 +13,7 @@ using NLog;
 namespace HiQo.StaffManagement.WEB
 {
     public class MvcApplication : System.Web.HttpApplication
-    {
-        //private Logger logger = LogManager.GetLogger(nameof(MvcApplication));
-
+    { 
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -25,7 +23,6 @@ namespace HiQo.StaffManagement.WEB
             BundleConfigCss.RegisterBundles(BundleTable.Bundles);
             MapperConfig.ConfigureAutomapper();
             IocContainer.Setup(Assembly.GetExecutingAssembly().GetName().Name);
-            FluentValidationModelValidatorProvider.Configure();
         }
 
     }

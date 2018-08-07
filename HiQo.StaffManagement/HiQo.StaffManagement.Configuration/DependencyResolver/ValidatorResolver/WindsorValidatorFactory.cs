@@ -15,12 +15,9 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolve
 
         public override IValidator CreateInstance(Type validatorType)
         {
-            if (_kernel.HasComponent(validatorType))
-            {
-                return _kernel.Resolve(validatorType) as IValidator;
-            }
-
-            return null;
+            return _kernel.HasComponent(validatorType)
+                ? (IValidator)_kernel.Resolve(validatorType)
+                : null;
         }
     }
 }

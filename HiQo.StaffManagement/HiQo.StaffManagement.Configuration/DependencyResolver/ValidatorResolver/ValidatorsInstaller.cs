@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using FluentValidation;
@@ -9,18 +8,15 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolve
 {
     public class ValidatorsInstaller : IWindsorInstaller
     {
-        public ValidatorsInstaller()
-        {
-        }
-
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            container.Register(Component.For<IValidatorFactory>().ImplementedBy<WindsorValidatorFactory>());
+
             AssemblyScanner.FindValidatorsInAssemblyContaining<UserValidator>()
                 .ForEach(result =>
                 {
                     container.Register(Component.For(result.InterfaceType)
-                        .ImplementedBy(result.ValidatorType)
-                        .LifeStyle.Singleton);
+                        .ImplementedBy(result.ValidatorType).LifestylePerWebRequest());
                 });
         }
     }

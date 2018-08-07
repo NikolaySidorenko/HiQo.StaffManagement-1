@@ -14,21 +14,6 @@ namespace HiQo.StaffManagement.WEB.App_Start.Filters
             Log("OnActionExecuting", filterContext.RouteData);
         }
 
-        public override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            Log("OnActionExecuted", filterContext.RouteData);
-        }
-
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
-        {
-            Log("OnResultExecuting", filterContext.RouteData);
-        }
-
-        public override void OnResultExecuted(ResultExecutedContext filterContext)
-        {
-            Log("OnResultExecuted", filterContext.RouteData);
-        }
-
 
         private void Log(string methodName, RouteData routeData)
         {
