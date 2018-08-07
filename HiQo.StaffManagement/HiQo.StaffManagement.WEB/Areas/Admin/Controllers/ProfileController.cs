@@ -2,10 +2,8 @@
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
-using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
-using HiQo.StaffManagement.Core.FluentValidator;
 using HiQo.StaffManagement.Core.ViewModels;
 using HiQo.StaffManagement.WEB.App_Start.Filters;
 

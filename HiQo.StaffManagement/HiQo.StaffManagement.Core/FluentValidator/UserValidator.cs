@@ -9,25 +9,39 @@ namespace HiQo.StaffManagement.Core.FluentValidator
 {
     public class UserValidator : AbstractValidator<UserViewModel>
     {
-        private readonly IRepository _repository/* = new Repository(new StaffManagementContext())*/;
+        private readonly IRepository _repository;
 
-        //public UserValidator()
-        //{
-        //}
-
-        public UserValidator(IRepository repository) /*: this()*/
+        public UserValidator(IRepository repository) 
         {
             _repository = repository;
 
             RuleFor(g => g.FirstName)
-                .NotEmpty().WithMessage("First name is required")
-                .Length(1, 25).WithMessage("The number of characters must be from 2 to 25")
-                .Matches("^[a-zA-Z]+$").WithMessage("First name сan't contain numbers");
-          
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("First name is required");
+
+            RuleFor(g => g.FirstName)
+                .Length(1, 25)
+                .When(g => !string.IsNullOrWhiteSpace(g.FirstName))
+                .WithMessage("The number of characters must be from 2 to 25");
+
+            RuleFor(g => g.FirstName)
+                .Matches("^[a-zA-Z]+$")
+                .WithMessage("Incorrect first name");
+
             RuleFor(g => g.LastName)
-                .NotEmpty().WithMessage("Last name is required")
-                .Length(1, 25).WithMessage("The number of characters must be from 2 to 25")
-                .Matches("^[a-zA-Z]+$").WithMessage("Last name сan't contain numbers");
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Last name is required");
+
+            RuleFor(g => g.LastName)
+                .Length(1, 25)
+                .When(g => !string.IsNullOrWhiteSpace(g.LastName))
+                .WithMessage("The number of characters must be from 2 to 25");
+
+            RuleFor(g => g.LastName)
+                .Matches("^[a-zA-Z]+$")
+                .WithMessage("Incorrect last name");
 
             RuleFor(g => g.BirthDate)
                 .NotEmpty().WithMessage("Birthday is required")
