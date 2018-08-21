@@ -2,6 +2,7 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using HiQo.StaffManagement.DAL.Configuration;
 using HiQo.StaffManagement.DAL.Domain.Entities;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HiQo.StaffManagement.DAL.Context
 {
@@ -13,6 +14,10 @@ namespace HiQo.StaffManagement.DAL.Context
                 new MigrateDatabaseToLatestVersion<StaffManagementContext, Migrations.Configuration>());
         }
 
+        public virtual IDbSet<User> Users { get; set; }
+
+        public virtual IDbSet<Role> Roles { get; set; }
+     
         public virtual IDbSet<Category> Categories { get; set; }
 
         public virtual IDbSet<Department> Departments { get; set; }
@@ -21,13 +26,10 @@ namespace HiQo.StaffManagement.DAL.Context
 
         public virtual IDbSet<PositionLevel> PositionLevels { get; set; }
 
-        public virtual IDbSet<Role> Roles { get; set; }
-
-        public virtual IDbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // base.OnModelCreating(modelBuilder);//??
+            base.OnModelCreating(modelBuilder);//??
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new UserConfiguration());

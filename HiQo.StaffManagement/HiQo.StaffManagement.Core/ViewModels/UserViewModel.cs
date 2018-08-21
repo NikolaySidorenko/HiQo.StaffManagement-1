@@ -31,5 +31,9 @@ namespace HiQo.StaffManagement.Core.ViewModels
 
         public int CurrentRoleId { get; set; }
         public Dictionary<int,string> DictionaryOfRoles { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
     }
 }

@@ -29,9 +29,27 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.MainPhoneNumber, opt => opt.MapFrom(src => src.MainPhoneNumber))
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
                 .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
-                .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId));
+                .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName));
 
             CreateMap<UserDto, UserBirthdayViewModel>();
+
+            CreateMap<RegistrationUserViewModel,UserDto>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
+
+            CreateMap<RegistrationUserViewModel, UserViewModel>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+
+            CreateMap<LoginViewModel, UserDto>()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
+
+            
         }
     }
 }

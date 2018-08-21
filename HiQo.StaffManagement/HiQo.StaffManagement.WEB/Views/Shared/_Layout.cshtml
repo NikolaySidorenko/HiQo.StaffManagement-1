@@ -21,11 +21,12 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <a href="#" class="navbar-left">
-                    <img width="40%" src="~/Content/Images/HiQo-Logo.png"/>
+                    <img width="40%" src="~/Content/Images/HiQo-Logo.png" />
                 </a>
-                <li>@Html.ActionLink("Home", "Index", new {area = "", controller = "Home"})</li>
-                <li>@Html.ActionLink("Admin", "Index", new {area = "Admin", controller = "Profile"})</li>
+                <li>@Html.ActionLink("Home", "Index", new { area = "", controller = "Home" })</li>
+                <li>@Html.ActionLink("Admin", "Index", new { area = "Admin", controller = "Profile" })</li>
             </ul>
+            @Html.Partial("_LayoutNavbarPartial")
         </div>
     </div>
 </div>

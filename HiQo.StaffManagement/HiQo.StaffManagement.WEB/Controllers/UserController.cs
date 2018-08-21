@@ -22,7 +22,8 @@ namespace HiQo.StaffManagement.WEB.Controllers
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             _upsertService = upsertService ?? throw new ArgumentNullException(nameof(userService));
         }
-
+        
+        [Authorize]
         public ActionResult Index()
         {
             var listOfUsersForView = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());

@@ -16,7 +16,6 @@ namespace HiQo.StaffManagement.Core.FluentValidator
             _repository = repository;
 
             RuleFor(g => g.FirstName)
-                .NotNull()
                 .NotEmpty()
                 .WithMessage("First name is required");
 
@@ -31,7 +30,6 @@ namespace HiQo.StaffManagement.Core.FluentValidator
 
             RuleFor(g => g.LastName)
                 .NotEmpty()
-                .NotNull()
                 .WithMessage("Last name is required");
 
             RuleFor(g => g.LastName)
@@ -76,9 +74,20 @@ namespace HiQo.StaffManagement.Core.FluentValidator
         private bool ExistenceOfFirstAndLastName(UserViewModel userVm)
         {
             var user = _repository.Get<User>()
-                .Where(g => g.FirstName == userVm.FirstName && g.LastName == userVm.LastName && userVm.UserId == 0);
+                .Where(g => g.FirstName == userVm.FirstName && g.LastName == userVm.LastName);
 
-            return !user.Any();
+
+            if (user.Any())
+            {
+                if (user.First().Id == userVm.UserId)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         private bool ValidateDate(DateTime date)

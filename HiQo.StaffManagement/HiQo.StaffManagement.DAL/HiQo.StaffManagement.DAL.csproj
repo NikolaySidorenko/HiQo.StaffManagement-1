@@ -39,6 +39,12 @@
     <Reference Include="HiQo.StaffManagement.DAL.Domain">
       <HintPath>..\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -58,9 +64,27 @@
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
     <Compile Include="Exceptions\SaveChangesException.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
+    <Compile Include="Identity\UserStore.cs" />
     <Compile Include="Migrations\201807262210020_SetupSQLExpress.cs" />
     <Compile Include="Migrations\201807262210020_SetupSQLExpress.Designer.cs">
       <DependentUpon>201807262210020_SetupSQLExpress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808191707105_ChangeModelsForAuth.cs" />
+    <Compile Include="Migrations\201808191707105_ChangeModelsForAuth.Designer.cs">
+      <DependentUpon>201808191707105_ChangeModelsForAuth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211343480_Temp.cs" />
+    <Compile Include="Migrations\201808211343480_Temp.Designer.cs">
+      <DependentUpon>201808211343480_Temp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211411074_ChangeDateTime.cs" />
+    <Compile Include="Migrations\201808211411074_ChangeDateTime.Designer.cs">
+      <DependentUpon>201808211411074_ChangeDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808211904099_RemoveDefaultValue.cs" />
+    <Compile Include="Migrations\201808211904099_RemoveDefaultValue.Designer.cs">
+      <DependentUpon>201808211904099_RemoveDefaultValue.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,9 +96,7 @@
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UoW\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -84,6 +106,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807262210020_SetupSQLExpress.resx">
       <DependentUpon>201807262210020_SetupSQLExpress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808191707105_ChangeModelsForAuth.resx">
+      <DependentUpon>201808191707105_ChangeModelsForAuth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211343480_Temp.resx">
+      <DependentUpon>201808211343480_Temp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211411074_ChangeDateTime.resx">
+      <DependentUpon>201808211411074_ChangeDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211904099_RemoveDefaultValue.resx">
+      <DependentUpon>201808211904099_RemoveDefaultValue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

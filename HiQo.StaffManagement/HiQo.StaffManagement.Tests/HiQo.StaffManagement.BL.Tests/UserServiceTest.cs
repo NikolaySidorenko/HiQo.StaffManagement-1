@@ -26,7 +26,7 @@ namespace HiQo.StaffManagement.BL.Tests
         {
             _repository = A.Fake<IRepository>();
             _userRepository = A.Fake<IUserRepository>();
-            _userService = new UserService(_userRepository, _repository);
+            _userService = new UserService(_repository,_userRepository);
             _mapper = A.Fake<IMapper>();
         }
 
@@ -35,8 +35,8 @@ namespace HiQo.StaffManagement.BL.Tests
         public void GetAll_Nothing_CollectionOfUserDto()
         {
             MapperConfig.ConfigureAutomapper();
-            IEnumerable<User> users = new[] {new User {UserId = 1},
-                new User {UserId = 2}};
+            IEnumerable<User> users = new[] {new User {Id = 1},
+                new User {Id = 2}};
             var expectedIds = new[] {1, 2};
 
             A.CallTo(() => _repository.GetAll<User>()).Returns(users);
@@ -58,12 +58,12 @@ namespace HiQo.StaffManagement.BL.Tests
             var id = 666;
             var user = new User
             {
-                UserId = id
+                Id = id
             };
 
             A.CallTo(() => _repository.GetById<User>(id)).Returns(user);
 
-            Assert.Equal(user.UserId, _userService.GetById(id).UserId);
+            Assert.Equal(user.Id, _userService.GetById(id).UserId);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace HiQo.StaffManagement.BL.Tests
             var id = 666;
             var user = new User
             {
-                UserId = id
+                Id = id
             };
 
             A.CallTo(() => _repository.GetById<User>(id)).Returns(user);
@@ -145,7 +145,7 @@ namespace HiQo.StaffManagement.BL.Tests
         public void GetListOfBirthday_Nothing_ListDto()
         {
             MapperConfig.ConfigureAutomapper();
-            IEnumerable<User> users = new[] {new User {UserId = 1, BirthDate = DateTime.Today}};
+            IEnumerable<User> users = new[] {new User {Id = 1, BirthDate = DateTime.Today}};
             var expectedIds = new[] { 1 };
 
             Expression<Func<User, bool>> filter = user => user.BirthDate.Date.Day == DateTime.Today.Day

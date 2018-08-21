@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
+using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
@@ -23,6 +24,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             _validatorFactory = validatorFactory;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var listOfUsersForView =
@@ -86,7 +88,9 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             }
             else
             {
+                SetErrorsInModelState(result.Errors);
                 InitializeDictionary(user);
+
                 return View(user);
             }
 
@@ -99,6 +103,15 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             user.DictionaryOfPositions = _upsertService.getDictionaryNameByIdPosition();
             user.DictionaryOfPositionLevels = _upsertService.getDictionaryNameByIdPositionLevel();
             user.DictionaryOfRoles = _upsertService.getDictionaryNameByIdRole();
+        }
+
+        private void SetErrorsInModelState(IEnumerable<ValidationFailure> errors)
+        {
+            foreach (var failure in errors)
+            {
+                ModelState.AddModelError(failure.PropertyName,
+                    failure.ErrorMessage);
+            }
         }
     }
 }

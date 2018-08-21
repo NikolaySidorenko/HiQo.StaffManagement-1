@@ -44,8 +44,10 @@
     <Compile Include="Entities\PositionDto.cs" />
     <Compile Include="Entities\PositionLevelDto.cs" />
     <Compile Include="Entities\RoleDto.cs" />
+    <Compile Include="Entities\UserAuthDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IDepartmentService.cs" />
     <Compile Include="Services\ILogService.cs" />
@@ -55,7 +57,12 @@
     <Compile Include="Services\IUpsertService.cs" />
     <Compile Include="Services\IUserService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
+      <Project>{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}</Project>
+      <Name>HiQo.StaffManagement.DAL.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

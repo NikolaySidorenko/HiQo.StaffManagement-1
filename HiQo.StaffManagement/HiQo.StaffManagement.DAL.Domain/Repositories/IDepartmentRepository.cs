@@ -1,6 +1,4 @@
-﻿using HiQo.StaffManagement.DAL.Domain.Entities;
-
-namespace HiQo.StaffManagement.DAL.Domain.Repositories
+﻿namespace HiQo.StaffManagement.DAL.Domain.Repositories
 {
     public interface IDepartmentRepository
     {

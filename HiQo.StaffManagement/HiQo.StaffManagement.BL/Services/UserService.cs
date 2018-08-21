@@ -15,7 +15,7 @@ namespace HiQo.StaffManagement.BL.Services
         private readonly IRepository _repository;
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository, IRepository repository)
+        public UserService(IRepository repository, IUserRepository userRepository)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
@@ -55,7 +55,7 @@ namespace HiQo.StaffManagement.BL.Services
         public IEnumerable<UserDto> GetListOfBirthdays()
         {
             var listOfUsers = Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(_repository.Get<User>().Where(user =>
-                user.BirthDate.Day == DateTime.Today.Day && user.BirthDate.Month == DateTime.Today.Month));
+                user.BirthDate.Value.Day == DateTime.Today.Day && user.BirthDate.Value.Month == DateTime.Today.Month));
 
             return listOfUsers;
         }

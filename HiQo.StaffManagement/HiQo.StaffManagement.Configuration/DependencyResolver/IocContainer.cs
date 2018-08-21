@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
+using Castle.Core;
+using Castle.MicroKernel;
+using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using FluentValidation;
@@ -7,8 +11,13 @@ using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
 using HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolver;
 using HiQo.StaffManagement.DAL.Context;
+using HiQo.StaffManagement.DAL.Domain.Entities;
+using HiQo.StaffManagement.DAL.Domain.Identity;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
+using HiQo.StaffManagement.DAL.Identity;
 using HiQo.StaffManagement.DAL.Repositories;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace HiQo.StaffManagement.Configuration.DependencyResolver
 {
@@ -60,6 +69,10 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
 
             _container.Register(Component.For<IUpsertService>().ImplementedBy<UpsertService>()
                 .LifestylePerWebRequest());
+
+            _container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>()
+                .LifestylePerWebRequest());
+
         }
 
         private static void DependencyRepositoriesResolver()
@@ -83,11 +96,28 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
                 .ImplementedBy<RoleRepository>().LifestylePerWebRequest());
 
             _container.Register(Component.For<IRepository>().ImplementedBy<Repository>().LifestylePerWebRequest());
+
+            _container.Register(Component.For<IUserStore<User, int>>().ImplementedBy<UserStore>()
+                .LifestylePerWebRequest());
+
         }
 
         private static void DependencyContextsResolver()
         {
             _container.Register(Component.For<StaffManagementContext>().LifeStyle.PerWebRequest);
+
+            _container.Register(Component.For<IAuthenticationManager>()
+                .UsingFactoryMethod(GetAuthenticationManager, managedExternally: true)
+                .LifestyleTransient());
+
+            _container.Register(Component.For<IUserManager>().ImplementedBy<ApplicationUserManager>().LifestylePerWebRequest());
+        }
+
+        private static IAuthenticationManager GetAuthenticationManager(IKernel kernel, ComponentModel componentModel, CreationContext creationContext)
+        {
+            var owinContext = new HttpContextWrapper(HttpContext.Current).GetOwinContext();
+
+            return owinContext.Authentication;
         }
 
     }

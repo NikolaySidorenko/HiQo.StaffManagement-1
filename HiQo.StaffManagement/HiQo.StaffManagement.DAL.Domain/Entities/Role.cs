@@ -9,10 +9,5 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         public string Name { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
-
-        //public Role()
-        //{
-        //    Users = new List<User>();
-        //}
     }
 }

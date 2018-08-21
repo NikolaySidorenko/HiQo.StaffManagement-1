@@ -38,14 +38,14 @@ namespace HiQo.StaffManagement.DAL.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false, maxLength: 30),
                         LastName = c.String(nullable: false, maxLength: 30),
-                        BirthDate = c.DateTime(nullable: false),
-                        MainPhoneNumber = c.String(nullable: false, maxLength: 20),
-                        Email = c.String(name: "E-mail", nullable: false, maxLength: 40),
-                        DepartmentId = c.Int(nullable: false),
-                        CategoryId = c.Int(nullable: false),
-                        PositionId = c.Int(nullable: false),
-                        PositionLevelId = c.Int(nullable: false),
-                        RoleId = c.Int(nullable: false),
+                        BirthDate = c.DateTime(nullable: true),
+                        MainPhoneNumber = c.String(nullable: true, maxLength: 20),
+                        Email = c.String(name: "E-mail", nullable: true, maxLength: 40),
+                        DepartmentId = c.Int(nullable: true),
+                        CategoryId = c.Int(nullable: true),
+                        PositionId = c.Int(nullable: true),
+                        PositionLevelId = c.Int(nullable: true),
+                        RoleId = c.Int(nullable: true),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Departments", t => t.DepartmentId)

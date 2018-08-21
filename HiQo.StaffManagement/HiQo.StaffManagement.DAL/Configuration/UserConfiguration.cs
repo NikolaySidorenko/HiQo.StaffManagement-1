@@ -8,8 +8,8 @@ namespace HiQo.StaffManagement.DAL.Configuration
         public UserConfiguration()
         {
             ToTable("Users")
-                .HasKey(g => g.UserId)
-                .Property(g => g.UserId)
+                .HasKey(g => g.Id)
+                .Property(g => g.Id)
                 .HasColumnName("Id")
                 .IsRequired();
 
@@ -24,32 +24,41 @@ namespace HiQo.StaffManagement.DAL.Configuration
                 .HasMaxLength(30);
 
             Property(g => g.MainPhoneNumber)
-                .IsRequired()
                 .HasColumnName("MainPhoneNumber")
                 .HasMaxLength(20);
 
             Property(g => g.Email)
-                .IsRequired()
                 .HasColumnName("E-mail")
                 .HasMaxLength(40);
 
             Property(g => g.BirthDate)
-                .IsRequired()
-                .HasColumnName("BirthDate");
+                .HasColumnName("BirthDate")
+                .HasColumnType("datetime2");
 
-            HasRequired(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId)
-                .WillCascadeOnDelete(false);
 
-            HasRequired(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
+            //HasOptional(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId).WillCascadeOnDelete(false);  
 
-            HasRequired(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId)
-                .WillCascadeOnDelete(false);
+            //HasOptional(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId).WillCascadeOnDelete(false);
 
-            HasRequired(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId)
-                .WillCascadeOnDelete(false);
+            //HasOptional(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId).WillCascadeOnDelete(false);
 
-            HasRequired(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId)
-                .WillCascadeOnDelete(false);
+            //HasOptional(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId).WillCascadeOnDelete(false);
+
+            //HasOptional(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
+
+            //HasRequired(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId)
+            //   .WillCascadeOnDelete(false);
+
+            //HasRequired(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
+
+            //HasRequired(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId)
+            //    .WillCascadeOnDelete(false);
+
+            //HasRequired(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId)
+            //    .WillCascadeOnDelete(false);
+
+            //HasRequired(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId)
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

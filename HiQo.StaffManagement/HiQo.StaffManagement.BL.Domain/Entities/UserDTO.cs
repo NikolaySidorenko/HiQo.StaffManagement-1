@@ -30,5 +30,9 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
 
         public int RoleId { get; set; }
         public RoleDto Role { get; set; }
+
+        public string Username { get; set; }
+
+        public string PasswordHash { get; set; }
     }
 }

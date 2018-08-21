@@ -15,7 +15,7 @@ namespace HiQo.StaffManagement.DAL.Configuration
 
             Property(g => g.Level)
                 .HasColumnName("Level")
-                .IsOptional(); //TODO:Range 0-2
+                .IsOptional();
 
             Property(g => g.Name)
                 .IsRequired()
