@@ -37,7 +37,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
             if (result.IsValid)
             {
                 var res = await _authService.RegisterUserAsync(Mapper.Map<UserDto>(user));
-                //TODO:check res
+                
                 return RedirectToAction("Login", "Account");
             }
             else
