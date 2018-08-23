@@ -1,0 +1,11 @@
+﻿text {
+    color: black;
+    font-size: 1.0em;
+    font-style: initial;
+}
+
+.panel-default {
+    border-color: #dddddd;
+    margin-right: 50%;
+    margin-top: 1%;
+}
