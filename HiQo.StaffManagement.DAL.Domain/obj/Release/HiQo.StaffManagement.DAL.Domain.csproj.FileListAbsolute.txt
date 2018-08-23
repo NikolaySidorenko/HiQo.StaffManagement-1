@@ -1,6 +1,0 @@
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Release\HiQo.StaffManagement.DAL.Domain.dll
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Release\HiQo.StaffManagement.DAL.Domain.pdb
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Release\HiQo.StaffManagement.DAL.Domain.csproj.CoreCompileInputs.cache
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Release\HiQo.StaffManagement.DAL.Domain.dll
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Release\HiQo.StaffManagement.DAL.Domain.pdb
-D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Release\HiQo.StaffManagement.DAL.Domain.csprojAssemblyReference.cache
