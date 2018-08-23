@@ -1,0 +1,86 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL", "HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj", "{0438201F-93BE-4AC8-A631-E30C8D3EF523}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Domain", "HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj", "{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.BL", "HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj", "{583F6F73-910F-4AA2-A177-748497E50DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.BL.Domain", "HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj", "{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Configuration", "HiQo.StaffManagement.Configuration\HiQo.StaffManagement.Configuration.csproj", "{340B94D7-1D55-4C14-9B02-7B701D6B34D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HiQo.StaffManagement.Tests", "HiQo.StaffManagement.Tests", "{C11E6FF3-E0A9-4958-8411-AA1F83A43FAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.BL.Tests", "HiQo.StaffManagement.Tests\HiQo.StaffManagement.BL.Tests\HiQo.StaffManagement.BL.Tests.csproj", "{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.DAL.Tests", "HiQo.StaffManagement.Tests\HiQo.StaffManagement.DAL.Tests\HiQo.StaffManagement.DAL.Tests.csproj", "{532CC734-9458-45E3-83D4-46AF00DE6A67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.PL.Tests", "HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\HiQo.StaffManagement.PL.Tests.csproj", "{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.WEB", "HiQo.StaffManagement.WEB\HiQo.StaffManagement.WEB.csproj", "{B59F49DE-AB79-4B2B-8971-C57335F47888}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Core", "HiQo.StaffManagement.Core\HiQo.StaffManagement.Core.csproj", "{11B365CD-4CEB-44B8-AF03-98C2E12E33BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0438201F-93BE-4AC8-A631-E30C8D3EF523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583F6F73-910F-4AA2-A177-748497E50DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583F6F73-910F-4AA2-A177-748497E50DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583F6F73-910F-4AA2-A177-748497E50DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583F6F73-910F-4AA2-A177-748497E50DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}.Release|Any CPU.Build.0 = Release|Any CPU
+		{340B94D7-1D55-4C14-9B02-7B701D6B34D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{340B94D7-1D55-4C14-9B02-7B701D6B34D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{340B94D7-1D55-4C14-9B02-7B701D6B34D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{340B94D7-1D55-4C14-9B02-7B701D6B34D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{532CC734-9458-45E3-83D4-46AF00DE6A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532CC734-9458-45E3-83D4-46AF00DE6A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532CC734-9458-45E3-83D4-46AF00DE6A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532CC734-9458-45E3-83D4-46AF00DE6A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59F49DE-AB79-4B2B-8971-C57335F47888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B365CD-4CEB-44B8-AF03-98C2E12E33BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B365CD-4CEB-44B8-AF03-98C2E12E33BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B365CD-4CEB-44B8-AF03-98C2E12E33BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B365CD-4CEB-44B8-AF03-98C2E12E33BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C4E4E27-0FCA-43D8-8A03-DF1AD0A7F6E7} = {C11E6FF3-E0A9-4958-8411-AA1F83A43FAA}
+		{532CC734-9458-45E3-83D4-46AF00DE6A67} = {C11E6FF3-E0A9-4958-8411-AA1F83A43FAA}
+		{2EE72C64-C874-4F28-9BF3-2DD5092DCCB8} = {C11E6FF3-E0A9-4958-8411-AA1F83A43FAA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE1352F4-C19B-4C7C-931A-AF2DEAC78CF7}
+	EndGlobalSection
+EndGlobal

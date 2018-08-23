@@ -1,0 +1,39 @@
+﻿@model HiQo.StaffManagement.Core.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="panel panel-default" style="margin-right: 55%">
+    <div class="panel-heading">
+        <text>@Model.FirstName @Model.LastName</text>
+    </div>
+    <div class="panel-body">
+        @*TODO:Check user(Authorization)*@
+        @Html.LabelFor(user => user.FirstName)
+        @Html.DisplayFor(user => user.FirstName, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.LastName)
+        @Html.DisplayFor(user => user.LastName, new { @class = "form-control" })
+        <hr class="dividing-line" />
+        @Html.LabelFor(user => user.Email)
+        @Html.DisplayFor(user => user.Email, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.MainPhoneNumber)
+        @Html.DisplayFor(user => user.MainPhoneNumber, new { @class = "form-control" })
+        <hr class="dividing-line" />
+        @Html.LabelFor(user => user.CurrentDepartmentId)
+        @Html.DisplayFor(user => user.DictionaryOfDepartments[Model.CurrentDepartmentId], new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.CurrentCategoryId)
+        @Html.DisplayFor(user => user.DictionaryOfCategories[Model.CurrentCategoryId], new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.CurrentPositionId)
+        @Html.DisplayFor(user => user.DictionaryOfPositions[Model.CurrentPositionId], new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.CurrentPositionLevelId)
+        @Html.DisplayFor(user => user.DictionaryOfPositionLevels[Model.CurrentPositionLevelId], new { @class = "form-control" })
+    </div>
+</div>
+
+
