@@ -1,0 +1,16 @@
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.BL.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.BL.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\AutoMapper.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.BL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\System.ValueTuple.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\AutoMapper.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\AutoMapper.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.BL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\HiQo.StaffManagement.DAL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\bin\Release\System.ValueTuple.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\obj\Release\HiQo.StaffManagement.BL.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\obj\Release\HiQo.StaffManagement.BL.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\obj\Release\HiQo.StaffManagement.BL.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\obj\Release\HiQo.StaffManagement.BL.csprojAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL\obj\Release\HiQo.StaffManagement.BL.csproj.CopyComplete

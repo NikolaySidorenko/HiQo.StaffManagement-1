@@ -1,0 +1,16 @@
+﻿@model HiQo.StaffManagement.BL.Domain.Entities.UserDto
+
+@{
+    ViewBag.Title = "UpdateProfile";
+}
+
+<h2>UpdateProfile</h2>
+
+@using (Html.BeginForm("UpdateProfile","User"))
+{
+    @Html.EditorFor(model => model.FirstName)
+    @Html.EditorFor(model => model.LastName)
+    @Html.EditorFor(model => model.Email)
+
+    <input type="submit" value="Save" />
+}

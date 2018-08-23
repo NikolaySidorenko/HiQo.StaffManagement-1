@@ -1,0 +1,40 @@
+﻿@model HiQo.StaffManagement.Core.ViewModels.UserInformationViewModel
+@{
+    ViewBag.Title = "UserProfile";
+}
+<link href="~/Content/Styles/body.css" rel="stylesheet" type="text/css"/>
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.FirstName @Model.LastName</div>
+    <div class="panel-body">
+        <p>
+            <text>First Name:@Html.DisplayFor(g => g.FirstName)</text>
+        </p>
+        <p>
+            <text>Last Name:@Html.DisplayFor(g => g.LastName)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 0.5px; width: 100%;"/>
+        <p>
+            <text>Positon:@Html.DisplayFor(g => g.Position)</text>
+        </p>
+        <p>
+            <text>Category:@Html.DisplayFor(g => g.Category)</text>
+        </p>
+        <p>
+            <text>Department:@Html.DisplayFor(g => g.Department)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
+        <p>
+            <text>Phone number:@Html.DisplayFor(g => g.MainPhoneNumber)</text>
+        </p>
+        <p>
+            <text>Email: @Html.DisplayFor(g => g.Email)</text>
+        </p>
+        <hr style="background-color: black; color: black; height: 1px; width: 100%;"/>
+
+        @using (Html.BeginForm("Update", "User", new { id = Model.UserId }, FormMethod.Get))
+        {
+             <input type="submit" class="btn btn-default" value="Update" />
+        }
+    </div>
+</div>

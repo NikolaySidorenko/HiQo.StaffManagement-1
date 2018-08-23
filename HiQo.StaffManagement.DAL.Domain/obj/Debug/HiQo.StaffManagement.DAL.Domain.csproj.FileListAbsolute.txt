@@ -1,0 +1,43 @@
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CoreCompileInputs.cache
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.dll
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+C:\Users\usero\Documents\Visual Studio 2017\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csprojResolveAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CoreCompileInputs.cache
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll.config
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.xml
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CopyComplete
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csprojAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll.config
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csprojAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.csproj.CopyComplete
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement.DAL.Domain\obj\Debug\HiQo.StaffManagement.DAL.Domain.pdb

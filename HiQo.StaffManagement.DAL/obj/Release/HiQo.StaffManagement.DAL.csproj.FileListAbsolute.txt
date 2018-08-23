@@ -1,0 +1,16 @@
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\HiQo.StaffManagement.DAL.dll.config
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\HiQo.StaffManagement.DAL.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\HiQo.StaffManagement.DAL.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\EntityFramework.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\EntityFramework.SqlServer.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\HiQo.StaffManagement.DAL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\EntityFramework.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\EntityFramework.SqlServer.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\bin\Release\HiQo.StaffManagement.DAL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.csproj.GenerateResource.Cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.csprojAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.Migrations.SetupSQLExpress.resources
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.DAL\obj\Release\HiQo.StaffManagement.DAL.csproj.CopyComplete

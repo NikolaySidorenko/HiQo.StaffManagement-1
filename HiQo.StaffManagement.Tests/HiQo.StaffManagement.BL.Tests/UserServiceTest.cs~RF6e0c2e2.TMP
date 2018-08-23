@@ -1,0 +1,51 @@
+﻿using System;
+using System.Runtime.CompilerServices;
+using FakeItEasy;
+using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.BL.Services;
+using HiQo.StaffManagement.DAL.Context;
+using HiQo.StaffManagement.DAL.Domain.Repositories;
+using Xunit;
+namespace HiQo.StaffManagement.BL.Tests
+{
+    public class UserServiceTest
+    {
+        private readonly IUserService _userService;
+        private readonly IRepository _repository;
+        private readonly IUserRepository _userRepository;
+
+        public UserServiceTest()
+        {
+            _repository = A.Fake<IRepository>();
+            _userRepository = A.Fake<IUserRepository>();
+            _userService = new UserService(_userRepository,_repository);
+        }
+
+        [Fact]
+        public void Add_UserDto_ShouldReturnNewUser()
+        {
+            //A.CallTo(() => _userService.Add(fakeUser)).MustHaveHappened();
+
+            //Assert.True(_userService.IsExists(fakeUser.UserId));
+        }
+
+        [Fact]
+        public void IsExist_UserId_ReturnsTrue()
+        {
+            int id = 1;
+
+            A.CallTo(() => _userService.IsExists(id)).Returns(true);
+
+            //Assert.True();
+
+        }
+
+        [Fact]
+        public void IsExist_UserId_ReturnsFalse()
+        {
+
+
+        }
+    }
+}

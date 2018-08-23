@@ -1,0 +1,9 @@
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\bin\Release\HiQo.StaffManagement.BL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\bin\Release\HiQo.StaffManagement.BL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\bin\Release\System.ValueTuple.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\bin\Release\System.ValueTuple.xml
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\obj\Release\HiQo.StaffManagement.BL.Domain.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\obj\Release\HiQo.StaffManagement.BL.Domain.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\obj\Release\HiQo.StaffManagement.BL.Domain.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\obj\Release\HiQo.StaffManagement.BL.Domain.csprojAssemblyReference.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.BL.Domain\obj\Release\HiQo.StaffManagement.BL.Domain.csproj.CopyComplete

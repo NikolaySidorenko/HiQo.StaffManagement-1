@@ -1,0 +1,13 @@
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.csproj.CoreCompileInputs.cache
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.dll
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.pdb
+D:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.dll.config
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.dll.config
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\bin\Debug\HiQo.StaffManagement.PL.Tests.pdb
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.csproj.CoreCompileInputs.cache
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.dll
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.pdb
+C:\git\Projects\HiQo.StaffManagement\HiQo.StaffManagement\HiQo.StaffManagement.Tests\HiQo.StaffManagement.PL.Tests\obj\Debug\HiQo.StaffManagement.PL.Tests.csprojAssemblyReference.cache

@@ -1,0 +1,33 @@
+﻿@model HiQo.StaffManagement.BL.Domain.Entities.UserDto
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+<style>
+    .panel-default {
+        border-color: #dddddd;
+        margin-right: 50%;
+        margin-top: 1%;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.FirstName @Model.LastName</div>
+    <div class="panel-body">
+        <h5>First Name: @Model.FirstName</h5>
+        <h5>Last Name: @Model.LastName</h5>
+        <h5>Birthdate: @Model.BirthDate.Date</h5>
+        <hr style="width: 100%; color: black; height: 0.5px; background-color:black;" />
+        <h5>Positon: @Model.Position.Name</h5>
+        <h5>Category: @Model.Category.Name</h5>
+        <h5>Department: @Model.Department.Name</h5>
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+        <h5>Phone number: @Model.MainPhoneNumber</h5>
+        <h5>Email: @Model.Email</h5>
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+        <h5>Role: @Model.Role.Name</h5>
+    </div>
+</div>
+@using (Html.BeginForm("UpdateProfile", "User", new {user = @Model}, FormMethod.Post))
+{
+    <button type="submit" class="btn btn-primary">Update</button>
+}
