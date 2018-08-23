@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HiQo.StaffManagement.BL.Domain.Entities.PositionLevelDto>
+@{
+    ViewBag.Title = "Position Levels";
+}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Level</th>
+        </tr>
+        </thead>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    <p>@obj.PositionLevelId</p>
+                </td>
+                <td>
+                    <p>@obj.Name</p>
+                </td>
+                <td>
+                    <p>
+                        @if (obj.Level == null)
+                        {
+                            var dash = "-";
+                            @dash;
+                        }
+                        else
+                        {
+                            @obj.Level;
+                        }
+                    </p>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
