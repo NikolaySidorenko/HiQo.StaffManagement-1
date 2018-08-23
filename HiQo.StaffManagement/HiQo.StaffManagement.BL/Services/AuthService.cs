@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
@@ -29,18 +30,10 @@ namespace HiQo.StaffManagement.BL.Services
         public async Task<bool> RegisterUserAsync(UserDto user)
         {
             user.UserId = _userRepository.GetLastId();
-            InitUserIds(user);
 
             var identityResult = await _userManager.CreateAsync(Mapper.Map<User>(user), user.PasswordHash);   
 
-            if (!identityResult.Succeeded)
-            { 
-               throw new Exception();
-            }
-            //TODO:Error handling
-            await IdentifyUserAsync(user);
-
-            return true;
+            return identityResult.Succeeded;
         }
 
         public async Task<bool> LoginUserAsync(UserDto user)
@@ -48,8 +41,8 @@ namespace HiQo.StaffManagement.BL.Services
             var isUserCredentialsValid = await _userManager.FindAsync(user.Username, user.PasswordHash) != null;
 
             if (isUserCredentialsValid)
-            {
-                await IdentifyUserAsync(user);
+            {     
+                await IdentifyUserAsync(Mapper.Map<UserDto>(_userManager.FindByNameAsync(user.Username).Result));
                 return true;
             }
             else
@@ -67,16 +60,11 @@ namespace HiQo.StaffManagement.BL.Services
         {
             var claim = await _userManager.CreateIdentityAsync(Mapper.Map<User>(user), DefaultAuthenticationTypes.ApplicationCookie);
             _authenticationManager.SignOut();
+
+            if (user.Role != null)
+                claim.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name, ClaimValueTypes.String));
             _authenticationManager.SignIn(new AuthenticationProperties {IsPersistent = true}, claim);
         }
 
-        private void InitUserIds(UserDto user)
-        {
-            user.DepartmentId = 1;
-            user.CategoryId = 1;
-            user.PositionId = 1;
-            user.PositionLevelId = 1;
-            user.RoleId = 1;
-        }
     }
 }

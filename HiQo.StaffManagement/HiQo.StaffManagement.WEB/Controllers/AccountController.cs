@@ -13,17 +13,15 @@ namespace HiQo.StaffManagement.WEB.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IValidatorFactory _validatorFactory;
-        private readonly IUpsertService _upsertService;
 
-        public AccountController(IAuthService authService, IValidatorFactory validatorFactory,
-            IUpsertService upsertService)
+        public AccountController(IAuthService authService, IValidatorFactory validatorFactory)
         {
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _validatorFactory = validatorFactory ?? throw new ArgumentNullException(nameof(validatorFactory));
-            _upsertService = upsertService ?? throw new ArgumentNullException(nameof(upsertService));
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -35,11 +33,12 @@ namespace HiQo.StaffManagement.WEB.Controllers
         {
             var validator = _validatorFactory.GetValidator<RegistrationUserViewModel>();
             var result = validator.Validate(user);
+
             if (result.IsValid)
             {
                 var res = await _authService.RegisterUserAsync(Mapper.Map<UserDto>(user));
                 //TODO:check res
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Login","Account");
             }
             else
             {
@@ -78,7 +77,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
             if (!autenticationResult)
             {
-
+                ModelState.AddModelError(string.Empty,"Wrong password or email");
                 return View(user);
             }
 

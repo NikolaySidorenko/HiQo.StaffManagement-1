@@ -16,19 +16,19 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
 
         public string Email { get; set; }
 
-        public int DepartmentId { get; set; }
+        public int? DepartmentId { get; set; } = null;
         public DepartmentDto Department { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; } = null;
         public CategoryDto Category { get; set; }
 
-        public int PositionId { get; set; }
+        public int? PositionId { get; set; } = null;
         public PositionDto Position { get; set; }
 
-        public int PositionLevelId { get; set; }
+        public int? PositionLevelId { get; set; } = null;
         public PositionLevelDto PositionLevel { get; set; }
 
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; } = 1;
         public RoleDto Role { get; set; }
 
         public string Username { get; set; }

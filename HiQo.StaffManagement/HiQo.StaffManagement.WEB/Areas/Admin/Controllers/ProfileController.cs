@@ -24,7 +24,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             _validatorFactory = validatorFactory;
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
             var listOfUsersForView =
@@ -34,6 +34,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Update(int id)
         {
             var userDto = _userService.GetById(id);
@@ -45,6 +46,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             var user = new UserViewModel();
@@ -55,6 +57,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             _userService.Remove(id);

@@ -36,10 +36,10 @@ namespace HiQo.StaffManagement.DAL.Repositories
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            //_context.Set<TEntity>().Attach(entity);
-            //_context.Entry(entity).State = EntityState.Modified;
+            _context.Set<TEntity>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
 
-            _context.Set<TEntity>().AddOrUpdate(entity);
+            //_context.Set<TEntity>().AddOrUpdate(entity);
         }
 
         public IEnumerable<TEntity> Get<TEntity>(

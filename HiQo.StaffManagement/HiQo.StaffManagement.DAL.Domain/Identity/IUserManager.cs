@@ -11,6 +11,8 @@ namespace HiQo.StaffManagement.DAL.Domain.Identity
 
         Task<User> FindAsync(string userName, string password);
 
+        Task<User> FindByNameAsync(string userName);
+
         Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationType);
     }
 }

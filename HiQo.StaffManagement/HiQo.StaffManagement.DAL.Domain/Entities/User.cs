@@ -19,19 +19,19 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
 
         public string Email { get; set; }
 
-        public int? DepartmentId { get; set; }
+        public int? DepartmentId { get; set; } = null;
         public virtual Department Department { get; set; }
 
-        public int? CategoryId { get; set; }
+        public int? CategoryId { get; set; } = null;
         public virtual Category Category { get; set; }
 
-        public int? PositionId { get; set; }
+        public int? PositionId { get; set; } = null;
         public virtual Position Position { get; set; }
 
-        public int? PositionLevelId { get; set; }
+        public int? PositionLevelId { get; set; } = null;
         public virtual PositionLevel PositionLevel { get; set; }
 
-        public int? RoleId { get; set; }
+        public int? RoleId { get; set; } = 1;
         public virtual Role Role { get; set; }
 
         public string PasswordHash { get; set; }

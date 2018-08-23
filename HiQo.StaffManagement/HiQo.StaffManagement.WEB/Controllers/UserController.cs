@@ -31,6 +31,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Update(int id)
         {
             var userDto = _userService.GetById(id);
@@ -56,6 +57,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Profiles(int id)
         {
             var user = Mapper.Map<UserDto, UserViewModel>(_userService.GetById(id));
