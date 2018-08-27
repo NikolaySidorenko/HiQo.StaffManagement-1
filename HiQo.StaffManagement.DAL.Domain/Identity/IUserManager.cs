@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace HiQo.StaffManagement.DAL.Domain.Identity
 {
