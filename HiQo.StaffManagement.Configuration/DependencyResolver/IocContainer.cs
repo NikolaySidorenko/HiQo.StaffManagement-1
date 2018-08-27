@@ -108,7 +108,7 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
 
             _container.Register(Component.For<IAuthenticationManager>()
                 .UsingFactoryMethod(GetAuthenticationManager, managedExternally: true)
-                .LifestyleTransient());
+                .LifestylePerWebRequest());
 
             _container.Register(Component.For<IUserManager>().ImplementedBy<ApplicationUserManager>().LifestylePerWebRequest());
         }

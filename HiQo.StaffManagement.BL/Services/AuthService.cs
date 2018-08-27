@@ -8,6 +8,7 @@ using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Identity;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 namespace HiQo.StaffManagement.BL.Services
@@ -64,6 +65,11 @@ namespace HiQo.StaffManagement.BL.Services
             if (user.Role != null)
                 claim.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name, ClaimValueTypes.String));
             _authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, claim);
+        }
+
+        public async Task<ExternalLoginInfo> GetExternalLoginInfoAsync()
+        {
+            return await _authenticationManager.GetExternalLoginInfoAsync();
         }
 
     }

@@ -148,8 +148,8 @@ namespace HiQo.StaffManagement.BL.Tests
             IEnumerable<User> users = new[] {new User {Id = 1, BirthDate = DateTime.Today}};
             var expectedIds = new[] { 1 };
 
-            Expression<Func<User, bool>> filter = user => user.BirthDate.Date.Day == DateTime.Today.Day
-                                                          && user.BirthDate.Date.Month == DateTime.Today.Month;
+            Expression<Func<User, bool>> filter = user => user.BirthDate.Value.Date.Day == DateTime.Today.Day
+                                                          && user.BirthDate.Value.Date.Month == DateTime.Today.Month;
 
 
             A.CallTo(() => _repository.Get<User>(filter,null)).Returns(users);
