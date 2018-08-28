@@ -8,7 +8,16 @@ namespace HiQo.StaffManagement.WEB
     {
         public static void RegisterRoutes(RouteCollection routes, string assemblyName)
         {
+            routes.MapMvcAttributeRoutes();
+            routes.LowercaseUrls = true;
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "GoogleApi",
+                url: "signin-google",
+                namespaces: new[] {assemblyName+".Controllers"},
+                defaults: new { controller = "Account", action = "ExternalLoginCallbackRedirect"});
+
 
             routes.MapRoute(
                 name:"Default",
