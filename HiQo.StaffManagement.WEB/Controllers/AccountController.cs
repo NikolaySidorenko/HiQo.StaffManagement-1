@@ -148,11 +148,16 @@ namespace HiQo.StaffManagement.WEB.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
 
+        [AllowAnonymous]
+        [ActionName("signin-google")]
+        public ActionResult ExternalLoginCallbackRedirect(string returnUrl)
+        {
+            return RedirectPermanent("/Account/ExternalLoginCallback");
+        }
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
@@ -166,7 +171,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
             public override void ExecuteResult(ControllerContext context)
             {
                 var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-     
+    
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
