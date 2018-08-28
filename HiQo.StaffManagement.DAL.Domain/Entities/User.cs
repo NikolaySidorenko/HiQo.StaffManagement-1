@@ -35,5 +35,11 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         public virtual Role Role { get; set; }
 
         public string PasswordHash { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public string Address { get; set; }
     }
 }
