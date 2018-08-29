@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -62,6 +63,15 @@ namespace HiQo.StaffManagement.WEB.Controllers
             InitializeDictionary(user);
 
             return View(user);
+        }
+
+        public ActionResult ShowMap()
+        {
+            //var locations = Mapper.Map<List<UserDto>, List<MapViewModel>>(_userService.GetAll() as List<UserDto>);
+            var locations = new List<MapViewModel>();
+            locations.Add(new MapViewModel(){FullName = "Dima",Latitude = 28.110749,Longitude = 77.34375});
+            locations.Add(new MapViewModel(){FullName = "Kirill",Latitude = 53.904148,Longitude = 27.5430120});
+            return View(locations);
         }
 
         private void InitializeDictionary(UserViewModel user)

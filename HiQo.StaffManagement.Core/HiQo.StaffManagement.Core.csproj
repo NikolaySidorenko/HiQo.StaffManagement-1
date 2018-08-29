@@ -65,6 +65,7 @@
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\RegistrationUserViewModel.cs" />
     <Compile Include="ViewModels\UserBirthdayViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
