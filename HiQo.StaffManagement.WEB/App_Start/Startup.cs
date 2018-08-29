@@ -24,6 +24,8 @@ namespace HiQo.StaffManagement.WEB.App_Start
             {
                 ClientId = "147873998968-fb2tu4na0p34re8nkv14vpnd80t1mgm1.apps.googleusercontent.com",
                 ClientSecret = "EA_o1m1e8E7LZ3UBCNRq1EPT",
+                CallbackPath = new PathString("/Account/ExternalLoginCallback")
+
             };
             options.Scope.Add("email");
             app.UseGoogleAuthentication(options);

@@ -8,16 +8,6 @@ namespace HiQo.StaffManagement.Core.Profiles
     {
         public UserProfile()
         {
-            CreateMap<UserDto, UserViewModel>()
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-                .ForMember(dest => dest.CurrentDepartmentId, opt => opt.MapFrom(src => src.DepartmentId))
-                .ForMember(dest => dest.CurrentCategoryId, opt => opt.MapFrom(src => src.Category.CategoryId))
-                .ForMember(dest => dest.CurrentPositionId, opt => opt.MapFrom(src => src.Position.PositionId))
-                .ForMember(dest => dest.CurrentPositionLevelId,
-                    opt => opt.MapFrom(src => src.PositionLevel.PositionLevelId))
-                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
-                .ForMember(dest => dest.CurrentRoleId, opt => opt.MapFrom(src => src.RoleId));
-
             CreateMap<UserViewModel, UserDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
@@ -31,7 +21,11 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
                 .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
-                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName));
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
+                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
+                .ReverseMap();
 
             CreateMap<UserDto, UserBirthdayViewModel>();
 
