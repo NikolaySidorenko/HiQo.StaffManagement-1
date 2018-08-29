@@ -34,5 +34,11 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
         public string Username { get; set; }
 
         public string PasswordHash { get; set; }
+
+        public double? Latitude { get; set; } = null;
+
+        public double? Longitude { get; set; } = null;
+
+        public string Address { get; set; }
     }
 }
