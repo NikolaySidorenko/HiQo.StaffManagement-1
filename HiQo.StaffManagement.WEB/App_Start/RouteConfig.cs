@@ -14,7 +14,7 @@ namespace HiQo.StaffManagement.WEB
 
             routes.MapRoute(
                 name: "GoogleApi",
-                url: "signin-google",
+                url: "Account/ExternalLoginCallback",
                 namespaces: new[] {assemblyName+".Controllers"},
                 defaults: new { controller = "Account", action = "ExternalLoginCallbackRedirect"});
 

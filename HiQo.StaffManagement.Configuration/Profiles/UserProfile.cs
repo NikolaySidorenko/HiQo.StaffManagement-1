@@ -8,7 +8,7 @@ namespace HiQo.StaffManagement.Configuration.Profiles
     {
         public UserProfile()
         {
-           CreateMap<User, UserDto>()
+            CreateMap<User, UserDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Department, opt => opt.MapFrom(src => src.Department))
                 .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category))
@@ -20,8 +20,10 @@ namespace HiQo.StaffManagement.Configuration.Profiles
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.PasswordHash))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(dest => dest.Latitude))
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ReverseMap();
-
         }
     }
 }
