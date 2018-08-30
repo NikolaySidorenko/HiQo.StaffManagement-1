@@ -11,11 +11,9 @@ namespace HiQo.StaffManagement.BL.Services
     public class PositionLevelService : IPositionLevelService
     {
         private readonly IRepository _repository;
-        private readonly IPositionLevelRepository _positionLevelRepository;
 
-        public PositionLevelService(IPositionLevelRepository positionLevelRepository, IRepository repository)
+        public PositionLevelService(IRepository repository)
         {
-            _positionLevelRepository = positionLevelRepository;
             _repository = repository;
         }
 

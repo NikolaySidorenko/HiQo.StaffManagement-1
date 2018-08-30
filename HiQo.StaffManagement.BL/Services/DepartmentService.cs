@@ -10,12 +10,10 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class DepartmentService : IDepartmentService
     {
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly IRepository _repository;
 
-        public DepartmentService(IDepartmentRepository departmentRepository, IRepository repository)
+        public DepartmentService(IRepository repository)
         {
-            _departmentRepository = departmentRepository;
             _repository = repository;
         }
 

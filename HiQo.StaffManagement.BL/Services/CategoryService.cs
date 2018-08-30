@@ -11,11 +11,9 @@ namespace HiQo.StaffManagement.BL.Services
     public class CategoryService : ICategoryService
     {
         private readonly IRepository _repository;
-        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(ICategoryRepository categoryRepository, IRepository repository)
+        public CategoryService(IRepository repository)
         {
-            _categoryRepository = categoryRepository;
             _repository = repository;
         }
 

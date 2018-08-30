@@ -11,11 +11,9 @@ namespace HiQo.StaffManagement.BL.Services
     public class RoleService : IRoleService
     {
         private readonly IRepository _repository;
-        private readonly IRoleRepository _roleRepository;
 
-        public RoleService(IRoleRepository roleRepository, IRepository repository)
+        public RoleService(IRepository repository)
         {
-            _roleRepository = roleRepository;
             _repository = repository;
         }
 

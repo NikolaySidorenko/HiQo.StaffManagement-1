@@ -46,10 +46,8 @@ namespace HiQo.StaffManagement.BL.Services
                 await IdentifyUserAsync(Mapper.Map<UserDto>(_userManager.FindByNameAsync(user.Username).Result));
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void LogOut()
