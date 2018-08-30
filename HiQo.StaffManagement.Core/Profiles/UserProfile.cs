@@ -43,7 +43,13 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
 
-            
+            CreateMap<UserDto, MapViewModel>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FirstName + src.LastName))
+                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
+                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+
+
         }
     }
 }
