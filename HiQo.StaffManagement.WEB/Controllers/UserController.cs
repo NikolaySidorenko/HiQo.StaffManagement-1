@@ -70,12 +70,8 @@ namespace HiQo.StaffManagement.WEB.Controllers
         {
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
-            //var locations = Mapper.Map<List<UserDto>, List<MapViewModel>>(_userService.GetAll() as List<UserDto>);
-            var locations = new List<MapViewModel>
-            {
-                new MapViewModel {FullName = "Dima", Latitude = 28.110749, Longitude = 77.34375, Id = 3},
-                new MapViewModel {FullName = "Kirill", Latitude = 53.904148, Longitude = 27.5430120, Id = 1}
-            };
+            var locations = Mapper.Map<List<UserDto>, List<MapViewModel>>(_userService.GetAll() as List<UserDto>);
+
             return View(locations);
         }
 

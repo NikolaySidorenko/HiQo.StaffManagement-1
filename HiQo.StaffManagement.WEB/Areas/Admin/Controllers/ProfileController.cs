@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
@@ -38,6 +39,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         {
             var userDto = _userService.GetById(id);
             var user = Mapper.Map<UserDto, UserViewModel>(userDto);
+            ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
             InitializeDictionary(user);
 
@@ -48,7 +50,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var user = new UserViewModel();
-
+            ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
             InitializeDictionary(user);
 
             return View("Creation", user);
@@ -81,10 +83,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
                     _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
                 }
 
-                var listOfUsersForView =
-                    Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
-
-                return View("Index", listOfUsersForView);
+                return RedirectToAction("Index");
             }
             else
             {
