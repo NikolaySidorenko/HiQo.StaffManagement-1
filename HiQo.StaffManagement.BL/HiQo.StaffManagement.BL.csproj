@@ -77,8 +77,6 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -102,10 +100,6 @@
     <ProjectReference Include="..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
       <Project>{89eff432-ffd4-47fe-bbdd-d7a7af447797}</Project>
       <Name>HiQo.StaffManagement.BL.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
-      <Project>{0438201F-93BE-4AC8-A631-E30C8D3EF523}</Project>
-      <Name>HiQo.StaffManagement.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
