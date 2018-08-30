@@ -1,62 +1,37 @@
-﻿@using WebGrease.Css.Extensions
-@model List<HiQo.StaffManagement.Core.ViewModels.MapViewModel>
-    @{
-        ViewBag.Title = "ShowMap";
-    }
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Show map</title>
-        <meta charset="utf-8"/>
-        <script type="text/javascript">
-            var map = null, infobox, dataLayer;
-
-            function GetMap() {
-                map = new window.Microsoft.Maps.Map('#myMap',
-                    {
-                        credentials: '@ViewBag.Key'
-                    });
-
-                dataLayer = new Microsoft.Maps.EntityCollection();
-                map.entities.push(dataLayer);
-
-                var infoboxLayer = new Microsoft.Maps.EntityCollection();
-                map.entities.push(infoboxLayer);
-
-                infobox = new Microsoft.Maps.Infobox(new Microsoft.Maps.Location(0, 0), { visible: false, offset: new Microsoft.Maps.Point(0, 20) });
-                infoboxLayer.push(infobox);
-
-                AddData();
-            }
-
-
-            function AddData()
+﻿@using System.Configuration
+@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.MapViewModel>
+@{
+    ViewBag.Title = "ShowMap";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show map</title>
+    <meta charset="utf-8" />
+    <script>
+        function AddData() {
+            @foreach (var info in Model)
             {
-                @foreach(var info in Model)
-                {
-                    <text>
-                        var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@info.Latitude,@info.Longitude));
-                        pushpin.Title = "@info.FullName";
-                        pushpin.Description = '<a href="/User/Profiles/@info.Id">More info</a>';
-                        Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);
-                        dataLayer.push(pushpin);
-                    </text>
-                }
+                <text>
+                    var pushpin =
+                        new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@info.Latitude, @info.Longitude));
+                    pushpin.Title = "@info.FullName";
+                    pushpin.Description = '@Html.ActionLink("More info", "Profiles", "User", new {id = info.Id}, null)';
+                    Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);
+                    dataLayer.push(pushpin);
+                </text>
             }
-
-            function displayInfobox(e) {
-                if (e.targetType == 'pushpin') {
-                    infobox.setLocation(e.target.getLocation());
-                    infobox.setOptions({ visible: true, title: e.target.Title, description: e.target.Description});
-                }
-            }  
-
-        </script>
-        <script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
-    </head>
-    <body>
-        <div class="container">
-            <div id="myMap" style="position: relative; width: 600px; height: 400px; float: left;"></div>
-        </div>
-    </body>
+        }
+    </script>
+    @Scripts.Render("~/bundles/showmap");
+    <script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
+    <script>
+        var ApiKey = '@ConfigurationManager.AppSettings["APIBingMaps"]';
+    </script>
+</head>
+<body>
+<div class="container">
+    <div id="myMap" style="float: left; height: 400px; position: relative; width: 600px;"></div>
+</div>
+</body>
 </html>

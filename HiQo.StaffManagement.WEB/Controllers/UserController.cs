@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
 using HiQo.StaffManagement.WEB.App_Start.Filters;
-using System.Configuration;
 
 namespace HiQo.StaffManagement.WEB.Controllers
 {
@@ -66,11 +62,10 @@ namespace HiQo.StaffManagement.WEB.Controllers
             return View(user);
         }
 
+        [HttpGet]
         public ActionResult ShowMap()
         {
-            ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
-
-            var locations = Mapper.Map<List<UserDto>, List<MapViewModel>>(_userService.GetAll() as List<UserDto>);
+            var locations = Mapper.Map<IEnumerable<UserDto>, IEnumerable<MapViewModel>>(_userService.GetAll());
 
             return View(locations);
         }

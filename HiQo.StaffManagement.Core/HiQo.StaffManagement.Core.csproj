@@ -80,10 +80,6 @@
       <Project>{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}</Project>
       <Name>HiQo.StaffManagement.BL.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj">
-      <Project>{583F6F73-910F-4AA2-A177-748497E50DEC}</Project>
-      <Name>HiQo.StaffManagement.BL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
       <Project>{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}</Project>
       <Name>HiQo.StaffManagement.DAL.Domain</Name>
