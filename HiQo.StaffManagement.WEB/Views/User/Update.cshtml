@@ -7,6 +7,7 @@
     <div class="panel-heading">
         <text>@Model.FirstName @Model.LastName</text>
     </div>
+
     <div class="panel-body">
         @using (Html.BeginForm("Creation", "User", new {obj = Model}, FormMethod.Post))
         {

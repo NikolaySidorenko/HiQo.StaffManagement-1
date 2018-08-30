@@ -2,7 +2,6 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using HiQo.StaffManagement.DAL.Configuration;
 using HiQo.StaffManagement.DAL.Domain.Entities;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HiQo.StaffManagement.DAL.Context
 {

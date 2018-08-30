@@ -206,11 +206,11 @@ namespace HiQo.StaffManagement.DAL.Migrations
 
             });
 
-            roles.ForEach(g => context.Roles.AddOrUpdate(g));
-            departments.ForEach(g => context.Departments.AddOrUpdate(g));
-            categories.ForEach(g => context.Categories.AddOrUpdate(g));
-            positions.ForEach(g => context.Positions.AddOrUpdate(g));
-            positionLevels.ForEach(g => context.PositionLevels.AddOrUpdate(g));
+            //roles.ForEach(g => context.Roles.AddOrUpdate(g));
+            //departments.ForEach(g => context.Departments.AddOrUpdate(g));
+            //categories.ForEach(g => context.Categories.AddOrUpdate(g));
+            //positions.ForEach(g => context.Positions.AddOrUpdate(g));
+            //positionLevels.ForEach(g => context.PositionLevels.AddOrUpdate(g));
             //users.ForEach(g => context.Users.AddOrUpdate(g));
 
             context.SaveChanges();
