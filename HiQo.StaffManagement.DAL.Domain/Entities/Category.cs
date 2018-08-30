@@ -4,11 +4,11 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
 {
     public class Category
     {
-        //public Category()
-        //{
-        //    CategoryPositions = new List<Position>();
-        //    Users = new List<User>();
-        //}
+        public Category()
+        {
+            CategoryPositions = new List<Position>();
+            Users = new List<User>();
+        }
 
         public int CategoryId { get; set; }
 

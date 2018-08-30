@@ -12,9 +12,9 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
 
         public virtual ICollection<User> Users { get; set; }
 
-        //public Department()
-        //{
-        //    CategoryNames = new List<Category>();
-        //}
+        public Department()
+        {
+            CategoryNames = new List<Category>();
+        }
     }
 }
