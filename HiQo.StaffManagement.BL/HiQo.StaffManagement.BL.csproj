@@ -39,9 +39,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HiQo.StaffManagement.BL.Domain">
-      <HintPath>..\HiQo.StaffManagement.BL.Domain\bin\Debug\HiQo.StaffManagement.BL.Domain.dll</HintPath>
-    </Reference>
     <Reference Include="HiQo.StaffManagement.DAL.Domain">
       <HintPath>..\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll</HintPath>
     </Reference>
@@ -103,6 +100,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
+      <Project>{89eff432-ffd4-47fe-bbdd-d7a7af447797}</Project>
+      <Name>HiQo.StaffManagement.BL.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
       <Project>{0438201F-93BE-4AC8-A631-E30C8D3EF523}</Project>
       <Name>HiQo.StaffManagement.DAL</Name>

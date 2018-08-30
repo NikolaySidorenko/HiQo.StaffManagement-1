@@ -8,14 +8,14 @@ namespace HiQo.StaffManagement.DAL.Migrations
         public override void Up()
         {
             AddColumn("dbo.Users", "Address", c => c.String());
-            AlterColumn("dbo.Users", "Latitude", c => c.Double());
-            AlterColumn("dbo.Users", "Longitude", c => c.Double());
+            AddColumn("dbo.Users", "Latitude", c => c.Double());
+            AddColumn("dbo.Users", "Longitude", c => c.Double());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.Users", "Longitude", c => c.String());
-            AlterColumn("dbo.Users", "Latitude", c => c.String());
+            DropColumn("dbo.Users", "Longitude");
+            DropColumn("dbo.Users", "Latitude");
             DropColumn("dbo.Users", "Address");
         }
     }
