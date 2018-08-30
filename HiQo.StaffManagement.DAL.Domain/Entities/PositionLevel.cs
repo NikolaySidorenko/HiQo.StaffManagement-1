@@ -12,9 +12,9 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
 
         public virtual ICollection<User> Users { get; set; }
 
-        //public PositionLevel()
-        //{
-        //    Users = new List<User>();
-        //}
+        public PositionLevel()
+        {
+            Users = new List<User>();
+        }
     }
 }

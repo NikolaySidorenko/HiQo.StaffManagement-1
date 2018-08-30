@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -13,11 +12,9 @@ namespace HiQo.StaffManagement.BL.Services
     public class UserService : IUserService
     {
         private readonly IRepository _repository;
-        private readonly IUserRepository _userRepository;
 
-        public UserService(IRepository repository, IUserRepository userRepository)
+        public UserService(IRepository repository)
         {
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
@@ -55,7 +52,7 @@ namespace HiQo.StaffManagement.BL.Services
         public IEnumerable<UserDto> GetListOfBirthdays()
         {
             var listOfUsers = Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(_repository.Get<User>().Where(user =>
-                user.BirthDate.Value.Day == DateTime.Today.Day && user.BirthDate.Value.Month == DateTime.Today.Month));
+                user.BirthDate != null && (user.BirthDate.Value.Day == DateTime.Today.Day && user.BirthDate.Value.Month == DateTime.Today.Month)));
 
             return listOfUsers;
         }
