@@ -14,7 +14,7 @@
             function GetMap() {
                 map = new window.Microsoft.Maps.Map('#myMap',
                     {
-                        credentials: 'Av-zol3G-mxsu7oQWjco6h2K-WV6aL9f5esTkcPj8K6ZNLi_rzuoalKJg6_hOWJn'
+                        credentials: '@ViewBag.Key'
                     });
 
                 dataLayer = new Microsoft.Maps.EntityCollection();
@@ -29,17 +29,15 @@
                 AddData();
             }
 
-            var url = '@Url.Action("Profiles", "User",new{id = 1})';
-
 
             function AddData()
             {
-                @foreach(var location in Model)
+                @foreach(var info in Model)
                 {
                     <text>
-                        var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@location.Latitude,@location.Longitude));
-                        pushpin.Title = "@location.FullName";
-                        pushpin.Description = "Description";
+                        var pushpin = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@info.Latitude,@info.Longitude));
+                        pushpin.Title = "@info.FullName";
+                        pushpin.Description = '<a href="/User/Profiles/@info.Id">More info</a>';
                         Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);
                         dataLayer.push(pushpin);
                     </text>
@@ -49,7 +47,7 @@
             function displayInfobox(e) {
                 if (e.targetType == 'pushpin') {
                     infobox.setLocation(e.target.getLocation());
-                    infobox.setOptions({ visible: true, title: e.target.Title, description: e.target.Description });
+                    infobox.setOptions({ visible: true, title: e.target.Title, description: e.target.Description});
                 }
             }  
 
@@ -57,6 +55,8 @@
         <script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
     </head>
     <body>
-        <div id="myMap" style="position:relative;width:600px;height:400px;float:left;"></div>
+        <div class="container">
+            <div id="myMap" style="position: relative; width: 600px; height: 400px; float: left;"></div>
+        </div>
     </body>
 </html>
