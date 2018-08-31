@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HiQo.StaffManagement.BL.Domain.Entities;
+﻿using System.Collections.Generic;
 using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.BL.Services
@@ -27,27 +22,27 @@ namespace HiQo.StaffManagement.BL.Services
             _roleService = roleService;
         }
 
-        public Dictionary<int,string> getDictionaryNameByIdDepartment()
+        public Dictionary<int,string> GetDictionaryNameByIdDepartment()
         {
             return _departmentService.NameByIdDictionary();
         }
 
-        public Dictionary<int, string> getDictionaryNameByIdCategory()
+        public Dictionary<int, string> GetDictionaryNameByIdCategory()
         {
             return _categoryService.NameByIdDictionary();
         }
 
-        public Dictionary<int, string> getDictionaryNameByIdPosition()
+        public Dictionary<int, string> GetDictionaryNameByIdPosition()
         {
             return _positionService.NameByIdDictionary();
         }
 
-        public Dictionary<int, string> getDictionaryNameByIdPositionLevel()
+        public Dictionary<int, string> GetDictionaryNameByIdPositionLevel()
         {
             return _positionLevelService.NameByIdDictionary();
         }
 
-        public Dictionary<int, string> getDictionaryNameByIdRole()
+        public Dictionary<int, string> GetDictionaryNameByIdRole()
         {
             return _roleService.NameByIdDictionary();
         }
