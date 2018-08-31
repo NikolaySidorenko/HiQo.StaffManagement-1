@@ -81,11 +81,11 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
         private void InitializeDictionary(UserViewModel user)
         {
-            user.DictionaryOfDepartments = _upsertService.getDictionaryNameByIdDepartment();
-            user.DictionaryOfCategories = _upsertService.getDictionaryNameByIdCategory();
-            user.DictionaryOfPositions = _upsertService.getDictionaryNameByIdPosition();
-            user.DictionaryOfPositionLevels = _upsertService.getDictionaryNameByIdPositionLevel();
-            user.DictionaryOfRoles = _upsertService.getDictionaryNameByIdRole();
+            user.DictionaryOfDepartments = _upsertService.GetDictionaryNameByIdDepartment();
+            user.DictionaryOfCategories = _upsertService.GetDictionaryNameByIdCategory();
+            user.DictionaryOfPositions = _upsertService.GetDictionaryNameByIdPosition();
+            user.DictionaryOfPositionLevels = _upsertService.GetDictionaryNameByIdPositionLevel();
+            user.DictionaryOfRoles = _upsertService.GetDictionaryNameByIdRole();
         }
     }
 }
