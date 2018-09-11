@@ -15,7 +15,7 @@
             {
                 <text>
                     var pushpin =
-                        new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(@info.Latitude, @info.Longitude));
+                        new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(parseFloat(@info.Latitude), parseFloat(@info.Longitude)));
                     pushpin.Title = "@info.FullName";
                     pushpin.Description = '@Html.ActionLink("More info", "Profiles", "User", new {id = info.Id}, null)';
                     Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);

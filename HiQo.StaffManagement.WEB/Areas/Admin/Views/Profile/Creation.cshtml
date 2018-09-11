@@ -9,9 +9,9 @@
     <title>Show map</title>
     <meta charset="utf-8"/>
     <script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
-    @Scripts.Render("~/bundles/bingmap");
+    @Scripts.Render("~/bundles/bingmap")
     <script>
-       var ApiKey = '@ConfigurationManager.AppSettings["APIBingMaps"]';
+        var ApiKey = '@ConfigurationManager.AppSettings["APIBingMaps"]'
     </script>
 </head>
 <body>

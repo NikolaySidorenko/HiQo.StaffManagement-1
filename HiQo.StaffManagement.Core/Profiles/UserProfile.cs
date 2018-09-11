@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.Core.ViewModels;
 
@@ -39,8 +40,8 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
                 .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
                 .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId))
-                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
-                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src =>Convert.ToDouble(src.Latitude.Replace(".",","))))
+                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src =>Convert.ToDouble(src.Longitude.Replace(".",","))))
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ReverseMap();
 

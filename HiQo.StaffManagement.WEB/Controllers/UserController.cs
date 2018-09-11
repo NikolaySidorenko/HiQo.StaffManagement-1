@@ -65,6 +65,9 @@ namespace HiQo.StaffManagement.WEB.Controllers
         [HttpGet]
         public ActionResult ShowMap()
         {
+            //var locations = new List<MapViewModel>();
+            //locations.Add(new MapViewModel() { FullName = "Dima", Latitude = 28.110749, Longitude = 77.34375 });
+            //locations.Add(new MapViewModel() { FullName = "Kirill", Latitude = 53.904148, Longitude = 27.5430120 });
             var locations = Mapper.Map<IEnumerable<UserDto>, IEnumerable<MapViewModel>>(_userService.GetAll());
 
             return View(locations);

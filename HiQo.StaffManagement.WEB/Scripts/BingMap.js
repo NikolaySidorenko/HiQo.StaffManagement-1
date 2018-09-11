@@ -1,6 +1,11 @@
 ﻿var map, searchManager, pushpin, locat;
-
+var defaultLatitude = 53.924142738473556;
+var defaultLongitude = 27.50760474668068;
 function GetMap() {
+    if (document.getElementById("Long").value === "") {
+        document.getElementById("Long").value = defaultLongitude;
+        document.getElementById("Lat").value = defaultLatitude;
+    }
     var lng = document.getElementById("Long").value;
     var lat = document.getElementById("Lat").value;
     locat = new Microsoft.Maps.Location(lat, lng);
