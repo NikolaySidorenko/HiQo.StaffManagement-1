@@ -38,7 +38,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var userDto = _userService.GetById(id);
-            var user = Mapper.Map<UpdateUserViewModel>(Mapper.Map<UserUpdateDto>(userDto));
+            var user = Mapper.Map<UpdateUserViewModel>(userDto);
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
             InitializeDictionary(user);
@@ -76,7 +76,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             {
                 if (user.UserId != 0)
                 {
-                    _userService.Update(Mapper.Map<UpdateUserViewModel, UserUpdateDto>(user));
+                    _userService.Update(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
                 else
                 {

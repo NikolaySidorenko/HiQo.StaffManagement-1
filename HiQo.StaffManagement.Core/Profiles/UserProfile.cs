@@ -28,7 +28,7 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ReverseMap();
 
-            CreateMap<UpdateUserViewModel, UserUpdateDto>()
+            CreateMap<UpdateUserViewModel, UserDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))

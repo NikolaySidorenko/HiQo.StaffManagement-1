@@ -15,8 +15,6 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Update(UserDto entity);
 
-        void Update(UserUpdateDto entity);
-
         IEnumerable<UserDto> GetListOfBirthdays();
 
         bool IsExists(int id);

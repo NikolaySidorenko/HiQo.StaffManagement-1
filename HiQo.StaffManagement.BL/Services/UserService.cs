@@ -45,12 +45,12 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void Update(UserDto entity)
         {
-            _repository.Update(Mapper.Map<User>(entity));
-            _repository.SaveChanges();
-        }
+            entity.PasswordHash = _repository.Get<User>().Where(user => user.Id == entity.UserId)
+                .Select(user => user.PasswordHash).First();
 
-        public void Update(UserUpdateDto entity)
-        {
+            entity.Username = _repository.Get<User>().Where(user => user.Id == entity.UserId)
+                .Select(user => user.UserName).First();
+
             _repository.Update(Mapper.Map<User>(entity));
             _repository.SaveChanges();
         }
