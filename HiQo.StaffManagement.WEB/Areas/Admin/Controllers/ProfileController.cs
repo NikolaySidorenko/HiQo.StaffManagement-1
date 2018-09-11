@@ -38,7 +38,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var userDto = _userService.GetById(id);
-            var user = Mapper.Map<UserDto, UserViewModel>(userDto);
+            var user = Mapper.Map<UpdateUserViewModel>(Mapper.Map<UserUpdateDto>(userDto));
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
             InitializeDictionary(user);
@@ -49,7 +49,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var user = new UserViewModel();
+            var user = new UpdateUserViewModel();
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
             InitializeDictionary(user);
 
@@ -67,20 +67,20 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creation(UserViewModel user)
+        public ActionResult Creation(UpdateUserViewModel user)
         {
-            var validator = _validatorFactory.GetValidator<UserViewModel>();
+            var validator = _validatorFactory.GetValidator<UpdateUserViewModel>();
             var result = validator.Validate(user);
 
             if (result.IsValid)
             {
                 if (user.UserId != 0)
                 {
-                    _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                    _userService.Update(Mapper.Map<UpdateUserViewModel, UserUpdateDto>(user));
                 }
                 else
                 {
-                    _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
+                    _userService.Add(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
 
                 return RedirectToAction("Index");
@@ -95,7 +95,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         }
 
-        private void InitializeDictionary(UserViewModel user)
+        private void InitializeDictionary(UpdateUserViewModel user)
         {
             user.DictionaryOfDepartments = _upsertService.GetDictionaryNameByIdDepartment();
             user.DictionaryOfCategories = _upsertService.GetDictionaryNameByIdCategory();

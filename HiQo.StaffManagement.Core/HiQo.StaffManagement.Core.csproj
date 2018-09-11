@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="FluentValidator\LoginUserValidator.cs" />
     <Compile Include="FluentValidator\RegistrationUserValidator.cs" />
+    <Compile Include="FluentValidator\UpdateUserValidator.cs" />
     <Compile Include="FluentValidator\UserValidator.cs" />
     <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\RegistrationUserViewModel.cs" />
+    <Compile Include="ViewModels\UpdateUserViewModel.cs" />
     <Compile Include="ViewModels\UserBirthdayViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
