@@ -49,6 +49,12 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.SaveChanges();
         }
 
+        public void Update(UserUpdateDto entity)
+        {
+            _repository.Update(Mapper.Map<User>(entity));
+            _repository.SaveChanges();
+        }
+
         public IEnumerable<UserDto> GetListOfBirthdays()
         {
             var listOfUsers = Mapper.Map<IEnumerable<User>, IEnumerable<UserDto>>(_repository.Get<User>().Where(user =>

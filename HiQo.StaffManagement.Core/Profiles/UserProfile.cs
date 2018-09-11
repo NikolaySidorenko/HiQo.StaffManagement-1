@@ -27,6 +27,23 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ReverseMap();
 
+            CreateMap<UpdateUserViewModel, UserUpdateDto>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.BirthDate, opt => opt.MapFrom(src => src.BirthDate))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.CurrentDepartmentId))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CurrentCategoryId))
+                .ForMember(dest => dest.MainPhoneNumber, opt => opt.MapFrom(src => src.MainPhoneNumber))
+                .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
+                .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
+                .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId))
+                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
+                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
+                .ReverseMap();
+
             CreateMap<UserDto, UserBirthdayViewModel>();
 
             CreateMap<RegistrationUserViewModel,UserDto>()
@@ -48,6 +65,9 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
+
+            CreateMap<UpdateUserViewModel, UserViewModel>()
+                .ReverseMap();
         }
     }
 }
