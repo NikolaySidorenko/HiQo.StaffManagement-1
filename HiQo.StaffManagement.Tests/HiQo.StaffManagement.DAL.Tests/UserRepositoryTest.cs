@@ -9,7 +9,7 @@ namespace HiQo.StaffManagement.DAL.Tests
 {
     public class UserRepositoryTest
     {
-        private readonly IRepository _Repository = new Repository(new StaffManagementContext());
+        private readonly Repository _Repository = new Repository(new StaffManagementContext());
         private readonly IRepository _fakeRepository;
 
         public UserRepositoryTest()
@@ -22,11 +22,6 @@ namespace HiQo.StaffManagement.DAL.Tests
         public void GetById_Id_ObjFound(int id)
         {
             var objUser = _Repository.GetById<User>(id);
-
-            //A.CallTo(fakeRepository)
-            //    .Where(call => call.Method.Name == "GetById")
-            //    .WithReturnType<User>()
-            //    .Returns(fakeObjUser);
 
             A.CallTo(() => _fakeRepository.GetById<User>(id)).Returns(objUser);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -8,7 +9,6 @@ using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
 namespace HiQo.StaffManagement.WEB.Controllers
@@ -41,14 +41,19 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
             if (result.IsValid)
             {
+
                 var res = await _authService.RegisterUserAsync(Mapper.Map<UserDto>(user));
-                
+                if (!res)
+                {
+                    ModelState.AddModelError("Summury", "Error has been occurred while registration user");
+                    return View(user);
+                }
                 return RedirectToAction("Login", "Account");
             }
-            else
-            {
-                return View(user);
-            }
+
+            var s=Assembly.GetExecutingAssembly().GetTypes()[0].GetMethods()[0].;
+            
+            return View(user);  
         }
 
         [HttpPost]
