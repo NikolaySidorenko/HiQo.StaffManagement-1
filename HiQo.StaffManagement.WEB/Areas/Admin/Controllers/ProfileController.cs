@@ -29,7 +29,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var listOfUsersForView =
-                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
 
             return View(listOfUsersForView);
         }
@@ -61,7 +61,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         {
             _userService.Remove(id);
             var listOfUsersForView =
-                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UserViewModel>>(_userService.GetAll());
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
 
             return View("Index", listOfUsersForView);
         }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Reflection;
-using System.Web;
+﻿using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.DependencyResolver;
-using HiQo.StaffManagement.Configuration.DependencyResolver.ValidatorResolver;
 using HiQo.StaffManagement.Configuration.Profiles;
-using NLog;
 
 namespace HiQo.StaffManagement.WEB
 {
