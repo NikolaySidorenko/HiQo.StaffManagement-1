@@ -19,6 +19,12 @@ namespace HiQo.StaffManagement.WEB
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/showmap").Include(
+                "~/Scripts/ShowMap.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bingmap").Include(
+                "~/Scripts/BingMap.js"));
         }
     }
 }

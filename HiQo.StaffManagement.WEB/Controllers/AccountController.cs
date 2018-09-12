@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -41,19 +39,14 @@ namespace HiQo.StaffManagement.WEB.Controllers
 
             if (result.IsValid)
             {
-
                 var res = await _authService.RegisterUserAsync(Mapper.Map<UserDto>(user));
-                if (!res)
-                {
-                    ModelState.AddModelError("Summury", "Error has been occurred while registration user");
-                    return View(user);
-                }
+                
                 return RedirectToAction("Login", "Account");
             }
-
-            var s=Assembly.GetExecutingAssembly().GetTypes()[0].GetMethods()[0].;
-            
-            return View(user);  
+            else
+            {
+                return View(user);
+            }
         }
 
         [HttpPost]

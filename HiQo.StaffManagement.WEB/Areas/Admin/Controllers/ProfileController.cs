@@ -38,7 +38,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Update(int id)
         {
             var userDto = _userService.GetById(id);
-            var user = Mapper.Map<UserDto, UserViewModel>(userDto);
+            var user = Mapper.Map<UpdateUserViewModel>(userDto);
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
             InitializeDictionary(user);
@@ -49,7 +49,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var user = new UserViewModel();
+            var user = new UpdateUserViewModel();
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
             InitializeDictionary(user);
 
@@ -67,20 +67,20 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Creation(UserViewModel user)
+        public ActionResult Creation(UpdateUserViewModel user)
         {
-            var validator = _validatorFactory.GetValidator<UserViewModel>();
+            var validator = _validatorFactory.GetValidator<UpdateUserViewModel>();
             var result = validator.Validate(user);
 
             if (result.IsValid)
             {
                 if (user.UserId != 0)
                 {
-                    _userService.Update(Mapper.Map<UserViewModel, UserDto>(user));
+                    _userService.Update(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
                 else
                 {
-                    _userService.Add(Mapper.Map<UserViewModel, UserDto>(user));
+                    _userService.Add(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
 
                 return RedirectToAction("Index");
@@ -95,13 +95,13 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         }
 
-        private void InitializeDictionary(UserViewModel user)
+        private void InitializeDictionary(UpdateUserViewModel user)
         {
-            user.DictionaryOfDepartments = _upsertService.getDictionaryNameByIdDepartment();
-            user.DictionaryOfCategories = _upsertService.getDictionaryNameByIdCategory();
-            user.DictionaryOfPositions = _upsertService.getDictionaryNameByIdPosition();
-            user.DictionaryOfPositionLevels = _upsertService.getDictionaryNameByIdPositionLevel();
-            user.DictionaryOfRoles = _upsertService.getDictionaryNameByIdRole();
+            user.DictionaryOfDepartments = _upsertService.GetDictionaryNameByIdDepartment();
+            user.DictionaryOfCategories = _upsertService.GetDictionaryNameByIdCategory();
+            user.DictionaryOfPositions = _upsertService.GetDictionaryNameByIdPosition();
+            user.DictionaryOfPositionLevels = _upsertService.GetDictionaryNameByIdPositionLevel();
+            user.DictionaryOfRoles = _upsertService.GetDictionaryNameByIdRole();
         }
 
         private void SetErrorsInModelState(IEnumerable<ValidationFailure> errors)

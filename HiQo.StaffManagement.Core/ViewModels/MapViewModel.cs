@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HiQo.StaffManagement.Core.ViewModels
+﻿namespace HiQo.StaffManagement.Core.ViewModels
 {
     public class MapViewModel
     {

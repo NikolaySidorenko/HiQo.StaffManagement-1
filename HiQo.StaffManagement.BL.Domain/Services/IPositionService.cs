@@ -9,10 +9,6 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         IEnumerable<PositionDto> GetAll();
 
-        //IEnumerable<PositionLevelDto> Get(
-        //    Expression<Func<PositionLevelDto, bool>> filter = null,
-        //    Func<IQueryable<PositionLevelDto>, IOrderedQueryable<PositionLevelDto>> orderBy = null);
-
         void Add(PositionDto entity);
 
         void Remove(PositionDto entity);
