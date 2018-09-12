@@ -9,7 +9,6 @@
         <text>@Model.FirstName @Model.LastName</text>
     </div>
     <div class="panel-body">
-        @*TODO:Check user(Authorization)*@
         @Html.LabelFor(user => user.FirstName)
         @Html.DisplayFor(user => user.FirstName, new { @class = "form-control" })
         <br />

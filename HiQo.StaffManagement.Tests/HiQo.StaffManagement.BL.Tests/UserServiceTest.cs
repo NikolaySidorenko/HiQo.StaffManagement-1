@@ -26,7 +26,7 @@ namespace HiQo.StaffManagement.BL.Tests
         {
             _repository = A.Fake<IRepository>();
             _userRepository = A.Fake<IUserRepository>();
-            _userService = new UserService(_repository,_userRepository);
+            _userService = new UserService(_repository);
             _mapper = A.Fake<IMapper>();
         }
 

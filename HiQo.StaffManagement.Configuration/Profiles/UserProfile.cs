@@ -19,7 +19,6 @@ namespace HiQo.StaffManagement.Configuration.Profiles
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.PasswordHash))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(dest => dest.Latitude))
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))

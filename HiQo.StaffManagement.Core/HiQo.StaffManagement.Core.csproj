@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="FluentValidator\LoginUserValidator.cs" />
     <Compile Include="FluentValidator\RegistrationUserValidator.cs" />
+    <Compile Include="FluentValidator\UpdateUserValidator.cs" />
     <Compile Include="FluentValidator\UserValidator.cs" />
     <Compile Include="Profiles\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\RegistrationUserViewModel.cs" />
+    <Compile Include="ViewModels\UpdateUserViewModel.cs" />
     <Compile Include="ViewModels\UserBirthdayViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -79,10 +81,6 @@
     <ProjectReference Include="..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
       <Project>{89EFF432-FFD4-47FE-BBDD-D7A7AF447797}</Project>
       <Name>HiQo.StaffManagement.BL.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HiQo.StaffManagement.BL\HiQo.StaffManagement.BL.csproj">
-      <Project>{583F6F73-910F-4AA2-A177-748497E50DEC}</Project>
-      <Name>HiQo.StaffManagement.BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
       <Project>{BA703E27-5356-4AD6-A4C7-DD1CF4DA137B}</Project>

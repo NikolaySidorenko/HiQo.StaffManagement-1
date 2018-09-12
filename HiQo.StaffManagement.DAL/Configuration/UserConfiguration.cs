@@ -34,31 +34,6 @@ namespace HiQo.StaffManagement.DAL.Configuration
             Property(g => g.BirthDate)
                 .HasColumnName("BirthDate")
                 .HasColumnType("datetime2");
-
-
-            //HasOptional(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId).WillCascadeOnDelete(false);  
-
-            //HasOptional(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId).WillCascadeOnDelete(false);
-
-            //HasOptional(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId).WillCascadeOnDelete(false);
-
-            //HasOptional(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId).WillCascadeOnDelete(false);
-
-            //HasOptional(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
-
-            //HasRequired(g => g.Position).WithMany(x => x.Users).HasForeignKey(g => g.PositionId)
-            //   .WillCascadeOnDelete(false);
-
-            //HasRequired(g => g.Role).WithMany(x => x.Users).HasForeignKey(g => g.RoleId).WillCascadeOnDelete(false);
-
-            //HasRequired(g => g.Category).WithMany(x => x.Users).HasForeignKey(g => g.CategoryId)
-            //    .WillCascadeOnDelete(false);
-
-            //HasRequired(g => g.Department).WithMany(x => x.Users).HasForeignKey(g => g.DepartmentId)
-            //    .WillCascadeOnDelete(false);
-
-            //HasRequired(g => g.PositionLevel).WithMany(x => x.Users).HasForeignKey(g => g.PositionLevelId)
-            //    .WillCascadeOnDelete(false);
         }
     }
 }
