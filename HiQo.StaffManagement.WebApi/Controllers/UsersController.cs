@@ -11,12 +11,10 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
-        private readonly IUpsertService _upsertService;
         private readonly IUserService _userService;
 
-        public UsersController(IUpsertService upsertService, IUserService userService)
+        public UsersController(IUserService userService)
         {
-            _upsertService = upsertService;
             _userService = userService;
         }
 

@@ -12,7 +12,7 @@ namespace HiQo.StaffManagement.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             MapperConfig.ConfigureAutomapper();
-            ApiIocContainer.ConfigureWindsor(Assembly.GetExecutingAssembly().GetName().Name,GlobalConfiguration.Configuration);
+            ApiIocContainer.ConfigureWindsor(Assembly.GetExecutingAssembly().GetName().Name,GlobalConfiguration.Configuration);          
         }
     }
 }

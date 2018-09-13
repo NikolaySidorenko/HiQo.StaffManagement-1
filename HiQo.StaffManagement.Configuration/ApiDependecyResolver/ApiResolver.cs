@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
