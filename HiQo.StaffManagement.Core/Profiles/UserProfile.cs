@@ -21,10 +21,6 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.PositionId, opt => opt.MapFrom(src => src.CurrentPositionId))
                 .ForMember(dest => dest.PositionLevelId, opt => opt.MapFrom(src => src.CurrentPositionLevelId))
                 .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.CurrentRoleId))
-                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password))
-                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.UserName))
-                .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
-                .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ReverseMap();
 
@@ -53,10 +49,6 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName));
 
-            CreateMap<RegistrationUserViewModel, UserViewModel>()
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
-
             CreateMap<LoginViewModel, UserDto>()
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
@@ -66,9 +58,6 @@ namespace HiQo.StaffManagement.Core.Profiles
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Latitude))
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UserId));
-
-            CreateMap<UpdateUserViewModel, UserViewModel>()
-                .ReverseMap();
         }
     }
 }
