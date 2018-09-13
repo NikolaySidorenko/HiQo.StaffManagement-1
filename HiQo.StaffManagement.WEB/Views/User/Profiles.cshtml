@@ -20,6 +20,9 @@
         <br />
         @Html.LabelFor(user => user.MainPhoneNumber)
         @Html.DisplayFor(user => user.MainPhoneNumber, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(user => user.Address)
+        @Html.DisplayFor(user => user.Address, new { @class = "form-control" })
         <hr class="dividing-line" />
         @Html.LabelFor(user => user.CurrentDepartmentId)
         @Html.DisplayFor(user => user.DictionaryOfDepartments[Model.CurrentDepartmentId], new { @class = "form-control" })

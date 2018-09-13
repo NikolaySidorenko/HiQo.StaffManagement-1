@@ -7,7 +7,7 @@ using Castle.Windsor;
 
 namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
 {
-    public class WindsorDependencyScope:IDependencyScope
+    public class WindsorDependencyScope : IDependencyScope
     {
         private readonly IWindsorContainer _container;
         private readonly IDisposable _scope;
