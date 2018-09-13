@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Dependencies;
-using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
 {
-    public class ApiResolver:IDependencyResolver
+    public class ApiResolver : IDependencyResolver
     {
         private readonly IWindsorContainer _container;
 
@@ -15,6 +14,7 @@ namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
         }
+
         public void Dispose()
         {
             throw new NotImplementedException();
