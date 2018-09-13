@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -86,7 +86,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HiQo.StaffManagement.WEB\Bin\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -111,10 +112,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiDependecyResolver\ApiControllerInstaller.cs" />
+    <Compile Include="Shared\DependencyInstaller.cs" />
+    <Compile Include="ApiDependecyResolver\ApiIocContainer.cs" />
+    <Compile Include="ApiDependecyResolver\ApiResolver.cs" />
+    <Compile Include="ApiDependecyResolver\WindsorDependencyScope.cs" />
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
-    <Compile Include="DependencyResolver\ValidatorResolver\ValidatorsInstaller.cs" />
-    <Compile Include="DependencyResolver\ValidatorResolver\WindsorValidatorFactory.cs" />
+    <Compile Include="Shared\ValidatorResolver\ValidatorsInstaller.cs" />
+    <Compile Include="Shared\ValidatorResolver\WindsorValidatorFactory.cs" />
     <Compile Include="DependencyResolver\WindsorControllerFactory.cs" />
     <Compile Include="Profiles\CategoryProfile.cs" />
     <Compile Include="Profiles\DepartmentProfile.cs" />

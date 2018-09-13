@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
@@ -103,11 +102,7 @@ namespace HiQo.StaffManagement.BL.Tests
 
             _userService.Add(user);
 
-            A.CallTo(() => _repository.Add<User>(_mapper.Map<User>(user))).MustHaveHappenedOnceExactly();//Fake map?
-
-            //A.CallTo(_repository).Where(call => call.Method.Name == nameof(_repository.Add) && call.Method.IsGenericMethod)
-            //    .WithVoidReturnType().MustHaveHappenedOnceExactly();
-            //A.CallTo(() => _repository.SaveChanges()).MustHaveHappenedOnceExactly();
+            A.CallTo(() => _repository.Add<User>(_mapper.Map<User>(user))).MustHaveHappenedOnceExactly();
         }
 
         [Fact]

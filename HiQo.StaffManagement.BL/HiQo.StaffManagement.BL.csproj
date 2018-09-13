@@ -39,9 +39,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="HiQo.StaffManagement.DAL.Domain">
-      <HintPath>..\HiQo.StaffManagement.DAL.Domain\bin\Debug\HiQo.StaffManagement.DAL.Domain.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -100,6 +97,10 @@
     <ProjectReference Include="..\HiQo.StaffManagement.BL.Domain\HiQo.StaffManagement.BL.Domain.csproj">
       <Project>{89eff432-ffd4-47fe-bbdd-d7a7af447797}</Project>
       <Name>HiQo.StaffManagement.BL.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HiQo.StaffManagement.DAL.Domain\HiQo.StaffManagement.DAL.Domain.csproj">
+      <Project>{ba703e27-5356-4ad6-a4c7-dd1cf4da137b}</Project>
+      <Name>HiQo.StaffManagement.DAL.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
