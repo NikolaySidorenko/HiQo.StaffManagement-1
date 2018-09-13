@@ -16,6 +16,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     {
         private readonly IUserService _userService;
 
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -51,7 +52,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        //[Route("create")]
+        //[Route("")]
         //[HttpPost]
         //public HttpResponseMessage AddUser(UpdateUserViewModel user)
         //{
@@ -67,10 +68,11 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         //    }
         //}
 
-        [Route("{id:int}/update")]
+        [Route("{id:int}")]
         [HttpPut]
         public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
         {
+            //TODO:validator
             try
             {
                 _userService.Update(Mapper.Map<UserDto>(user));
@@ -82,7 +84,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        [Route("location")]
+        [Route("locations")]
         [HttpGet]
         public HttpResponseMessage LocationsOfUsers()
         {
