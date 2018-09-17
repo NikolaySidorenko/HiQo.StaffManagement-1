@@ -15,13 +15,13 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DepartmentDto> Departments()
+        public IEnumerable<DepartmentDto> GetAll()
         {
             return _service.GetAll();
         }
 
         [HttpGet]
-        public DepartmentDto Department(int id)
+        public DepartmentDto GetSingle(int id)
         {
             return _service.GetById(id);
         }

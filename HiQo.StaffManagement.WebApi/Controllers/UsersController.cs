@@ -27,8 +27,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         {
             try
             {
-               var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
-               return Request.CreateResponse(HttpStatusCode.OK, users);
+                var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
+                return Request.CreateResponse(HttpStatusCode.OK, users);
             }
             catch (Exception e)
             {
@@ -96,7 +96,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
                 return new HttpResponseMessage(HttpStatusCode.NotFound);
             }
         }
-        
+
 
 
     }

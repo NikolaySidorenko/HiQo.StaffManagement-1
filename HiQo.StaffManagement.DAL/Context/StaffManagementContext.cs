@@ -11,7 +11,7 @@ namespace HiQo.StaffManagement.DAL.Context
         {
             Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<StaffManagementContext, Migrations.Configuration>());
-            Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual IDbSet<User> Users { get; set; }
