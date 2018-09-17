@@ -13,5 +13,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         Task<ExternalLoginInfo> GetExternalLoginInfoAsync();
 
         void LogOut();
+
+        Task<bool> CheckPasswordAsync(UserDto user);
     }
 }

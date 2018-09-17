@@ -138,7 +138,7 @@ namespace HiQo.StaffManagement.WEB.Controllers
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var user = new UserViewModel { UserName = model.Email, Email = model.Email };
+                var user = new UserViewModel { Username = model.Email, Email = model.Email };
                 var result = await _authService.RegisterUserAsync(Mapper.Map<UserDto>(user));
                 if (result)
                 {

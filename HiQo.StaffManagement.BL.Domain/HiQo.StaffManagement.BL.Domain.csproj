@@ -71,6 +71,7 @@
     <Compile Include="Entities\UserAuthDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IAuthorizationService.cs" />
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IDepartmentService.cs" />
