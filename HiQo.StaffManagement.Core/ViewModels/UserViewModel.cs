@@ -33,5 +33,7 @@ namespace HiQo.StaffManagement.Core.ViewModels
         public Dictionary<int,string> DictionaryOfRoles { get; set; }
 
         public string Address { get; set; }
+
+        public string Username { get; set; }
     }
 }

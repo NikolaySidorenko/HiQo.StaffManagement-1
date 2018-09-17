@@ -90,6 +90,10 @@
     <Compile Include="Migrations\201808282018111_ChangeModelsForMaps.Designer.cs">
       <DependentUpon>201808282018111_ChangeModelsForMaps.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809170936215_AddTokenModel.cs" />
+    <Compile Include="Migrations\201809170936215_AddTokenModel.Designer.cs">
+      <DependentUpon>201809170936215_AddTokenModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -125,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808282018111_ChangeModelsForMaps.resx">
       <DependentUpon>201808282018111_ChangeModelsForMaps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809170936215_AddTokenModel.resx">
+      <DependentUpon>201809170936215_AddTokenModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
