@@ -4,6 +4,7 @@ using Castle.Windsor;
 using FluentValidation;
 using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.Shared;
+using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
 using HiQo.StaffManagement.Configuration.Shared.ValidatorResolver;
 
 namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
@@ -26,6 +27,9 @@ namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
 
             var installerValidators = new ValidatorsInstaller();
             installerValidators.Install(container, null);
+
+            var servicesInstaller = new ServiceInstaller();
+            servicesInstaller.Install(container, null);
 
             FluentValidationModelValidatorProvider.Configure(provider =>
             {
