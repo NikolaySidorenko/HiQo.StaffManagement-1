@@ -72,6 +72,7 @@
     <Compile Include="Entities\UserAuthDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceResolver\IServiceFactory.cs" />
     <Compile Include="Services\IAuthorizationServiceJWT.cs" />
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Services\IPositionLevelService.cs" />
     <Compile Include="Services\IPositionService.cs" />
     <Compile Include="Services\IRoleService.cs" />
+    <Compile Include="Services\IService.cs" />
     <Compile Include="Services\ITokenHandler.cs" />
     <Compile Include="Services\IUpsertService.cs" />
     <Compile Include="Services\IUserService.cs" />

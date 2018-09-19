@@ -22,6 +22,7 @@ namespace HiQo.StaffManagement.Configuration.Profiles
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Longitude))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(dest => dest.Latitude))
                 .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
+                .ForMember(dto => dto.SecurityStamp, opt => opt.MapFrom(src => src.SecurityStamp))
                 .ReverseMap();
         }
     }

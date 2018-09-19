@@ -118,6 +118,8 @@
     <Compile Include="ApiDependecyResolver\WindsorDependencyScope.cs" />
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
+    <Compile Include="Shared\ServiceResolver\ServiceInstaller.cs" />
+    <Compile Include="Shared\ServiceResolver\WindsorServicesFactory.cs" />
     <Compile Include="Shared\ValidatorResolver\ValidatorsInstaller.cs" />
     <Compile Include="Shared\ValidatorResolver\WindsorValidatorFactory.cs" />
     <Compile Include="DependencyResolver\WindsorControllerFactory.cs" />

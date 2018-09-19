@@ -55,14 +55,6 @@ namespace HiQo.StaffManagement.BL.Services
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
 
-        public async Task<bool> CheckPasswordAsync(UserDto user)
-        {
-            var isUserCredentialsValid = await _userManager.FindAsync(user.Username, user.PasswordHash) != null;
-
-            return isUserCredentialsValid;
-        }
-
-
         private async Task IdentifyUserAsync(UserDto user)
         {
             var claim = await _userManager.CreateIdentityAsync(Mapper.Map<User>(user), DefaultAuthenticationTypes.ApplicationCookie);

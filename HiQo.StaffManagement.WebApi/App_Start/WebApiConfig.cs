@@ -8,6 +8,7 @@ namespace HiQo.StaffManagement.WebApi
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -11,13 +11,12 @@ using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/auth")]
     public class AuthController : ApiController
     {
-        private readonly IValidatorFactory _validatorFactory;
-        private readonly IAuthService _authService;
         private readonly IAuthorizationServiceJWT _authorizationServiceJwt;
+        private readonly IAuthService _authService;
+        private readonly IValidatorFactory _validatorFactory;
 
         public AuthController(IValidatorFactory validatorFactory, IAuthService authService,
             IAuthorizationServiceJWT authorizationServiceJwt)
@@ -35,29 +34,28 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             var result = validator.Validate(user);
 
             if (result.IsValid)
-            {
                 try
                 {
-                    var isUserCredentialsValid = _authService.CheckPasswordAsync(Mapper.Map<UserDto>(user));
+                    var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
 
-                    if (isUserCredentialsValid.Result)
-                    {
-                        return Request.CreateResponse(HttpStatusCode.OK, _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)));
-                    }
-                    else
-                    {
-                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
-                    }
+                    return isUserCredentialsValid
+                        ? Request.CreateResponse(HttpStatusCode.OK,
+                            _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
+                        : new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
                 catch (Exception e)
                 {
                     return new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 }
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [Route("refresh-token")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> RefreshToken([FromBody] string token)
+        {
+            throw new NotImplementedException();
         }
     }
 }
