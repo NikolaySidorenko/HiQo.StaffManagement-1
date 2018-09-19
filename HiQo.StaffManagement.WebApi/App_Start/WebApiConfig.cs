@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace HiQo.StaffManagement.WebApi
 {
@@ -7,6 +6,9 @@ namespace HiQo.StaffManagement.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            // Web API configuration and services
+
+            // Web API routes
             config.MapHttpAttributeRoutes();
             config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
 
@@ -15,6 +17,9 @@ namespace HiQo.StaffManagement.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling =
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
