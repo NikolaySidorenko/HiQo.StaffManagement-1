@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
@@ -31,7 +32,6 @@ namespace HiQo.StaffManagement.BL.Services
         public async Task<bool> RegisterUserAsync(UserDto user)
         {
             user.UserId = _userRepository.GetLastId();
-
             var identityResult = await _userManager.CreateAsync(Mapper.Map<User>(user), user.PasswordHash);
 
             return identityResult.Succeeded;

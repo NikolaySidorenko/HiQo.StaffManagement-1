@@ -40,5 +40,7 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
         public double? Longitude { get; set; } = null;
 
         public string Address { get; set; }
+
+        public string SecurityStamp  { get; set; }
     }
 }

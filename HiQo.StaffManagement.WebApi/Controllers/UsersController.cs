@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -15,6 +14,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     public class UsersController : ApiController
     {
         private readonly IUserService _userService;
+
 
         public UsersController(IUserService userService)
         {
@@ -51,7 +51,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        //[Route("create")]
+        //[Route("")]
         //[HttpPost]
         //public HttpResponseMessage AddUser(UpdateUserViewModel user)
         //{
@@ -67,10 +67,11 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         //    }
         //}
 
-        [Route("{id:int}/update")]
+        [Route("{id:int}")]
         [HttpPut]
         public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
         {
+            //TODO:validator
             try
             {
                 _userService.Update(Mapper.Map<UserDto>(user));
@@ -82,7 +83,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        [Route("location")]
+        [Route("locations")]
         [HttpGet]
         public HttpResponseMessage LocationsOfUsers()
         {

@@ -6,6 +6,8 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
+using Microsoft.IdentityModel.Tokens;
+using SecurityKey = System.IdentityModel.Tokens.SecurityKey;
 
 namespace HiQo.StaffManagement.BL.Services
 {
@@ -31,6 +33,7 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void Add(UserDto entity)
         {
+            entity.SecurityStamp = Guid.NewGuid().ToString();
             var user = Mapper.Map<User>(entity);
             _repository.Add(user);
             _repository.SaveChanges();

@@ -1,17 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 
 namespace HiQo.StaffManagement.DAL.Domain.Entities
 {
-    public class User: IUser<int>
+    public class User : IUser<int>
     {
+        public User()
+        {
+            Tokens = new List<Token>();
+        }
+
         public int Id { get; set; }
 
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-        public string UserName { get; set; }
 
         public DateTime? BirthDate { get; set; }
 
@@ -41,5 +45,11 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         public double? Longitude { get; set; }
 
         public string Address { get; set; }
+
+        public virtual ICollection<Token> Tokens { get; set; }
+
+        public string UserName { get; set; }
+
+        public string SecurityStamp { get; set; }
     }
 }

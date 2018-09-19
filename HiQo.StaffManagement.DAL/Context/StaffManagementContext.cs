@@ -9,7 +9,7 @@ namespace HiQo.StaffManagement.DAL.Context
     {
         public StaffManagementContext() : base("StaffManagementContext")
         {
-            Database.SetInitializer(
+           Database.SetInitializer(
                 new MigrateDatabaseToLatestVersion<StaffManagementContext, Migrations.Configuration>());
             Configuration.LazyLoadingEnabled = true;
         }

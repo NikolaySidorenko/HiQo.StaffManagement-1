@@ -53,6 +53,11 @@ namespace HiQo.StaffManagement.Configuration.Shared
             container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>()
                 .LifestylePerWebRequest());
 
+            container.Register(Component.For<IAuthorizationServiceJWT>().ImplementedBy<AuthorizationServiceJWT>()
+                .LifestylePerWebRequest());
+
+            container.Register(Component.For<ITokenHandler>().ImplementedBy<TokenHandler>()
+                .LifestylePerWebRequest());
         }
 
         private static void DependencyRepositoriesResolver(IWindsorContainer container)
