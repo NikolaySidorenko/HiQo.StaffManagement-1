@@ -1,0 +1,38 @@
+﻿@using WebGrease.Css.Extensions
+@using System.Configuration
+@model IEnumerable<HiQo.StaffManagement.Core.ViewModels.MapViewModel>
+@{
+    ViewBag.Title = "ShowMap";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show map</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        function AddData() {
+            @foreach (var info in Model)
+            {
+                <text>
+                    var pushpin =
+                        new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(parseFloat(@info.Latitude), parseFloat(@info.Longitude)));
+                    pushpin.Title = "@info.FullName";
+                    pushpin.Description = '@Html.ActionLink("More info", "Profiles", "User", new {id = info.Id}, null)';
+                    Microsoft.Maps.Events.addHandler(pushpin, 'click', displayInfobox);
+                    dataLayer.push(pushpin);
+                </text>
+            }
+        }
+    </script>
+    @Scripts.Render("~/bundles/showmap");
+    <script type="text/javascript" src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap" async defer></script>
+    <script>
+        var ApiKey = '@ConfigurationManager.AppSettings["APIBingMaps"]';
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="myMap" style="float: left; height: 400px; position: relative; width: 600px;"></div>
+    </div>
+</body>
+</html>
