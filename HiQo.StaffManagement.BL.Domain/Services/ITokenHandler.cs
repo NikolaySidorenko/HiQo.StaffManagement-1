@@ -11,6 +11,8 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         JWT CreateJwt(string role, string username, int id, string secretKey);
 
-        bool IsValidTokenLifetime(string token);
+        bool IsValidTokenLifetime(string accessToken);
+
+        JWT UpdateAccessAndRefreshToken(string refreshToken);
     }
 }

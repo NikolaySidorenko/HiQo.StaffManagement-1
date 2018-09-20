@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiDependecyResolver\ApiControllerInstaller.cs" />
+    <Compile Include="Profiles\TokenProfile.cs" />
     <Compile Include="Shared\DependencyInstaller.cs" />
     <Compile Include="ApiDependecyResolver\ApiIocContainer.cs" />
     <Compile Include="ApiDependecyResolver\ApiResolver.cs" />

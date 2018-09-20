@@ -69,6 +69,7 @@
     <Compile Include="Entities\PositionDto.cs" />
     <Compile Include="Entities\PositionLevelDto.cs" />
     <Compile Include="Entities\RoleDto.cs" />
+    <Compile Include="Entities\TokenDto.cs" />
     <Compile Include="Entities\UserAuthDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

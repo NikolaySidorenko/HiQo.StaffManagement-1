@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.DAL.Domain.Entities;
+using HiQo.StaffManagement.DAL.Domain.Repositories;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HiQo.StaffManagement.BL.Services
 {
     public class TokenHandler : ITokenHandler
     {
+        private readonly IUserService _userService;
+        private readonly IRepository _repository;
+
+        public TokenHandler(IUserService userService, IRepository repository)
+        {
+            _userService = userService;
+            _repository = repository;
+        }
+
         public JWT CreateJwt(string role, string username, int id, string secretKey)
         {
             var expireAccessTokenTime =
@@ -31,10 +44,10 @@ namespace HiQo.StaffManagement.BL.Services
             return jwt;
         }
 
-        public bool IsValidTokenLifetime(string token)
+        public bool IsValidTokenLifetime(string accessToken)
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
-            var jwt = jwtSecurityTokenHandler.ReadJwtToken(token);
+            var jwt = jwtSecurityTokenHandler.ReadJwtToken(accessToken);
 
             var expires = jwt.Payload.Exp;
 
@@ -42,6 +55,44 @@ namespace HiQo.StaffManagement.BL.Services
             dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToLocalTime();
 
             return dateTime.CompareTo(DateTime.Now) >= 0;
+        }
+
+        public JWT UpdateAccessAndRefreshToken(string refreshToken)
+        {
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var jwt = jwtSecurityTokenHandler.ReadJwtToken(refreshToken);
+
+            var userId = jwt.Claims.FirstOrDefault(claim => claim.Type == "userId")?.Value;
+
+            if (userId != null)
+            {
+                var user = _userService.GetById(Convert.ToInt32(userId));
+
+                foreach (var token in user.Tokens)
+                {
+                    
+                }
+
+                //TODO: Check token
+
+                var tokenDto = new TokenDto()
+                {
+                    RefreshToken = refreshToken,
+                    Id = Convert.ToInt32(userId),
+                    UserId = user.UserId
+                };
+
+
+
+                _repository.Remove(Mapper.Map<Token>(tokenDto));
+                _repository.SaveChanges();
+
+                return CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
+            }
+            else
+            {
+                throw new InvalidOperationException("This refresh token is not valid");
+            }
         }
 
         public string CreateRefreshToken(int id, DateTime expire, string key)
