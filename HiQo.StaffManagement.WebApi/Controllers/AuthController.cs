@@ -21,9 +21,9 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         public AuthController(IValidatorFactory validatorFactory, IAuthService authService,
             IAuthorizationServiceJWT authorizationServiceJwt)
         {
-            _validatorFactory = validatorFactory;
-            _authService = authService;
-            _authorizationServiceJwt = authorizationServiceJwt;
+            _validatorFactory = validatorFactory ?? throw new ArgumentNullException(nameof(validatorFactory));
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
+            _authorizationServiceJwt = authorizationServiceJwt ?? throw new ArgumentNullException(nameof(authorizationServiceJwt));
         }
 
         [Route("login")]
@@ -33,29 +33,48 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             var validator = _validatorFactory.GetValidator<LoginViewModel>();
             var result = validator.Validate(user);
 
-            if (result.IsValid)
-                try
-                {
-                    var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
+            if (!result.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
 
-                    return isUserCredentialsValid
-                        ? Request.CreateResponse(HttpStatusCode.OK,
-                            _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
-                        : new HttpResponseMessage(HttpStatusCode.BadRequest);
-                }
-                catch (Exception e)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                }
+            try
+            {
+                var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return isUserCredentialsValid
+                    ? Request.CreateResponse(HttpStatusCode.OK,
+                        _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
+                    : new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
         }
 
         [Route("refresh-token")]
         [HttpPost]
-        public async Task<HttpResponseMessage> RefreshToken([FromBody] string token)
+        public HttpResponseMessage RefreshToken([FromBody] string token)
         {
-            throw new NotImplementedException();
+            //TODO: refactor code 
+            JWT jwt = null;
+
+            try
+            {
+                jwt = _authorizationServiceJwt.UpdateToken(token);
+            }
+            catch (Exception e)
+            {
+                Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+
+            if (jwt == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return Request.CreateResponse(HttpStatusCode.InternalServerError, jwt);
         }
     }
 }

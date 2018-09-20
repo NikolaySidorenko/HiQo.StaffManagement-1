@@ -2,16 +2,29 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.DAL.Domain.Entities;
+using HiQo.StaffManagement.DAL.Domain.Repositories;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HiQo.StaffManagement.BL.Services
 {
     public class TokenHandler : ITokenHandler
     {
+        private readonly IRepository _repository;
+        private readonly IUserService _userService;
+
+        public TokenHandler(IUserService userService, IRepository repository)
+        {
+            _userService = userService;
+            _repository = repository;
+        }
+
         public JWT CreateJwt(string role, string username, int id, string secretKey)
         {
             var expireAccessTokenTime =
@@ -42,6 +55,39 @@ namespace HiQo.StaffManagement.BL.Services
             dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToLocalTime();
 
             return dateTime.CompareTo(DateTime.Now) >= 0;
+        }
+
+        public JWT UpdateAccessAndRefreshToken(string refreshToken)
+        {
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var jwt = jwtSecurityTokenHandler.ReadJwtToken(refreshToken);
+            var isTokenExists = false;
+
+            var userId = jwt.Claims.FirstOrDefault(claim => claim.Type == "userId")?.Value;
+
+            if (userId == null)
+            {
+                throw new InvalidOperationException("This refresh token is not valid");
+
+            }
+
+            var user = _userService.GetById(Convert.ToInt32(userId));
+
+            if (!IsTokenExists(user.Tokens, refreshToken))
+            {
+                throw new InvalidOperationException("This refresh token is not exists");
+            }
+
+            if (!IsValidTokenLifetime(refreshToken))
+            {
+                RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+
+                throw new InvalidOperationException("The token's lifetime has expired");
+            }
+
+            RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+
+            return CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
         }
 
         public string CreateRefreshToken(int id, DateTime expire, string key)
@@ -76,12 +122,31 @@ namespace HiQo.StaffManagement.BL.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public SigningCredentials GetCredentials(string key)
+        private SigningCredentials GetCredentials(string key)
         {
             var signCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                 SecurityAlgorithms.HmacSha256);
 
             return signCredentials;
+        }
+
+        private void RemoveRefreshTokenFromDb(int userId, string refreshToken)
+        {
+            var tokenDto = new TokenDto
+            {
+                RefreshToken = refreshToken,
+                UserId = userId,
+                Id = 4//TODO:I thought the problem was this, but unlikely
+            };
+
+            _repository.Remove(Mapper.Map<Token>(tokenDto));
+            //TODO: Crash after SaveChanges
+            _repository.SaveChanges();
+        }
+
+        private bool IsTokenExists(ICollection<TokenDto> tokens, string refreshToken)
+        {
+            return tokens.Any(token => token.RefreshToken == refreshToken);
         }
     }
 }
