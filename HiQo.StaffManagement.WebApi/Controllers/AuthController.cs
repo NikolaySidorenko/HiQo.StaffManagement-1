@@ -33,28 +33,31 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             var validator = _validatorFactory.GetValidator<LoginViewModel>();
             var result = validator.Validate(user);
 
-            if (result.IsValid)
-                try
-                {
-                    var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
+            if (!result.IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
 
-                    return isUserCredentialsValid
-                        ? Request.CreateResponse(HttpStatusCode.OK,
-                            _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
-                        : new HttpResponseMessage(HttpStatusCode.BadRequest);
-                }
-                catch (Exception e)
-                {
-                    return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-                }
+            try
+            {
+                var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+                return isUserCredentialsValid
+                    ? Request.CreateResponse(HttpStatusCode.OK,
+                        _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
+                    : new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+            catch (Exception e)
+            {
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
         }
 
         [Route("refresh-token")]
         [HttpPost]
         public HttpResponseMessage RefreshToken([FromBody] string token)
         {
+            //TODO: refactor code 
             JWT jwt = null;
 
             try
@@ -70,6 +73,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             {
                 throw new ArgumentNullException();
             }
+
             return Request.CreateResponse(HttpStatusCode.InternalServerError, jwt);
         }
     }

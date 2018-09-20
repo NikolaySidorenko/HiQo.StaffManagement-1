@@ -22,11 +22,20 @@ namespace HiQo.StaffManagement.BL.Services
             _repository = repository;
         }
 
-        public JWT SingIn(UserAuthDto user) => GenerateJWT(user);
+        public JWT SingIn(UserAuthDto user)
+        {
+            return GenerateJWT(user);
+        }
 
-        public bool ValidateRefreshToken(string token) => _tokenHandler.IsValidTokenLifetime(token);
+        public bool ValidateRefreshToken(string token)
+        {
+            return _tokenHandler.IsValidTokenLifetime(token);
+        }
 
-        public JWT UpdateToken(string token) => _tokenHandler.UpdateAccessAndRefreshToken(token);
+        public JWT UpdateToken(string token)
+        {
+            return _tokenHandler.UpdateAccessAndRefreshToken(token);
+        }
 
         private JWT GenerateJWT(UserAuthDto user)
         {
