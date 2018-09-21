@@ -57,24 +57,9 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage RefreshToken([FromBody] string token)
         {
-            //TODO: refactor code 
-            JWT jwt = null;
+            var jwt = _authorizationServiceJwt.UpdateToken(token);
 
-            try
-            {
-                jwt = _authorizationServiceJwt.UpdateToken(token);
-            }
-            catch (Exception e)
-            {
-                Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-
-            if (jwt == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            return Request.CreateResponse(HttpStatusCode.InternalServerError, jwt);
+            return jwt != null ? Request.CreateResponse(HttpStatusCode.OK, jwt) : Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
     }
 }
