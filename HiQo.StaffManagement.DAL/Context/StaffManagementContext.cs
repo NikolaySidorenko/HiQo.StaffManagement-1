@@ -26,6 +26,8 @@ namespace HiQo.StaffManagement.DAL.Context
 
         public virtual IDbSet<PositionLevel> PositionLevels { get; set; }
 
+        public virtual IDbSet<Token> Tokens { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -38,6 +40,7 @@ namespace HiQo.StaffManagement.DAL.Context
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
             modelBuilder.Configurations.Add(new PositionLevelConfiguration());
+            modelBuilder.Configurations.Add(new TokenConfiguration());
         }
     }
 }

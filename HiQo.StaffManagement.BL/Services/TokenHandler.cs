@@ -61,14 +61,12 @@ namespace HiQo.StaffManagement.BL.Services
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var jwt = jwtSecurityTokenHandler.ReadJwtToken(refreshToken);
-            var isTokenExists = false;
 
             var userId = jwt.Claims.FirstOrDefault(claim => claim.Type == "userId")?.Value;
 
             if (userId == null)
             {
                 throw new InvalidOperationException("This refresh token is not valid");
-
             }
 
             var user = _userService.GetById(Convert.ToInt32(userId));
@@ -87,7 +85,11 @@ namespace HiQo.StaffManagement.BL.Services
 
             RemoveRefreshTokenFromDb(user.UserId, refreshToken);
 
-            return CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
+            var jwtOut = CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
+
+            PassTokenToDb(jwtOut.RefreshToken, user);
+
+            return jwtOut;
         }
 
         public string CreateRefreshToken(int id, DateTime expire, string key)
@@ -122,6 +124,25 @@ namespace HiQo.StaffManagement.BL.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public void PassTokenToDb(string refreshToken, UserDto user)
+        {
+            try
+            {
+                var tokenDto = new TokenDto
+                {
+                    UserId = user.UserId,
+                    RefreshToken = refreshToken
+                };
+
+                _repository.Add(Mapper.Map<Token>(tokenDto));
+                _repository.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         private SigningCredentials GetCredentials(string key)
         {
             var signCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
@@ -132,15 +153,10 @@ namespace HiQo.StaffManagement.BL.Services
 
         private void RemoveRefreshTokenFromDb(int userId, string refreshToken)
         {
-            var tokenDto = new TokenDto
-            {
-                RefreshToken = refreshToken,
-                UserId = userId,
-                Id = 4//TODO:I thought the problem was this, but unlikely
-            };
+            var tokenFromDb = _repository
+                .GetAll<Token>().First(token => token.UserId == userId && token.RefreshToken == refreshToken);
 
-            _repository.Remove(Mapper.Map<Token>(tokenDto));
-            //TODO: Crash after SaveChanges
+            _repository.Remove(tokenFromDb);
             _repository.SaveChanges();
         }
 

@@ -14,5 +14,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         bool IsValidTokenLifetime(string accessToken);
 
         JWT UpdateAccessAndRefreshToken(string token);
+
+        void PassTokenToDb(string refreshToken, UserDto user);
     }
 }
