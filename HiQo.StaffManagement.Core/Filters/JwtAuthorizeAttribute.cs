@@ -8,7 +8,7 @@ using System.Web.Http.Controllers;
 
 namespace HiQo.StaffManagement.Core.Filters
 {
-    public sealed class AuthorizeFilter: AuthorizeAttribute
+    public sealed class JwtAuthorizeAttribute: AuthorizeAttribute
     {
         public string Roles { get; set; }
 
@@ -26,6 +26,17 @@ namespace HiQo.StaffManagement.Core.Filters
                 actionContext.Request.CreateResponse(HttpStatusCode.Forbidden);
                 base.OnAuthorization(actionContext);
             }
+        }
+
+        protected override bool IsAuthorized(HttpActionContext actionContext)
+        {
+            var cookie = actionContext.Request.Headers.GetCookies("access_token").FirstOrDefault();
+            if (cookie == null)
+            {
+                return base.IsAuthorized(actionContext);
+            }
+
+            return true;
         }
 
         private bool HasAccess(string token)
