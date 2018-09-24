@@ -4,31 +4,34 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UsersController : ApiController
+    public class UsersController : BaseController
     {
-        private readonly IUserService _userService;
 
-
-        public UsersController(IUserService userService)
+        public UsersController(IServiceFactory serviceFactory,IValidatorFactory validatorFactory):
+            base(serviceFactory,validatorFactory)
         {
-            _userService = userService;
+            
         }
 
         [Route("")]
         [HttpGet]
-        public HttpResponseMessage GetUsers()
+        public HttpResponseMessage GetAll()
         {
             try
             {
-               var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
-               return Request.CreateResponse(HttpStatusCode.OK, users);
+                var service = ServiceFactory.Create<IUserService>();
+                var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(service.GetAll());
+                return Request.CreateResponse(HttpStatusCode.OK, users);
             }
             catch (Exception e)
             {
@@ -36,13 +39,15 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        [Route("{id:int}")]
         [HttpGet]
-        public HttpResponseMessage GetUserById(int id)
+        [Route("{id:int}")]
+        [AuthorizeFilter(Roles = "Admin")]
+        public HttpResponseMessage GetById(int id)
         {
             try
             {
-                var user = Mapper.Map<UserViewModel>(_userService.GetById(id));
+                var service = ServiceFactory.Create<IUserService>();
+                var user = Mapper.Map<UserViewModel>(service.GetById(id));
                 return Request.CreateResponse(HttpStatusCode.OK, user);
             }
             catch (Exception e)
@@ -51,30 +56,48 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        //[Route("")]
-        //[HttpPost]
-        //public HttpResponseMessage AddUser(UpdateUserViewModel user)
-        //{
-        //    try
-        //    {
-        //        _userService.Add(Mapper.Map<UserDto>(user));
-        //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
-        //        return response;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
-        //    }
-        //}
+        [Route("")]
+        [HttpPost]
+        public HttpResponseMessage Create([FromBody]UpdateUserViewModel user)
+        {
+            try
+            {
+                var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
+                var result = validator.Validate(user);
+                if (!result.IsValid)
+                {
+                    SetErrors(result);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest,ModelState);
+                }
 
-        [Route("{id:int}")]
+                var service = ServiceFactory.Create<IUserService>();
+                service.Add(Mapper.Map<UserDto>(user));
+
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (Exception e)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
+            }
+        }
+
         [HttpPut]
-        public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
+        public HttpResponseMessage Update([FromBody] UpdateUserViewModel user)
         {
             //TODO:validator
             try
             {
-                _userService.Update(Mapper.Map<UserDto>(user));
+                var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
+                var result = validator.Validate(user);
+
+                if (!result.IsValid)
+                {
+                    SetErrors(result);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+
+                var service = ServiceFactory.Create<IUserService>();
+                service.Update(Mapper.Map<UserDto>(user));
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception e)
@@ -83,22 +106,33 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
-        [Route("locations")]
-        [HttpGet]
-        public HttpResponseMessage LocationsOfUsers()
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public HttpResponseMessage Delete(int id)
         {
             try
             {
-                var locations = Mapper.Map<IEnumerable<UserDto>, IEnumerable<MapViewModel>>(_userService.GetAll());
-                return Request.CreateResponse(HttpStatusCode.OK, locations);
+                if (id <= 0)
+                {
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, id);
+                }
+
+                var service = ServiceFactory.Create<IUserService>();
+
+                if (!service.IsExists(id))
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, id);
+                }
+
+                service.Remove(id);
+
+                return Request.CreateResponse(HttpStatusCode.OK, id);
             }
             catch (Exception e)
             {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
             }
         }
-        
-
-
     }
 }

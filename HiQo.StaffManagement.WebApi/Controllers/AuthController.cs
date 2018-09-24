@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
@@ -42,10 +43,21 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             {
                 var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
 
-                return isUserCredentialsValid
-                    ? Request.CreateResponse(HttpStatusCode.OK,
-                        _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user)))
-                    : new HttpResponseMessage(HttpStatusCode.BadRequest);
+                if (isUserCredentialsValid)
+                {
+                    var token = _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user));
+
+                    var cookie = new CookieHeaderValue("access_token", token.AccessToken);
+                    cookie.Expires = DateTimeOffset.Now.AddMinutes(15);
+                    cookie.Domain = Request.RequestUri.Host;
+                    cookie.Path = "/";
+
+                    var response = Request.CreateResponse(HttpStatusCode.OK, token);
+                    response.Headers.AddCookies(new CookieHeaderValue[]{cookie});
+                    return response;
+                }
+                    
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
             catch (Exception e)
             {
