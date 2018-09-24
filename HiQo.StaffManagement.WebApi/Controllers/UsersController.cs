@@ -8,6 +8,7 @@ using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
@@ -39,6 +40,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("{id:int}")]
+        [AuthorizeFilter(Roles = "Admin")]
         public HttpResponseMessage GetById(int id)
         {
             try

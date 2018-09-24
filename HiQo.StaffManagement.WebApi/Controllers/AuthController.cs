@@ -49,6 +49,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
                     var cookie = new CookieHeaderValue("access_token", token.AccessToken);
                     cookie.Expires = DateTimeOffset.Now.AddMinutes(15);
+                    cookie.Domain = Request.RequestUri.Host;
+                    cookie.Path = "/";
 
                     var response = Request.CreateResponse(HttpStatusCode.OK, token);
                     response.Headers.AddCookies(new CookieHeaderValue[]{cookie});
