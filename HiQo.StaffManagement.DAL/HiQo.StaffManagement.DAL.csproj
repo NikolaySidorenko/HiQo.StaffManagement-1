@@ -82,6 +82,7 @@
     <Compile Include="Configuration\PositionConfiguration.cs" />
     <Compile Include="Configuration\PositionLevelConfiguration.cs" />
     <Compile Include="Configuration\RoleConfiguration.cs" />
+    <Compile Include="Configuration\TokenConfiguration.cs" />
     <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Context\StaffManagementContext.cs" />
     <Compile Include="Exceptions\SaveChangesException.cs" />
@@ -118,6 +119,10 @@
     <Compile Include="Migrations\201809190747290_AddSecurityStamp.cs" />
     <Compile Include="Migrations\201809190747290_AddSecurityStamp.Designer.cs">
       <DependentUpon>201809190747290_AddSecurityStamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809210824016_ChangeTokenModel.cs" />
+    <Compile Include="Migrations\201809210824016_ChangeTokenModel.Designer.cs">
+      <DependentUpon>201809210824016_ChangeTokenModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809190747290_AddSecurityStamp.resx">
       <DependentUpon>201809190747290_AddSecurityStamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809210824016_ChangeTokenModel.resx">
+      <DependentUpon>201809210824016_ChangeTokenModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
