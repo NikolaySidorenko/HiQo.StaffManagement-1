@@ -119,7 +119,10 @@ namespace HiQo.StaffManagement.BL.Services
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: expire,
-                signingCredentials: GetCredentials(secretKey));
+                audience:"Sample",
+                issuer:"Sample",
+                signingCredentials: GetCredentials(secretKey)
+                );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }

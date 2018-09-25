@@ -41,7 +41,6 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        [JwtAuthorize(Roles = "Admin")]
         public HttpResponseMessage GetById(int id)
         {
             try
@@ -58,6 +57,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
         [Route("")]
         [HttpPost]
+        [JwtAuthenticate]
         public HttpResponseMessage Create([FromBody]UpdateUserViewModel user)
         {
             try
