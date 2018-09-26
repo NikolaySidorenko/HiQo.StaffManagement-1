@@ -16,15 +16,20 @@ namespace HiQo.StaffManagement.Core.Filters
             var service = actionContext.Request.GetDependencyScope().GetService(typeof(IUserService)) as IUserService;
             
             var cookie = actionContext.Request.Headers.GetCookies("access_token").FirstOrDefault();
-            var ы = actionContext.Request.Headers.Authorization.Parameter
-            if (cookie == null) return false;
+            if (cookie == null)
+            {
+                return false;
+            }
 
             var handler = new JwtSecurityTokenHandler();
 
             var token = handler.ReadJwtToken(cookie["access_token"].Value);
             var value = token.Claims.FirstOrDefault(c => c.Type == "userId")?.Value;
 
-            if (value == null) return false;
+            if (value == null)
+            {
+                return false;
+            }
 
             var secretKey = service.GetById(int.Parse(value)).SecurityStamp;
 
