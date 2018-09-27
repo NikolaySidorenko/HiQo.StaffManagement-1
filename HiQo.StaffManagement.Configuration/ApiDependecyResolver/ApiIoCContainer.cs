@@ -1,10 +1,11 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Web.Http;
+using System.Web.Http.Filters;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using FluentValidation;
 using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.Shared;
-using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
 using HiQo.StaffManagement.Configuration.Shared.ValidatorResolver;
 
 namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
@@ -28,8 +29,9 @@ namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
             var installerValidators = new ValidatorsInstaller();
             installerValidators.Install(container, null);
 
-            var servicesInstaller = new ServiceInstaller();
-            servicesInstaller.Install(container, null);
+            var def = configuration.Services.GetFilterProviders().Single(i => i is ActionDescriptorFilterProvider);
+            configuration.Services.Remove(typeof(IFilterProvider), def);
+            configuration.Services.Add(typeof(IFilterProvider),new WindsorFilterProvider(container));
 
             FluentValidationModelValidatorProvider.Configure(provider =>
             {

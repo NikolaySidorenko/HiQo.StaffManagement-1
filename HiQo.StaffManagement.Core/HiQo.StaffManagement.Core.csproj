@@ -79,7 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\AuthorizeFilter.cs" />
+    <Compile Include="Filters\JwtAuthenticateAttribute.cs" />
     <Compile Include="FluentValidator\LoginUserValidator.cs" />
     <Compile Include="FluentValidator\RegistrationUserValidator.cs" />
     <Compile Include="FluentValidator\UpdateUserValidator.cs" />

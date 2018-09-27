@@ -5,8 +5,11 @@ using Castle.MicroKernel.Context;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
+using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
+using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Identity;
@@ -29,6 +32,9 @@ namespace HiQo.StaffManagement.Configuration.Shared
 
         private static void DependencyServicesResolver(IWindsorContainer container)
         {
+            container.Register(Component.For<IServiceFactory>().ImplementedBy<WindsorServiceFactory>()
+                .LifestyleSingleton());
+
             container.Register(Component.For<IPositionLevelService>().ImplementedBy<PositionLevelService>()
                 .LifestylePerWebRequest());
 
@@ -58,6 +64,11 @@ namespace HiQo.StaffManagement.Configuration.Shared
 
             container.Register(Component.For<ITokenHandler>().ImplementedBy<TokenHandler>()
                 .LifestylePerWebRequest());
+
+            container.Register(Component.For<IRequestIdProvider>().ImplementedBy<RequestIdProvider>()
+                .LifestylePerWebRequest());
+
+            container.Register(Component.For<JwtAuthenticateAttribute>().LifestylePerWebRequest());
         }
 
         private static void DependencyRepositoriesResolver(IWindsorContainer container)

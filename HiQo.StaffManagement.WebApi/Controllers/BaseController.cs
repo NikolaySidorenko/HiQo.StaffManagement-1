@@ -2,7 +2,6 @@
 using FluentValidation;
 using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
-using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
