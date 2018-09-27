@@ -1,30 +1,45 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.BL.Services
 {
-    public class AuthorizationServiceJWT : IAuthorizationService
+    public class AuthorizationServiceJWT : IAuthorizationServiceJWT
     {
-        public AuthorizationServiceJWT()
+        private readonly ITokenHandler _tokenHandler;
+        private readonly IUserService _userService;
+
+        public AuthorizationServiceJWT(IUserService userService, ITokenHandler tokenHandler)
         {
+            _userService = userService;
+            _tokenHandler = tokenHandler;
         }
 
-        public Task<JWT> SingInAsync(UserAuthDto user)
+        public JWT SingIn(UserAuthDto user)
         {
-
-
-            throw new System.NotImplementedException();
+            return GenerateJWT(user);
         }
 
         public bool ValidateRefreshToken(string token)
         {
-            throw new System.NotImplementedException();
+            return _tokenHandler.IsValidTokenLifetime(token);
         }
 
-        public Task<JWT> UpdateTokenAsync(string token)
+        public JWT UpdateToken(string token)
         {
-            throw new System.NotImplementedException();
+            return _tokenHandler.UpdateAccessAndRefreshToken(token);
+        }
+
+        private JWT GenerateJWT(UserAuthDto user)
+        {
+            var userModel = _userService.GetAll().First(dto => dto.Username == user.UserName);
+
+            var jwt = _tokenHandler.CreateJwt(userModel.Role.Name, user.UserName, userModel.UserId,
+                userModel.SecurityStamp);
+
+            _tokenHandler.PassTokenToDb(jwt.RefreshToken, userModel);
+
+            return jwt;
         }
     }
 }

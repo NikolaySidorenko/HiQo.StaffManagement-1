@@ -5,10 +5,10 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 {
     public interface IAuthorizationServiceJWT
     {
-        Task<JWT> SingInAsync(UserAuthDto user);
+        JWT SingIn(UserAuthDto user);
 
         bool ValidateRefreshToken(string token);
 
-        Task<JWT> UpdateTokenAsync(string token);
+        JWT UpdateToken(string token);
     }
 }

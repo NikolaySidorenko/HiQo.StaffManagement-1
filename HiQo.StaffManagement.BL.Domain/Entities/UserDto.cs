@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HiQo.StaffManagement.BL.Domain.Entities
 {
@@ -40,5 +41,9 @@ namespace HiQo.StaffManagement.BL.Domain.Entities
         public double? Longitude { get; set; } = null;
 
         public string Address { get; set; }
+
+        public string SecurityStamp  { get; set; }
+
+        public ICollection<TokenDto> Tokens { get; set; }
     }
 }

@@ -41,27 +41,13 @@ namespace HiQo.StaffManagement.BL.Services
         {
             var isUserCredentialsValid = await _userManager.FindAsync(user.Username, user.PasswordHash) != null;
 
-            if (isUserCredentialsValid)
-            {
-                await IdentifyUserAsync(Mapper.Map<UserDto>(_userManager.FindByNameAsync(user.Username).Result));
-                return true;
-            }
-
-            return false;
+            return isUserCredentialsValid;
         }
 
         public void LogOut()
         {
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
-
-        public async Task<bool> CheckPasswordAsync(UserDto user)
-        {
-            var isUserCredentialsValid = await _userManager.FindAsync(user.Username, user.PasswordHash) != null;
-
-            return isUserCredentialsValid;
-        }
-
 
         private async Task IdentifyUserAsync(UserDto user)
         {

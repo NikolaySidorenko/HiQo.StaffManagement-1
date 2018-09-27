@@ -49,5 +49,7 @@ namespace HiQo.StaffManagement.DAL.Domain.Entities
         public virtual ICollection<Token> Tokens { get; set; }
 
         public string UserName { get; set; }
+
+        public string SecurityStamp { get; set; }
     }
 }
