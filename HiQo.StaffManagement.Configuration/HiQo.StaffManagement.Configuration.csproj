@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiDependecyResolver\ApiControllerInstaller.cs" />
+    <Compile Include="ApiDependecyResolver\WindsorContainerExtensions.cs" />
+    <Compile Include="ApiDependecyResolver\WindsorFilterProvider.cs" />
     <Compile Include="Profiles\TokenProfile.cs" />
     <Compile Include="Shared\DependencyInstaller.cs" />
     <Compile Include="ApiDependecyResolver\ApiIocContainer.cs" />
@@ -119,7 +121,6 @@
     <Compile Include="ApiDependecyResolver\WindsorDependencyScope.cs" />
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
-    <Compile Include="Shared\ServiceResolver\ServiceInstaller.cs" />
     <Compile Include="Shared\ServiceResolver\WindsorServicesFactory.cs" />
     <Compile Include="Shared\ValidatorResolver\ValidatorsInstaller.cs" />
     <Compile Include="Shared\ValidatorResolver\WindsorValidatorFactory.cs" />

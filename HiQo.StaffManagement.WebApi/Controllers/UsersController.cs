@@ -14,13 +14,10 @@ using HiQo.StaffManagement.Core.ViewModels;
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UsersController : BaseController
+    public class UsersController : BaseAuthController
     {
-
-        public UsersController(IServiceFactory serviceFactory,IValidatorFactory validatorFactory):
-            base(serviceFactory,validatorFactory)
+        public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
         {
-            
         }
 
         [Route("")]
@@ -57,7 +54,6 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
         [Route("")]
         [HttpPost]
-        [JwtAuthenticate]
         public HttpResponseMessage Create([FromBody]UpdateUserViewModel user)
         {
             try

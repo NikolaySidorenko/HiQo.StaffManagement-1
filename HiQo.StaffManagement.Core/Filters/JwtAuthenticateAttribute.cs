@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Controllers;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using Microsoft.IdentityModel.Tokens;
 
@@ -11,10 +12,11 @@ namespace HiQo.StaffManagement.Core.Filters
 {
     public sealed class JwtAuthenticateAttribute : AuthorizeAttribute
     {
+        public IServiceFactory Factory { get; set; }
+
         protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            var service = actionContext.Request.GetDependencyScope().GetService(typeof(IUserService)) as IUserService;
-            
+            var service = Factory.Create<IUserService>();
             var cookie = actionContext.Request.Headers.GetCookies("access_token").FirstOrDefault();
             if (cookie == null)
             {
