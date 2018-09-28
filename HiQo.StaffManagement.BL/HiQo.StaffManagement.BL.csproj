@@ -118,6 +118,10 @@
       <Project>{ba703e27-5356-4ad6-a4c7-dd1cf4da137b}</Project>
       <Name>HiQo.StaffManagement.DAL.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HiQo.StaffManagement.Settings\HiQo.StaffManagement.Cross-Cutting.csproj">
+      <Project>{273c86be-0222-40c8-b36e-d50da01aa7fa}</Project>
+      <Name>HiQo.StaffManagement.Cross-Cutting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

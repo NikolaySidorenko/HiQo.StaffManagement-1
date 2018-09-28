@@ -73,7 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\ControllerInfoLog.cs" />
     <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\ExceptionLog.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\PositionLevel.cs" />
     <Compile Include="Entities\Role.cs" />
