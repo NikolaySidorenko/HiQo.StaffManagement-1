@@ -116,13 +116,17 @@
     <Compile Include="Migrations\201809170936215_AddTokenModel.Designer.cs">
       <DependentUpon>201809170936215_AddTokenModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809190747290_AddSecurityStamp.cs" />
-    <Compile Include="Migrations\201809190747290_AddSecurityStamp.Designer.cs">
-      <DependentUpon>201809190747290_AddSecurityStamp.cs</DependentUpon>
+    <Compile Include="Migrations\201809210935255_Create_ExceptionLog.cs" />
+    <Compile Include="Migrations\201809210935255_Create_ExceptionLog.Designer.cs">
+      <DependentUpon>201809210935255_Create_ExceptionLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809210824016_ChangeTokenModel.cs" />
-    <Compile Include="Migrations\201809210824016_ChangeTokenModel.Designer.cs">
-      <DependentUpon>201809210824016_ChangeTokenModel.cs</DependentUpon>
+    <Compile Include="Migrations\201809241323568_Create_ControllerInfoLog.cs" />
+    <Compile Include="Migrations\201809241323568_Create_ControllerInfoLog.Designer.cs">
+      <DependentUpon>201809241323568_Create_ControllerInfoLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809271740290_Add_LogId.cs" />
+    <Compile Include="Migrations\201809271740290_Add_LogId.Designer.cs">
+      <DependentUpon>201809271740290_Add_LogId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,7 +138,12 @@
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HiQo.StaffManagement.Settings\HiQo.StaffManagement.Cross-Cutting.csproj">
+      <Project>{273c86be-0222-40c8-b36e-d50da01aa7fa}</Project>
+      <Name>HiQo.StaffManagement.Cross-Cutting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -163,11 +172,14 @@
     <EmbeddedResource Include="Migrations\201809170936215_AddTokenModel.resx">
       <DependentUpon>201809170936215_AddTokenModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809190747290_AddSecurityStamp.resx">
-      <DependentUpon>201809190747290_AddSecurityStamp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809210935255_Create_ExceptionLog.resx">
+      <DependentUpon>201809210935255_Create_ExceptionLog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809210824016_ChangeTokenModel.resx">
-      <DependentUpon>201809210824016_ChangeTokenModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809241323568_Create_ControllerInfoLog.resx">
+      <DependentUpon>201809241323568_Create_ControllerInfoLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809271740290_Add_LogId.resx">
+      <DependentUpon>201809271740290_Add_LogId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
