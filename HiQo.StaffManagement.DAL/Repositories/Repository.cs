@@ -7,16 +7,19 @@ using System.Linq.Expressions;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
 using HiQo.StaffManagement.DAL.Exceptions;
+using HiQo.StaffManagement.Settings;
 
 namespace HiQo.StaffManagement.DAL.Repositories
 {
     public class Repository : IRepository
     {
         private readonly StaffManagementContext _context;
+        private readonly IRequestIdProvider _requestId;
 
-        public Repository(StaffManagementContext context)
+        public Repository(StaffManagementContext context, IRequestIdProvider requestId)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context;
+            _requestId = requestId;
         }
 
         public void Add<TEntity>(TEntity entity) where TEntity : class
@@ -85,10 +88,12 @@ namespace HiQo.StaffManagement.DAL.Repositories
         {
             try
             {
+                throw new SaveChangesException();
                 _context.SaveChanges();
             }
             catch (SaveChangesException exception) //Network safe  // TODO:Custom exception
             {
+                var a = _requestId.GetRequestId();
                 //Log
                 throw;
             }

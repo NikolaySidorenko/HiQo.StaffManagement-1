@@ -26,9 +26,6 @@ namespace HiQo.StaffManagement.Configuration.DependencyResolver
             var dependencyInstaller = new DependencyInstaller();
             dependencyInstaller.Install(container, null);
 
-            var servicesInstaller = new ServiceInstaller();
-            servicesInstaller.Install(container, null);
-
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 

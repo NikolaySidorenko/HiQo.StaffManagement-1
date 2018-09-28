@@ -31,7 +31,11 @@ namespace HiQo.StaffManagement.Configuration.ApiDependecyResolver
 
             var def = configuration.Services.GetFilterProviders().Single(i => i is ActionDescriptorFilterProvider);
             configuration.Services.Remove(typeof(IFilterProvider), def);
-            configuration.Services.Add(typeof(IFilterProvider),new WindsorFilterProvider(container));
+            configuration.Services.Add(typeof(IFilterProvider), new WindsorFilterProvider(container));
+
+
+            
+            
 
             FluentValidationModelValidatorProvider.Configure(provider =>
             {

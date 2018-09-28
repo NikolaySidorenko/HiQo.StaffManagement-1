@@ -10,11 +10,12 @@ using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.ViewModels;
+using HiQo.StaffManagement.WebApi.Filters;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UsersController : BaseController
+    public class UsersController : BaseAuthController
     {
         public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
         {
@@ -24,6 +25,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAll()
         {
+            throw new NullReferenceException();
             try
             {
                 var service = ServiceFactory.Create<IUserService>();
@@ -36,14 +38,23 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
+<<<<<<< Updated upstream
+=======
 
+        [Route("{id:int}")]
+>>>>>>> Stashed changes
         [HttpGet]
         [Route("{id:int}")]
         public HttpResponseMessage GetById(int id)
         {
-            throw new NullReferenceException();
+<<<<<<< Updated upstream
+            try
+            {
                 var service = ServiceFactory.Create<IUserService>();
                 var user = Mapper.Map<UserViewModel>(service.GetById(id));
+=======
+                var user = Mapper.Map<UserViewModel>(_userService.GetById(id));
+>>>>>>> Stashed changes
                 return Request.CreateResponse(HttpStatusCode.OK, user);
           
         }
@@ -74,10 +85,12 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
+<<<<<<< Updated upstream
+        public HttpResponseMessage Update([FromBody] UpdateUserViewModel user)
         {
             //TODO:validator
-          
+            try
+            {
                 var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
                 var result = validator.Validate(user);
 
@@ -89,6 +102,13 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
                 var service = ServiceFactory.Create<IUserService>();
                 service.Update(Mapper.Map<UserDto>(user));
+=======
+        public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user, int id)
+        {
+            //TODO:validator
+          
+                _userService.Update(Mapper.Map<UserDto>(user));
+>>>>>>> Stashed changes
                 return Request.CreateResponse(HttpStatusCode.OK);
            
         }

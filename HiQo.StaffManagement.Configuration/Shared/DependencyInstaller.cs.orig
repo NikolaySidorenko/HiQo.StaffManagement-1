@@ -8,16 +8,18 @@ using Castle.Windsor;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
+<<<<<<< Updated upstream
 using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
 using HiQo.StaffManagement.Core.Filters;
+=======
 using HiQo.StaffManagement.Core.RequestProvider;
+>>>>>>> Stashed changes
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Identity;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
 using HiQo.StaffManagement.DAL.Identity;
 using HiQo.StaffManagement.DAL.Repositories;
-using HiQo.StaffManagement.Settings;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -69,10 +71,11 @@ namespace HiQo.StaffManagement.Configuration.Shared
 
             container.Register(Component.For<IRequestIdProvider>().ImplementedBy<RequestIdProvider>()
                 .LifestylePerWebRequest());
+<<<<<<< Updated upstream
 
             container.Register(Component.For<JwtAuthenticateAttribute>().LifestylePerWebRequest());
-
-            container.Register(Component.For<ActionFilter>().LifestylePerWebRequest());
+=======
+>>>>>>> Stashed changes
         }
 
         private static void DependencyRepositoriesResolver(IWindsorContainer container)

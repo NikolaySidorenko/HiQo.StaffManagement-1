@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.WebApi", "HiQo.StaffManagement.WebApi\HiQo.StaffManagement.WebApi.csproj", "{7C2DEEF4-5913-48B1-AA4E-0891C973D1EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiQo.StaffManagement.Cross-Cutting", "HiQo.StaffManagement.Settings\HiQo.StaffManagement.Cross-Cutting.csproj", "{273C86BE-0222-40C8-B36E-D50DA01AA7FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{7C2DEEF4-5913-48B1-AA4E-0891C973D1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2DEEF4-5913-48B1-AA4E-0891C973D1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2DEEF4-5913-48B1-AA4E-0891C973D1EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273C86BE-0222-40C8-B36E-D50DA01AA7FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273C86BE-0222-40C8-B36E-D50DA01AA7FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273C86BE-0222-40C8-B36E-D50DA01AA7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273C86BE-0222-40C8-B36E-D50DA01AA7FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
