@@ -85,8 +85,8 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.6\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -112,6 +112,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiDependecyResolver\ApiControllerInstaller.cs" />
+    <Compile Include="ApiDependecyResolver\WindsorContainerExtensions.cs" />
+    <Compile Include="ApiDependecyResolver\WindsorFilterProvider.cs" />
     <Compile Include="Profiles\TokenProfile.cs" />
     <Compile Include="Shared\DependencyInstaller.cs" />
     <Compile Include="ApiDependecyResolver\ApiIocContainer.cs" />
@@ -119,7 +121,6 @@
     <Compile Include="ApiDependecyResolver\WindsorDependencyScope.cs" />
     <Compile Include="DependencyResolver\ControllersInstaller.cs" />
     <Compile Include="DependencyResolver\IocContainer.cs" />
-    <Compile Include="Shared\ServiceResolver\ServiceInstaller.cs" />
     <Compile Include="Shared\ServiceResolver\WindsorServicesFactory.cs" />
     <Compile Include="Shared\ValidatorResolver\ValidatorsInstaller.cs" />
     <Compile Include="Shared\ValidatorResolver\WindsorValidatorFactory.cs" />
@@ -153,6 +154,10 @@
     <ProjectReference Include="..\HiQo.StaffManagement.DAL\HiQo.StaffManagement.DAL.csproj">
       <Project>{0438201f-93be-4ac8-a631-e30c8d3ef523}</Project>
       <Name>HiQo.StaffManagement.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HiQo.StaffManagement.Settings\HiQo.StaffManagement.Cross-Cutting.csproj">
+      <Project>{273c86be-0222-40c8-b36e-d50da01aa7fa}</Project>
+      <Name>HiQo.StaffManagement.Cross-Cutting</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace HiQo.StaffManagement.WebApi
 {
@@ -11,8 +10,6 @@ namespace HiQo.StaffManagement.WebApi
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("multipart/form-data"));
-
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

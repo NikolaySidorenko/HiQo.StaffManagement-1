@@ -3,6 +3,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using HiQo.StaffManagement.DAL.Configuration;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 
+
 namespace HiQo.StaffManagement.DAL.Context
 {
     public class StaffManagementContext : DbContext
@@ -25,6 +26,10 @@ namespace HiQo.StaffManagement.DAL.Context
         public virtual IDbSet<Position> Positions { get; set; }
 
         public virtual IDbSet<PositionLevel> PositionLevels { get; set; }
+
+        public virtual IDbSet<ExceptionLog> ExceptionsLogs { get; set; }
+
+        public virtual IDbSet<ControllerInfoLog> ControllerInfo { get; set; }
 
         public virtual IDbSet<Token> Tokens { get; set; }
 

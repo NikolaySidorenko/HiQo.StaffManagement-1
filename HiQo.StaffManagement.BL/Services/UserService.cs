@@ -6,8 +6,6 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
-using Microsoft.IdentityModel.Tokens;
-using SecurityKey = System.IdentityModel.Tokens.SecurityKey;
 
 namespace HiQo.StaffManagement.BL.Services
 {
@@ -48,6 +46,7 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void Update(UserDto entity)
         {
+            _repository.SaveChanges();
             entity.PasswordHash = _repository.Get<User>().Where(user => user.Id == entity.UserId)
                 .Select(user => user.PasswordHash).First();
 

@@ -16,11 +16,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     [RoutePrefix("api/users")]
     public class UsersController : BaseController
     {
-
-        public UsersController(IServiceFactory serviceFactory,IValidatorFactory validatorFactory):
-            base(serviceFactory,validatorFactory)
+        public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
         {
-            
         }
 
         [Route("")]
@@ -39,20 +36,16 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
+
         [HttpGet]
         [Route("{id:int}")]
         public HttpResponseMessage GetById(int id)
         {
-            try
-            {
+            throw new NullReferenceException();
                 var service = ServiceFactory.Create<IUserService>();
                 var user = Mapper.Map<UserViewModel>(service.GetById(id));
                 return Request.CreateResponse(HttpStatusCode.OK, user);
-            }
-            catch (Exception e)
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
+          
         }
 
         [Route("")]
@@ -81,11 +74,10 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage Update([FromBody] UpdateUserViewModel user)
+        public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
         {
             //TODO:validator
-            try
-            {
+          
                 var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
                 var result = validator.Validate(user);
 
@@ -98,11 +90,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
                 var service = ServiceFactory.Create<IUserService>();
                 service.Update(Mapper.Map<UserDto>(user));
                 return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception e)
-            {
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-            }
+           
         }
 
 
