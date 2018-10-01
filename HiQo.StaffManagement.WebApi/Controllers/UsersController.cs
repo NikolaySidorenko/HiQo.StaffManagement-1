@@ -8,13 +8,12 @@ using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
-using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [RoutePrefix("api/users")]
-    public class UsersController : BaseController
+    public class UsersController : BaseAuthController
     {
         public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
         {
@@ -41,11 +40,14 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [Route("{id:int}")]
         public HttpResponseMessage GetById(int id)
         {
-            throw new NullReferenceException();
-                var service = ServiceFactory.Create<IUserService>();
-                var user = Mapper.Map<UserViewModel>(service.GetById(id));
-                return Request.CreateResponse(HttpStatusCode.OK, user);
-          
+            var service = ServiceFactory.Create<IUserService>();
+            var user = Mapper.Map<UserViewModel>(service.GetById(id));
+            if (user == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, user);   
         }
 
         [Route("")]
@@ -73,24 +75,22 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             }
         }
 
+        [Route("")]
         [HttpPut]
         public HttpResponseMessage UpdateUser([FromBody] UpdateUserViewModel user)
         {
-            //TODO:validator
-          
-                var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
-                var result = validator.Validate(user);
+            var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
+            var result = validator.Validate(user);
 
-                if (!result.IsValid)
-                {
-                    SetErrors(result);
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
+            if (!result.IsValid)
+            {
+                SetErrors(result);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+            }
 
-                var service = ServiceFactory.Create<IUserService>();
-                service.Update(Mapper.Map<UserDto>(user));
-                return Request.CreateResponse(HttpStatusCode.OK);
-           
+            var service = ServiceFactory.Create<IUserService>();
+            service.Update(Mapper.Map<UserDto>(user));
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
 
@@ -98,28 +98,16 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [Route("{id:int}")]
         public HttpResponseMessage Delete(int id)
         {
-            try
+            var service = ServiceFactory.Create<IUserService>();
+
+            if (!service.IsExists(id))
             {
-                if (id <= 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, id);
-                }
-
-                var service = ServiceFactory.Create<IUserService>();
-
-                if (!service.IsExists(id))
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, id);
-                }
-
-                service.Remove(id);
-
-                return Request.CreateResponse(HttpStatusCode.OK, id);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, id);
             }
-            catch (Exception e)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
-            }
-        }
+
+            service.Delete(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK, id);
+    }
     }
 }

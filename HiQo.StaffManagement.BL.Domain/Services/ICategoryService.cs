@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface ICategoryService
+    public interface ICategoryService : IService
     {
         CategoryDto GetById(int id);
 

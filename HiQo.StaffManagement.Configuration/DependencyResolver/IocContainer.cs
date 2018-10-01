@@ -4,7 +4,6 @@ using Castle.Windsor;
 using FluentValidation;
 using FluentValidation.Mvc;
 using HiQo.StaffManagement.Configuration.Shared;
-using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
 using HiQo.StaffManagement.Configuration.Shared.ValidatorResolver;
 
 namespace HiQo.StaffManagement.Configuration.DependencyResolver

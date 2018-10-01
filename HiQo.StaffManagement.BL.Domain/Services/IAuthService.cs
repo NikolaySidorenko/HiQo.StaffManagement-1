@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface IAuthService
+    public interface IAuthService : IService
     {
         Task<bool> RegisterUserAsync(UserDto user);
 

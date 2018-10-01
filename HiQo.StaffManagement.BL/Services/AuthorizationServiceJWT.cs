@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.Services;
 
@@ -28,6 +29,11 @@ namespace HiQo.StaffManagement.BL.Services
         public JWT UpdateToken(string token)
         {
             return _tokenHandler.UpdateAccessAndRefreshToken(token);
+        }
+
+        public void Logout(string token)
+        {
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
         }
 
         private JWT GenerateJWT(UserAuthDto user)

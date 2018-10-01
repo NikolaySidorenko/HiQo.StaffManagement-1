@@ -119,8 +119,8 @@ namespace HiQo.StaffManagement.BL.Services
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: expire,
-                audience:"Sample",
-                issuer:"Sample",
+                audience:"HiQo",
+                issuer:"HiQo",
                 signingCredentials: GetCredentials(secretKey)
                 );
 
@@ -144,6 +144,11 @@ namespace HiQo.StaffManagement.BL.Services
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public void Delete(int userId)
+        {
+            throw new NotImplementedException();
         }
 
         private SigningCredentials GetCredentials(string key)

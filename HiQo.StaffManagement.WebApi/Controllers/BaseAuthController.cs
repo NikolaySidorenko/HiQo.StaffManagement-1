@@ -7,7 +7,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     [JwtAuthenticate]
     public class BaseAuthController : BaseController
     {
-        public BaseAuthController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
+        public BaseAuthController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) 
+            : base(serviceFactory, validatorFactory)
         {
         }
     }
