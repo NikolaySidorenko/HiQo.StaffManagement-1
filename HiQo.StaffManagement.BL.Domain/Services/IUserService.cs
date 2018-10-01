@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface IUserService:IService
+    public interface IUserService : IService
     {
         UserDto GetById(int id);
 
@@ -11,7 +11,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Add(UserDto entity);
 
-        void Remove(int id);
+        void Delete(int id);
 
         void Update(UserDto entity);
 

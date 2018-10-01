@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface IDepartmentService
+    public interface IDepartmentService : IService
     {
         DepartmentDto GetById(int id);
 

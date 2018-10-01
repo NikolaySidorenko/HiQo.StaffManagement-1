@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface IRoleService
+    public interface IRoleService : IService
     {
         RoleDto GetById(int id);
 

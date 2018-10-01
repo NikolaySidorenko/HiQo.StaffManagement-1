@@ -16,5 +16,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         JWT UpdateAccessAndRefreshToken(string token);
 
         void PassTokenToDb(string refreshToken, UserDto user);
+
+        void Delete(int userId);
     }
 }
