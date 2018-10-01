@@ -1,7 +1,7 @@
 ﻿using System;
 using HiQo.StaffManagement.Settings;
 
-namespace HiQo.StaffManagement.Core.RequestProvider
+namespace HiQo.StaffManagement.Core.Providers
 {
     public class RequestIdProvider : IRequestIdProvider 
     {

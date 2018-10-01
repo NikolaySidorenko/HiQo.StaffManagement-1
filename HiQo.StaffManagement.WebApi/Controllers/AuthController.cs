@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -7,31 +8,29 @@ using System.Web.Http;
 using AutoMapper;
 using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.Core.Filters;
+using HiQo.StaffManagement.Core.Providers;
 using HiQo.StaffManagement.Core.ViewModels;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [RoutePrefix("api/auth")]
-    public class AuthController : ApiController
+    public class AuthController : BaseController
     {
-        private readonly IAuthorizationServiceJWT _authorizationServiceJwt;
-        private readonly IAuthService _authService;
-        private readonly IValidatorFactory _validatorFactory;
-
-        public AuthController(IValidatorFactory validatorFactory, IAuthService authService,
-            IAuthorizationServiceJWT authorizationServiceJwt)
+        private readonly ICookieProvider _provider;
+        public AuthController(IValidatorFactory validatorFactory, IServiceFactory serviceFactory,ICookieProvider provider) 
+            : base(serviceFactory,validatorFactory)
         {
-            _validatorFactory = validatorFactory ?? throw new ArgumentNullException(nameof(validatorFactory));
-            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
-            _authorizationServiceJwt = authorizationServiceJwt ?? throw new ArgumentNullException(nameof(authorizationServiceJwt));
+            _provider = provider;
         }
 
         [Route("login")]
         [HttpPost]
         public async Task<HttpResponseMessage> Login([FromBody] LoginViewModel user)
         {
-            var validator = _validatorFactory.GetValidator<LoginViewModel>();
+            var validator = ValidatorFactory.GetValidator<LoginViewModel>();
             var result = validator.Validate(user);
 
             if (!result.IsValid)
@@ -39,39 +38,55 @@ namespace HiQo.StaffManagement.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            try
+            var authService = ServiceFactory.Create<IAuthService>();
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+
+            var isUserCredentialsValid = await authService.LoginUserAsync(Mapper.Map<UserDto>(user));
+
+            if (isUserCredentialsValid)
             {
-                var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
+                var token = jwtAuthService.SingIn(Mapper.Map<UserAuthDto>(user));
+           
+                var cookie = _provider.GetCookie(ActionContext, token.AccessToken);
 
-                if (isUserCredentialsValid)
-                {
-                    var token = _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user));
-
-                    var cookie = new CookieHeaderValue("access_token", token.AccessToken);
-                    cookie.Expires = DateTimeOffset.Now.AddMinutes(15);
-                    cookie.Domain = Request.RequestUri.Host;
-                    cookie.Path = "/";
-
-                    var response = Request.CreateResponse(HttpStatusCode.OK, token);
-                    response.Headers.AddCookies(new CookieHeaderValue[] { cookie });
-                    return response;
-                }
-
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                var response = Request.CreateResponse(HttpStatusCode.OK, token);
+                response.Headers.AddCookies(new[] { cookie });
+                return response;
             }
-            catch (Exception e)
-            {
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-            }
+
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         [Route("refresh-token")]
         [HttpPost]
         public HttpResponseMessage RefreshToken([FromBody] string token)
         {
-            var jwt = _authorizationServiceJwt.UpdateToken(token);
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+            var jwt = jwtAuthService.UpdateToken(token);
 
-            return jwt != null ? Request.CreateResponse(HttpStatusCode.OK, jwt) : Request.CreateResponse(HttpStatusCode.InternalServerError);
+            if (jwt != null)
+            {
+                var cookie = _provider.GetCookie(ActionContext, jwt.AccessToken);
+                
+                var response = Request.CreateResponse(HttpStatusCode.OK, jwt);
+                Request.Headers.Remove("Set-Cookie");
+                response.Headers.AddCookies(new[] { cookie });
+
+                return response;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+        [Route("logout")]
+        [HttpPost]
+        public HttpResponseMessage Logout()
+        {
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+            var token = _provider.GetToken(ActionContext);
+            jwtAuthService.Logout(token);
+            //TODO Implement logout
+            return null;
         }
     }
 }

@@ -59,7 +59,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            _userService.Remove(id);
+            _userService.Delete(id);
             var listOfUsersForView =
                 Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
 

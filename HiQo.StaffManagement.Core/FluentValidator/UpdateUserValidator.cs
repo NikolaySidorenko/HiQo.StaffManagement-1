@@ -73,21 +73,8 @@ namespace HiQo.StaffManagement.Core.FluentValidator
 
         private bool ExistenceOfFirstAndLastName(UpdateUserViewModel userVm)
         {
-            var user = _repository.Get<User>()
-                .Where(g => g.FirstName == userVm.FirstName && g.LastName == userVm.LastName);
-
-
-            if (user.Any())
-            {
-                if (user.First().Id == userVm.UserId)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-
-            return true;
+            return _repository.Get<User>()
+                .Any(g => g.FirstName == userVm.FirstName && g.LastName == userVm.LastName && userVm.UserId == g.Id);
         }
 
         private bool ValidateDate(DateTime date)
