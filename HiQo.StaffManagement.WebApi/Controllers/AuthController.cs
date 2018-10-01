@@ -24,7 +24,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         {
             _validatorFactory = validatorFactory ?? throw new ArgumentNullException(nameof(validatorFactory));
             _authService = authService ?? throw new ArgumentNullException(nameof(authService));
-            _authorizationServiceJwt = authorizationServiceJwt ?? throw new ArgumentNullException(nameof(authorizationServiceJwt));
+            _authorizationServiceJwt = authorizationServiceJwt ??
+                                       throw new ArgumentNullException(nameof(authorizationServiceJwt));
         }
 
         [Route("login")]
@@ -35,34 +36,26 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             var result = validator.Validate(user);
 
             if (!result.IsValid)
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Password or Email is not valid");
+
+
+            var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
+
+            if (isUserCredentialsValid)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                var token = _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user));
+
+                var cookie = new CookieHeaderValue("access_token", token.AccessToken);
+                cookie.Expires = DateTimeOffset.Now.AddMinutes(15);
+                cookie.Domain = Request.RequestUri.Host;
+                cookie.Path = "/";
+
+                var response = Request.CreateResponse(HttpStatusCode.OK, token);
+                response.Headers.AddCookies(new[] {cookie});
+                return response;
             }
 
-            try
-            {
-                var isUserCredentialsValid = await _authService.LoginUserAsync(Mapper.Map<UserDto>(user));
-
-                if (isUserCredentialsValid)
-                {
-                    var token = _authorizationServiceJwt.SingIn(Mapper.Map<UserAuthDto>(user));
-
-                    var cookie = new CookieHeaderValue("access_token", token.AccessToken);
-                    cookie.Expires = DateTimeOffset.Now.AddMinutes(15);
-                    cookie.Domain = Request.RequestUri.Host;
-                    cookie.Path = "/";
-
-                    var response = Request.CreateResponse(HttpStatusCode.OK, token);
-                    response.Headers.AddCookies(new CookieHeaderValue[]{cookie});
-                    return response;
-                }
-                    
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-            catch (Exception e)
-            {
-                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
-            }
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
         [Route("refresh-token")]
@@ -71,7 +64,9 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         {
             var jwt = _authorizationServiceJwt.UpdateToken(token);
 
-            return jwt != null ? Request.CreateResponse(HttpStatusCode.OK, jwt) : Request.CreateResponse(HttpStatusCode.InternalServerError);
+            return jwt != null
+                ? Request.CreateResponse(HttpStatusCode.OK, jwt)
+                : Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
     }
 }

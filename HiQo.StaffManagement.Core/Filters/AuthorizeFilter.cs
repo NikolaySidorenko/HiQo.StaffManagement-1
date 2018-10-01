@@ -15,6 +15,7 @@ namespace HiQo.StaffManagement.Core.Filters
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             var cookie = actionContext.Request.Headers.GetCookies("access_token").FirstOrDefault();
+
             if (cookie == null)
             {
                 actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
@@ -37,12 +38,7 @@ namespace HiQo.StaffManagement.Core.Filters
                 var jwtToken = handler.ReadJwtToken(token);
                 var role = jwtToken.Claims.FirstOrDefault(c => c.Type == "role")?.Value;
 
-                if (Roles.Split(separator,StringSplitOptions.RemoveEmptyEntries).Contains(role))
-                {
-                    return true;
-                }
-
-                return false;
+                return Roles.Split(separator,StringSplitOptions.RemoveEmptyEntries).Contains(role);
             }
             catch (ArgumentException exception)
             {

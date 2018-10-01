@@ -126,21 +126,14 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void PassTokenToDb(string refreshToken, UserDto user)
         {
-            try
+            var tokenDto = new TokenDto
             {
-                var tokenDto = new TokenDto
-                {
-                    UserId = user.UserId,
-                    RefreshToken = refreshToken
-                };
+                UserId = user.UserId,
+                RefreshToken = refreshToken
+            };
 
-                _repository.Add(Mapper.Map<Token>(tokenDto));
-                _repository.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            _repository.Add(Mapper.Map<Token>(tokenDto));
+            _repository.SaveChanges();
         }
 
         private SigningCredentials GetCredentials(string key)

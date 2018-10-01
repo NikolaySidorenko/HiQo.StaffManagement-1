@@ -41,7 +41,6 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        [AuthorizeFilter(Roles = "Admin")]
         public HttpResponseMessage GetById(int id)
         {
             try
