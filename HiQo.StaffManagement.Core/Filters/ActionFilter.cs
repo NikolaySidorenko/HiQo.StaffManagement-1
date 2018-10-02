@@ -18,13 +18,8 @@ namespace HiQo.StaffManagement.Core.Filters
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             RequestIdProvider.GetRequestId();
-            var theEvent = new LogEventInfo(LogLevel.Info, "", "WebApi Info");
-            var parameters = GetParameters(actionContext.ActionArguments);
-            theEvent.Properties["Parameters"] = parameters;
-            theEvent.Properties["LogId"] = RequestIdProvider.GetRequestId();
-            theEvent.Properties["Url"] = actionContext.Request.RequestUri;
-            theEvent.Properties["Time"] = DateTime.UtcNow;
-            _logger.Log(theEvent);
+            var logEvent = CreateLogEvent(actionContext);
+            _logger.Log(logEvent);
         }
 
         private string GetParameters(Dictionary<string, object> actionArguments)
@@ -39,6 +34,17 @@ namespace HiQo.StaffManagement.Core.Filters
             }
 
             return parameters;
+        }
+
+        private LogEventInfo CreateLogEvent(HttpActionContext actionContext)
+        {
+
+            var logEvent = new LogEventInfo(LogLevel.Info, "", "WebApi Info");
+            logEvent.Properties["Parameters"] = GetParameters(actionContext.ActionArguments);
+            logEvent.Properties["LogId"] = RequestIdProvider.GetRequestId();
+            logEvent.Properties["Url"] = actionContext.Request.RequestUri;
+            logEvent.Properties["Time"] = DateTime.UtcNow;
+            return logEvent;
         }
     }
 }

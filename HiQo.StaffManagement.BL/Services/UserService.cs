@@ -37,10 +37,10 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.SaveChanges();
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
             var entity = _repository.GetById<User>(id);
-            _repository.Remove(entity);
+            _repository.Delete(entity);
             _repository.SaveChanges();
         }
 

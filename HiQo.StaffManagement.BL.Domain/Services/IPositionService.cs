@@ -11,9 +11,9 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Add(PositionDto entity);
 
-        void Remove(PositionDto entity);
+        void Delete(PositionDto entity);
 
-        void Remove(int id);
+        void Delete(int id);
 
         void Update(PositionDto entity);
 

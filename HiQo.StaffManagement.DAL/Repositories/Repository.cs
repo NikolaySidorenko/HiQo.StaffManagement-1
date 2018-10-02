@@ -69,7 +69,7 @@ namespace HiQo.StaffManagement.DAL.Repositories
             return _context.Set<TEntity>().Find(id);
         }
 
-        public void Remove<TEntity>(TEntity entityToDelete) where TEntity : class
+        public void Delete<TEntity>(TEntity entityToDelete) where TEntity : class
         {
             if (entityToDelete is null)
             {

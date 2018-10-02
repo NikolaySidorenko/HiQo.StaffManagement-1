@@ -33,15 +33,15 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Add(Mapper.Map<PositionLevel>(entity));
         }
 
-        public void Remove(PositionLevelDto entity)
+        public void Delete(PositionLevelDto entity)
         {
-            _repository.Remove(Mapper.Map<PositionLevel>(entity));
+            _repository.Delete(Mapper.Map<PositionLevel>(entity));
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
             var entity = _repository.GetById<PositionLevel>(id);
-            _repository.Remove(entity);
+            _repository.Delete(entity);
         }
 
         public void Update(PositionLevelDto entity)

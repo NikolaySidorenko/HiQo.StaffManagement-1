@@ -14,7 +14,7 @@ namespace HiQo.StaffManagement.DAL.Domain.Repositories
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null) where TEntity : class;
 
         void Add<TEntity>(TEntity entity) where TEntity : class;
-        void Remove<TEntity>(TEntity entity) where TEntity : class;
+        void Delete<TEntity>(TEntity entity) where TEntity : class;
         void Update<TEntity>(TEntity entity) where TEntity : class;
         TEntity GetById<TEntity>(int id) where TEntity : class;
         void SaveChanges();
