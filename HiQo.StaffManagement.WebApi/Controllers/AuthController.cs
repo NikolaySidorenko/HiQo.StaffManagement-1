@@ -7,6 +7,7 @@ using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
+using HiQo.StaffManagement.Core.Auth;
 using HiQo.StaffManagement.Core.Providers;
 using HiQo.StaffManagement.Core.ViewModels;
 
@@ -34,13 +35,13 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             if (!result.IsValid) return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             var authService = ServiceFactory.Create<IAuthService>();
-            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJwt>();
 
             var isUserCredentialsValid = await authService.LoginUserAsync(Mapper.Map<UserDto>(user));
 
             if (isUserCredentialsValid)
             {
-                var token = jwtAuthService.SingIn(Mapper.Map<UserAuthDto>(user));
+                var token = jwtAuthService.SingIn(user.Email);
 
                 var cookie = _provider.GetCookie(ActionContext, token.AccessToken);
 
@@ -56,7 +57,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage RefreshToken([FromBody] string token)
         {
-            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJwt>();
             var jwt = jwtAuthService.UpdateToken(token);
         
             var cookie = _provider.GetCookie(ActionContext, jwt.AccessToken);
@@ -72,7 +73,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage Logout()
         {
-            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
+            var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJwt>();
             var token = _provider.GetToken(ActionContext);
             jwtAuthService.Logout(token);
             //TODO Implement logout

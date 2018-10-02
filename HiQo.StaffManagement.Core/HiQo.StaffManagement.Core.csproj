@@ -86,6 +86,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\AuthorizationServiceJwt.cs" />
+    <Compile Include="Auth\IAuthorizationServiceJWT.cs" />
+    <Compile Include="Providers\ITokenProvider.cs" />
+    <Compile Include="Providers\TokenProvider.cs" />
     <Compile Include="Filters\ActionFilter.cs" />
     <Compile Include="Filters\GlobalExceptionHandler.cs" />
     <Compile Include="Filters\JwtAuthenticateAttribute.cs" />

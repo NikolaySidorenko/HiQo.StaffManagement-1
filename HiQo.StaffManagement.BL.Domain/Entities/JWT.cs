@@ -2,7 +2,7 @@
 
 namespace HiQo.StaffManagement.BL.Domain.Entities
 {
-    public class JWT
+    public class Jwt
     {
         public string AccessToken { get; set; }
 

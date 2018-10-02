@@ -9,6 +9,7 @@ using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
 using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
+using HiQo.StaffManagement.Core.Auth;
 using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.Providers;
 using HiQo.StaffManagement.DAL.Context;
@@ -79,10 +80,10 @@ namespace HiQo.StaffManagement.Configuration.Shared
             container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>()
                 .LifestylePerWebRequest());
 
-            container.Register(Component.For<IAuthorizationServiceJWT>().ImplementedBy<AuthorizationServiceJWT>()
+            container.Register(Component.For<IAuthorizationServiceJwt>().ImplementedBy<AuthorizationServiceJwt>()
                 .LifestylePerWebRequest());
 
-            container.Register(Component.For<ITokenService>().ImplementedBy<TokenService>()
+            container.Register(Component.For<ITokenProvider>().ImplementedBy<TokenProvider>()
                 .LifestylePerWebRequest());
         }
 
