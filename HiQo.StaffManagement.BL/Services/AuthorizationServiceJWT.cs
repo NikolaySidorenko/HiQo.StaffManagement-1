@@ -1,19 +1,21 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.BL.Services
 {
     public class AuthorizationServiceJWT : IAuthorizationServiceJWT
     {
-        private readonly ITokenService _tokenService;
-        private readonly IUserService _userService;
 
-        public AuthorizationServiceJWT(IUserService userService, ITokenService tokenService)
+        private readonly ITokenHandler _tokenHandler;
+        private readonly IServiceFactory _factory;
+
+        public AuthorizationServiceJWT(IServiceFactory factory, ITokenHandler tokenHandler)
         {
-            _userService = userService;
-            _tokenService = tokenService;
+            _factory = factory;
+            _tokenHandler = tokenHandler;
         }
 
         public JWT SingIn(UserAuthDto user)
@@ -38,7 +40,7 @@ namespace HiQo.StaffManagement.BL.Services
 
         private JWT GenerateJWT(UserAuthDto user)
         {
-            var userModel = _userService.GetAll().First(dto => dto.Username == user.UserName);
+            var userModel = _factory.Create<IUserService>().GetAll().First(dto => dto.Username == user.UserName);
 
             var jwt = _tokenService.CreateJwt(userModel.Role.Name, user.UserName, userModel.UserId,
                 userModel.SecurityStamp);
