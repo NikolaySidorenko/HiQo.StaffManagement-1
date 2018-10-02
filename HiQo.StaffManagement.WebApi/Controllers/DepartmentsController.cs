@@ -66,7 +66,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [Route("")]
         public HttpResponseMessage Delete(int id)
         {
-            ServiceFactory.Create<IDepartmentService>().Remove(id);
+            ServiceFactory.Create<IDepartmentService>().Delete(id);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

@@ -52,7 +52,7 @@ namespace HiQo.StaffManagement.BL.Services
             var expires = jwt.Payload.Exp;
 
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToLocalTime();
+            dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToUniversalTime();
 
             return dateTime.CompareTo(DateTime.UtcNow) >= 0;
         }
