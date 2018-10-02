@@ -4,14 +4,14 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 {
     public interface IUpsertService : IService
     {
-        Dictionary<int, string> GetDictionaryNameByIdDepartment();
+        List<KeyValuePair<int, string>> GetListNameByIdDepartment();
 
-        Dictionary<int, string> GetDictionaryNameByIdCategory();
+        List<KeyValuePair<int, string>> GetListNameByIdCategory();
 
-        Dictionary<int, string> GetDictionaryNameByIdPosition();
+        List<KeyValuePair<int, string>> GetListNameByIdPosition();
 
-        Dictionary<int, string> GetDictionaryNameByIdPositionLevel();
+        List<KeyValuePair<int, string>> GetListNameByIdPositionLevel();
 
-        Dictionary<int, string> GetDictionaryNameByIdRole();
+        List<KeyValuePair<int, string>> GetListNameByIdRole();
     }
 }

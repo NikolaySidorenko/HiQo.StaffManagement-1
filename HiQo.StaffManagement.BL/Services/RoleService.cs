@@ -49,12 +49,12 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<Role>(entity));
         }
 
-        public Dictionary<int, string> NameByIdDictionary()
+        public List<KeyValuePair<int, string>> GetListNameById()
         {
-
             var listOfRoles = _repository.GetAll<Role>();
 
-            return listOfRoles.ToDictionary(role => role.RoleId, role => role.Name);
+            return listOfRoles.Select(role =>
+                new KeyValuePair<int, string>(role.RoleId, role.Name)).ToList();
         }
     }
 }

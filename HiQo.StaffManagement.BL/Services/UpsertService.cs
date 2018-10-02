@@ -1,50 +1,41 @@
 ﻿using System.Collections.Generic;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.BL.Services
 {
     public class UpsertService : IUpsertService
     {
-        private readonly ICategoryService _categoryService;
-        private readonly IDepartmentService _departmentService;
-        private readonly IPositionLevelService _positionLevelService;
-        private readonly IPositionService _positionService;
-        private readonly IRoleService _roleService;
+        private readonly IServiceFactory _serviceFactory;
 
-        public UpsertService(IDepartmentService departmentService,
-            ICategoryService categoryService, IPositionService positionService,
-            IPositionLevelService positionLevelService, IRoleService roleService)
+        public UpsertService(IServiceFactory serviceFactory)
         {
-            _departmentService = departmentService;
-            _categoryService = categoryService;
-            _positionService = positionService;
-            _positionLevelService = positionLevelService;
-            _roleService = roleService;
+            _serviceFactory = serviceFactory;
         }
 
-        public Dictionary<int,string> GetDictionaryNameByIdDepartment()
+        public List<KeyValuePair<int, string>> GetListNameByIdDepartment()
         {
-            return _departmentService.NameByIdDictionary();
+            return _serviceFactory.Create<IDepartmentService>().GetListNameById();
         }
 
-        public Dictionary<int, string> GetDictionaryNameByIdCategory()
+        public List<KeyValuePair<int, string>> GetListNameByIdCategory()
         {
-            return _categoryService.NameByIdDictionary();
+            return _serviceFactory.Create<ICategoryService>().GetListNameById();
         }
 
-        public Dictionary<int, string> GetDictionaryNameByIdPosition()
+        public List<KeyValuePair<int, string>> GetListNameByIdPosition()
         {
-            return _positionService.NameByIdDictionary();
+            return _serviceFactory.Create<IPositionService>().GetListNameById();
         }
 
-        public Dictionary<int, string> GetDictionaryNameByIdPositionLevel()
+        public List<KeyValuePair<int, string>> GetListNameByIdPositionLevel()
         {
-            return _positionLevelService.NameByIdDictionary();
+            return _serviceFactory.Create<IPositionLevelService>().GetListNameById();
         }
 
-        public Dictionary<int, string> GetDictionaryNameByIdRole()
+        public List<KeyValuePair<int, string>> GetListNameByIdRole()
         {
-            return _roleService.NameByIdDictionary();
+            return _serviceFactory.Create<IRoleService>().GetListNameById();
         }
 
     }

@@ -19,19 +19,19 @@ namespace HiQo.StaffManagement.Core.ViewModels
         public string Email { get; set; }
 
         public int CurrentDepartmentId { get; set; }
-        public Dictionary<int, string> DictionaryOfDepartments { get; set; }
+        public List<KeyValuePair<int, string>> DictionaryOfDepartments { get; set; }
 
         public int CurrentCategoryId { get; set; }
-        public Dictionary<int, string> DictionaryOfCategories { get; set; }
+        public List<KeyValuePair<int, string>> DictionaryOfCategories { get; set; }
 
         public int CurrentPositionId { get; set; }
-        public Dictionary<int, string> DictionaryOfPositions { get; set; }
+        public List<KeyValuePair<int, string>> DictionaryOfPositions { get; set; }
 
         public int CurrentPositionLevelId { get; set; }
-        public Dictionary<int, string> DictionaryOfPositionLevels { get; set; }
+        public List<KeyValuePair<int, string>> DictionaryOfPositionLevels { get; set; }
 
         public int CurrentRoleId { get; set; }
-        public Dictionary<int, string> DictionaryOfRoles { get; set; }
+        public List<KeyValuePair<int, string>> DictionaryOfRoles { get; set; }
 
         public string Latitude { get; set; }
 

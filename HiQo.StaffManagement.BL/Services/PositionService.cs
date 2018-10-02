@@ -49,11 +49,12 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<Position>(entity));
         }
 
-        public Dictionary<int, string> NameByIdDictionary()
+        public List<KeyValuePair<int, string>> GetListNameById()
         {
             var listOfPositions = _repository.GetAll<Position>();
 
-            return listOfPositions.ToDictionary(position => position.PositionId, position => position.Name);
+            return listOfPositions.Select(position =>
+                new KeyValuePair<int, string>(position.PositionId, position.Name)).ToList();
         }
     }
 }

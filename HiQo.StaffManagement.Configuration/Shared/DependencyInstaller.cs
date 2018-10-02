@@ -73,8 +73,8 @@ namespace HiQo.StaffManagement.Configuration.Shared
             container.Register(Component.For<IPositionService>().ImplementedBy<PositionService>()
                 .LifestylePerWebRequest());
 
-            //container.Register(Component.For<IUpsertService>().ImplementedBy<UpsertService>()
-            //    .LifestylePerWebRequest());
+            container.Register(Component.For<IUpsertService>().ImplementedBy<UpsertService>()
+                .LifestylePerWebRequest());
 
             container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>()
                 .LifestylePerWebRequest());
