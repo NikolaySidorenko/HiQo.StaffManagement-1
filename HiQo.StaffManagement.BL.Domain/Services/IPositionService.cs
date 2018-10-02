@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface IPositionService
+    public interface IPositionService : IService
     {
         PositionDto GetById(int id);
 
@@ -11,9 +11,9 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Add(PositionDto entity);
 
-        void Remove(PositionDto entity);
+        void Delete(PositionDto entity);
 
-        void Remove(int id);
+        void Delete(int id);
 
         void Update(PositionDto entity);
 

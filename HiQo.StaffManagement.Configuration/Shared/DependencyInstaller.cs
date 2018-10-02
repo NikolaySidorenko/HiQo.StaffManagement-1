@@ -10,7 +10,7 @@ using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.BL.Services;
 using HiQo.StaffManagement.Configuration.Shared.ServiceResolver;
 using HiQo.StaffManagement.Core.Filters;
-using HiQo.StaffManagement.Core.RequestProvider;
+using HiQo.StaffManagement.Core.Providers;
 using HiQo.StaffManagement.DAL.Context;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Identity;
@@ -30,6 +30,24 @@ namespace HiQo.StaffManagement.Configuration.Shared
             DependencyContextsResolver(container);
             DependencyRepositoriesResolver(container);
             DependencyServicesResolver(container);
+            ActionFiltersDependencyResolver(container);
+            ProvidersDependencyResolver(container);
+        }
+
+        private static void ActionFiltersDependencyResolver(IWindsorContainer container)
+        {
+            container.Register(Component.For<JwtAuthenticateAttribute>().LifestylePerWebRequest());
+
+            container.Register(Component.For<ActionFilter>().LifestylePerWebRequest());
+        }
+
+        private static void ProvidersDependencyResolver(IWindsorContainer container)
+        {
+            container.Register(
+                Component.For<ICookieProvider>().ImplementedBy<CookieProvider>().LifestylePerWebRequest());
+
+            container.Register(Component.For<IRequestIdProvider>().ImplementedBy<RequestIdProvider>()
+                .LifestylePerWebRequest());
         }
 
         private static void DependencyServicesResolver(IWindsorContainer container)
@@ -55,8 +73,8 @@ namespace HiQo.StaffManagement.Configuration.Shared
             container.Register(Component.For<IPositionService>().ImplementedBy<PositionService>()
                 .LifestylePerWebRequest());
 
-            container.Register(Component.For<IUpsertService>().ImplementedBy<UpsertService>()
-                .LifestylePerWebRequest());
+            //container.Register(Component.For<IUpsertService>().ImplementedBy<UpsertService>()
+            //    .LifestylePerWebRequest());
 
             container.Register(Component.For<IAuthService>().ImplementedBy<AuthService>()
                 .LifestylePerWebRequest());
@@ -66,13 +84,6 @@ namespace HiQo.StaffManagement.Configuration.Shared
 
             container.Register(Component.For<ITokenHandler>().ImplementedBy<TokenHandler>()
                 .LifestylePerWebRequest());
-
-            container.Register(Component.For<IRequestIdProvider>().ImplementedBy<RequestIdProvider>()
-                .LifestylePerWebRequest());
-
-            container.Register(Component.For<JwtAuthenticateAttribute>().LifestylePerWebRequest());
-
-            container.Register(Component.For<ActionFilter>().LifestylePerWebRequest());
         }
 
         private static void DependencyRepositoriesResolver(IWindsorContainer container)

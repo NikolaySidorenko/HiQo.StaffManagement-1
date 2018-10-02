@@ -10,5 +10,7 @@ namespace HiQo.StaffManagement.BL.Domain.Services
         bool ValidateRefreshToken(string token);
 
         JWT UpdateToken(string token);
+
+        void Logout(string token);
     }
 }

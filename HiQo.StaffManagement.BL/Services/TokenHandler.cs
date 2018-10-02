@@ -28,10 +28,10 @@ namespace HiQo.StaffManagement.BL.Services
         public JWT CreateJwt(string role, string username, int id, string secretKey)
         {
             var expireAccessTokenTime =
-                DateTime.Now.AddMinutes(Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesAccessToken"]));
+                DateTime.UtcNow.AddMinutes(Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesAccessToken"]));
 
             var expireRefreshTokenTime =
-                DateTime.Now.AddMinutes(
+                DateTime.UtcNow.AddMinutes(
                     Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesRefreshToken"]));
 
             var jwt = new JWT
@@ -54,7 +54,7 @@ namespace HiQo.StaffManagement.BL.Services
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToLocalTime();
 
-            return dateTime.CompareTo(DateTime.Now) >= 0;
+            return dateTime.CompareTo(DateTime.UtcNow) >= 0;
         }
 
         public JWT UpdateAccessAndRefreshToken(string refreshToken)
@@ -78,12 +78,12 @@ namespace HiQo.StaffManagement.BL.Services
 
             if (!IsValidTokenLifetime(refreshToken))
             {
-                RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+                DeleteRefreshTokenFromDb(user.UserId, refreshToken);
 
                 throw new InvalidOperationException("The token's lifetime has expired");
             }
 
-            RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+            DeleteRefreshTokenFromDb(user.UserId, refreshToken);
 
             var jwtOut = CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
 
@@ -119,8 +119,8 @@ namespace HiQo.StaffManagement.BL.Services
             var token = new JwtSecurityToken(
                 claims: claims,
                 expires: expire,
-                audience:"Sample",
-                issuer:"Sample",
+                audience:"HiQo",
+                issuer:"HiQo",
                 signingCredentials: GetCredentials(secretKey)
                 );
 
@@ -139,6 +139,11 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.SaveChanges();
         }
 
+        public void Delete(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
         private SigningCredentials GetCredentials(string key)
         {
             var signCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
@@ -147,12 +152,12 @@ namespace HiQo.StaffManagement.BL.Services
             return signCredentials;
         }
 
-        private void RemoveRefreshTokenFromDb(int userId, string refreshToken)
+        private void DeleteRefreshTokenFromDb(int userId, string refreshToken)
         {
             var tokenFromDb = _repository
                 .GetAll<Token>().First(token => token.UserId == userId && token.RefreshToken == refreshToken);
 
-            _repository.Remove(tokenFromDb);
+            _repository.Delete(tokenFromDb);
             _repository.SaveChanges();
         }
 

@@ -1,60 +1,73 @@
 ﻿using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
-    public class DepartmentsController : ApiController
+    [RoutePrefix("api/departments")]
+    public class DepartmentsController : BaseAuthController
     {
-        private readonly IDepartmentService _service;
 
-        public DepartmentsController(IDepartmentService service)
+        public DepartmentsController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory)
+            : base(serviceFactory, validatorFactory)
         {
-            _service = service;
+
+        }
+
+
+        [HttpGet]
+        [Route("")]
+        public HttpResponseMessage GetAll()
+        {
+            var departments = ServiceFactory.Create<IDepartmentService>().GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, departments);
         }
 
         [HttpGet]
-        public IEnumerable<DepartmentDto> GetAll()
+        [Route("")]
+        public HttpResponseMessage Get(int id)
         {
-            return _service.GetAll();
-        }
-
-        [HttpGet]
-        public DepartmentDto GetSingle(int id)
-        {
-            return _service.GetById(id);
+            var department = ServiceFactory.Create<IDepartmentService>().GetById(id);
+            return Request.CreateResponse(HttpStatusCode.OK, department);
         }
 
         [HttpPost]
-        public IHttpActionResult Create(DepartmentDto department)
+        [Route("")]
+        public HttpResponseMessage Create(DepartmentDto department)
         {
             if (department != null)
             {
-                _service.Add(department);
-                return Ok(department);
+                ServiceFactory.Create<IDepartmentService>().Add(department);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
 
-            return BadRequest(ModelState);
+            return Request.CreateResponse(HttpStatusCode.BadRequest,department);
         }
 
         [HttpPut]
-        public IHttpActionResult Update(DepartmentDto department)
+        [Route("")]
+        public HttpResponseMessage Update(DepartmentDto department)
         {
             if (department != null)
             {
-                _service.Add(department);
-                return Ok(department);
+                ServiceFactory.Create<IDepartmentService>().Update(department);
+                return Request.CreateResponse(HttpStatusCode.OK);
             }
 
-            return BadRequest(ModelState);
+            return Request.CreateResponse(HttpStatusCode.BadRequest, department);
         }
 
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        [Route("")]
+        public HttpResponseMessage Delete(int id)
         {
-            _service.Remove(id);
-            return Ok(id);
+            ServiceFactory.Create<IDepartmentService>().Remove(id);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
     }
