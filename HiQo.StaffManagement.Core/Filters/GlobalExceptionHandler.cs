@@ -18,13 +18,9 @@ namespace HiQo.StaffManagement.Core.Filters
 
         public override Task OnExceptionAsync(HttpActionExecutedContext actionExecutedContext, CancellationToken cancellationToken)
         {
-            var theEvent = new LogEventInfo(LogLevel.Error, "", "Error");
-            theEvent.Properties["Message"] = actionExecutedContext.Exception.Message;
-            theEvent.Properties["LogId"] = Provider.GetRequestId();
-            theEvent.Properties["Url"] = actionExecutedContext.Request.RequestUri.ToString();
-            theEvent.Properties["ExceptionClass"] = actionExecutedContext.Exception.TargetSite.DeclaringType.FullName;
-            theEvent.Properties["Time"] = DateTime.UtcNow;
-            _logger.Log(theEvent);
+            object [] foo = {Provider.GetRequestId(), "dawd"};
+            var logEvent = CreateLogEvent(actionExecutedContext);
+            _logger.Log(logEvent);
             //const string errorMessage = "An unexpected error occuredfffcfafqaefdae";
             //var response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError,
             //    new
@@ -35,6 +31,17 @@ namespace HiQo.StaffManagement.Core.Filters
             //response.Headers.Add("X-Error", errorMessage);
             //actionExecutedContext.Request.CreateResponse(response);
             return Task.CompletedTask;
+        }
+
+        private LogEventInfo CreateLogEvent(HttpActionExecutedContext actionExecutedContext)
+        {
+            var logEvent = new LogEventInfo(LogLevel.Error, "", "Error");
+            logEvent.Properties["Message"] = actionExecutedContext.Exception.Message;
+            logEvent.Properties["LogId"] = Provider.GetRequestId();
+            logEvent.Properties["Url"] = actionExecutedContext.Request.RequestUri.ToString();
+            logEvent.Properties["ExceptionClass"] = actionExecutedContext.Exception.TargetSite.DeclaringType.FullName;
+            logEvent.Properties["Time"] = DateTime.UtcNow;
+            return logEvent;
         }
     }
 }

@@ -15,7 +15,8 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     [RoutePrefix("api/users")]
     public class UsersController : BaseAuthController
     {
-        public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(serviceFactory, validatorFactory)
+        public UsersController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory) : base(
+            serviceFactory, validatorFactory)
         {
         }
 
@@ -52,7 +53,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
 
         [Route("")]
         [HttpPost]
-        public HttpResponseMessage Create([FromBody]UpdateUserViewModel user)
+        public HttpResponseMessage Create([FromBody] UpdateUserViewModel user)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
                 if (!result.IsValid)
                 {
                     SetErrors(result);
-                    return Request.CreateResponse(HttpStatusCode.BadRequest,ModelState);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
                 }
 
                 var service = ServiceFactory.Create<IUserService>();

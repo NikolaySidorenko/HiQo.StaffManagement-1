@@ -11,12 +11,12 @@ namespace HiQo.StaffManagement.BL.Domain.Services
 
         void Add(RoleDto entity);
 
-        void Remove(RoleDto entity);
+        void Delete(RoleDto entity);
 
-        void Remove(int id);
+        void Delete(int id);
 
         void Update(RoleDto entity);
 
-        Dictionary<int, string> NameByIdDictionary();
+        List<KeyValuePair<int, string>> GetListNameById();
     }
 }

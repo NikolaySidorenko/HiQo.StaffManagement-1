@@ -4,12 +4,11 @@ using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.Core.Filters;
 
-
 namespace HiQo.StaffManagement.WebApi.Controllers
 {
     [GlobalExceptionHandler]
     [ActionFilter]
-    public class BaseController : ApiController 
+    public class BaseController : ApiController
     {
         protected readonly IServiceFactory ServiceFactory;
         protected readonly IValidatorFactory ValidatorFactory;

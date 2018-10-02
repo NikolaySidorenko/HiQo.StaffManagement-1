@@ -33,15 +33,15 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Add(Mapper.Map<PositionLevel>(entity));
         }
 
-        public void Remove(PositionLevelDto entity)
+        public void Delete(PositionLevelDto entity)
         {
-            _repository.Remove(Mapper.Map<PositionLevel>(entity));
+            _repository.Delete(Mapper.Map<PositionLevel>(entity));
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
             var entity = _repository.GetById<PositionLevel>(id);
-            _repository.Remove(entity);
+            _repository.Delete(entity);
         }
 
         public void Update(PositionLevelDto entity)
@@ -49,13 +49,12 @@ namespace HiQo.StaffManagement.BL.Services
             _repository.Update(Mapper.Map<PositionLevel>(entity));
         }
 
-        public Dictionary<int, string> NameByIdDictionary()
+        public List<KeyValuePair<int, string>> GetListNameById()
         {
             var listOfPositionLevels = _repository.GetAll<PositionLevel>();
 
-            return listOfPositionLevels.ToDictionary(positionlevel => positionlevel.PositionLevelId,
-                positionlevel => positionlevel.Name + " " + positionlevel.Level.ToString());
-
+            return listOfPositionLevels.Select(level =>
+                new KeyValuePair<int, string>(level.PositionLevelId, level.Name + " " + level.Level.ToString())).ToList();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     public class AuthController : BaseController
     {
         private readonly ICookieProvider _provider;
+
         public AuthController(IValidatorFactory validatorFactory, IServiceFactory serviceFactory,ICookieProvider provider) 
             : base(serviceFactory,validatorFactory)
         {

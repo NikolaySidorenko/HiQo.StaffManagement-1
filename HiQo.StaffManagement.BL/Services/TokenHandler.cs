@@ -28,10 +28,10 @@ namespace HiQo.StaffManagement.BL.Services
         public JWT CreateJwt(string role, string username, int id, string secretKey)
         {
             var expireAccessTokenTime =
-                DateTime.Now.AddMinutes(Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesAccessToken"]));
+                DateTime.UtcNow.AddMinutes(Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesAccessToken"]));
 
             var expireRefreshTokenTime =
-                DateTime.Now.AddMinutes(
+                DateTime.UtcNow.AddMinutes(
                     Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesRefreshToken"]));
 
             var jwt = new JWT
@@ -52,9 +52,9 @@ namespace HiQo.StaffManagement.BL.Services
             var expires = jwt.Payload.Exp;
 
             var dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
-            dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToLocalTime();
+            dateTime = dateTime.AddSeconds(Convert.ToDouble(expires)).ToUniversalTime();
 
-            return dateTime.CompareTo(DateTime.Now) >= 0;
+            return dateTime.CompareTo(DateTime.UtcNow) >= 0;
         }
 
         public JWT UpdateAccessAndRefreshToken(string refreshToken)
@@ -78,12 +78,12 @@ namespace HiQo.StaffManagement.BL.Services
 
             if (!IsValidTokenLifetime(refreshToken))
             {
-                RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+                DeleteRefreshTokenFromDb(user.UserId, refreshToken);
 
                 throw new InvalidOperationException("The token's lifetime has expired");
             }
 
-            RemoveRefreshTokenFromDb(user.UserId, refreshToken);
+            DeleteRefreshTokenFromDb(user.UserId, refreshToken);
 
             var jwtOut = CreateJwt(user.Role.Name, user.Username, user.UserId, user.SecurityStamp);
 
@@ -129,21 +129,14 @@ namespace HiQo.StaffManagement.BL.Services
 
         public void PassTokenToDb(string refreshToken, UserDto user)
         {
-            try
+            var tokenDto = new TokenDto
             {
-                var tokenDto = new TokenDto
-                {
-                    UserId = user.UserId,
-                    RefreshToken = refreshToken
-                };
+                UserId = user.UserId,
+                RefreshToken = refreshToken
+            };
 
-                _repository.Add(Mapper.Map<Token>(tokenDto));
-                _repository.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            _repository.Add(Mapper.Map<Token>(tokenDto));
+            _repository.SaveChanges();
         }
 
         public void Delete(int userId)
@@ -159,12 +152,12 @@ namespace HiQo.StaffManagement.BL.Services
             return signCredentials;
         }
 
-        private void RemoveRefreshTokenFromDb(int userId, string refreshToken)
+        private void DeleteRefreshTokenFromDb(int userId, string refreshToken)
         {
             var tokenFromDb = _repository
                 .GetAll<Token>().First(token => token.UserId == userId && token.RefreshToken == refreshToken);
 
-            _repository.Remove(tokenFromDb);
+            _repository.Delete(tokenFromDb);
             _repository.SaveChanges();
         }
 

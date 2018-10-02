@@ -125,13 +125,13 @@ namespace HiQo.StaffManagement.BL.Tests
         }
 
         [Fact]
-        public void Remove_UserId_MustHaveHappened()
+        public void Delete_UserId_MustHaveHappened()
         {
             var id = 666;
 
-            _userService.Remove(id);
+            _userService.Delete(id);
 
-            A.CallTo(_repository).Where(call => call.Method.Name == nameof(_repository.Remove) && call.Method.IsGenericMethod)
+            A.CallTo(_repository).Where(call => call.Method.Name == nameof(_repository.Delete) && call.Method.IsGenericMethod)
                 .WithVoidReturnType().MustHaveHappenedOnceExactly();
             A.CallTo(() => _repository.SaveChanges()).MustHaveHappenedOnceExactly();
         }
