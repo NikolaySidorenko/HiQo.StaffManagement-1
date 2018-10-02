@@ -24,16 +24,9 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpGet]
         public HttpResponseMessage GetAll()
         {
-            try
-            {
-                var service = ServiceFactory.Create<IUserService>();
-                var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(service.GetAll());
-                return Request.CreateResponse(HttpStatusCode.OK, users);
-            }
-            catch (Exception e)
-            {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
-            }
+            var service = ServiceFactory.Create<IUserService>();
+            var users = Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(service.GetAll());
+            return Request.CreateResponse(HttpStatusCode.OK, users);
         }
 
 
@@ -55,25 +48,20 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         [HttpPost]
         public HttpResponseMessage Create([FromBody] UpdateUserViewModel user)
         {
-            try
+           
+            var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
+            var result = validator.Validate(user);
+            if (!result.IsValid)
             {
-                var validator = ValidatorFactory.GetValidator<UpdateUserViewModel>();
-                var result = validator.Validate(user);
-                if (!result.IsValid)
-                {
-                    SetErrors(result);
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-
-                var service = ServiceFactory.Create<IUserService>();
-                service.Add(Mapper.Map<UserDto>(user));
-
-                return Request.CreateResponse(HttpStatusCode.Created);
+                SetErrors(result);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
             }
-            catch (Exception e)
-            {
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
-            }
+
+            var service = ServiceFactory.Create<IUserService>();
+            service.Add(Mapper.Map<UserDto>(user));
+
+            return Request.CreateResponse(HttpStatusCode.Created);
+        
         }
 
         [Route("")]

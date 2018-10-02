@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.DAL.Domain.Entities;
 using HiQo.StaffManagement.DAL.Domain.Repositories;
@@ -17,11 +18,11 @@ namespace HiQo.StaffManagement.BL.Services
     public class TokenHandler : ITokenHandler
     {
         private readonly IRepository _repository;
-        private readonly IUserService _userService;
+        private readonly IServiceFactory  _factory;
 
-        public TokenHandler(IUserService userService, IRepository repository)
+        public TokenHandler(IServiceFactory factory, IRepository repository)
         {
-            _userService = userService;
+            _factory = factory;
             _repository = repository;
         }
 
@@ -69,7 +70,7 @@ namespace HiQo.StaffManagement.BL.Services
                 throw new InvalidOperationException("This refresh token is not valid");
             }
 
-            var user = _userService.GetById(Convert.ToInt32(userId));
+            var user = _factory.Create<IUserService>().GetById(Convert.ToInt32(userId));
 
             if (!IsTokenExists(user.Tokens, refreshToken))
             {

@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using HiQo.StaffManagement.BL.Domain.Entities;
+using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
 using HiQo.StaffManagement.Core.ViewModels;
 using HiQo.StaffManagement.WEB.App_Start.Filters;
@@ -14,14 +15,12 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
     [LogActionFilter]
     public class ProfileController : Controller
     {
-        private readonly IUpsertService _upsertService;
-        private readonly IUserService _userService;
+        private readonly IServiceFactory _serviceFactory;
         private readonly IValidatorFactory _validatorFactory;
 
-        public ProfileController(IUserService userService, IUpsertService upsertService, IValidatorFactory validatorFactory)
+        public ProfileController(IServiceFactory serviceFactory, IValidatorFactory validatorFactory)
         {
-            _userService = userService;
-            _upsertService = upsertService;
+            _serviceFactory = serviceFactory;
             _validatorFactory = validatorFactory;
         }
 
@@ -29,7 +28,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var listOfUsersForView =
-                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_serviceFactory.Create<IUserService>().GetAll());
 
             return View(listOfUsersForView);
         }
@@ -37,7 +36,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            var userDto = _userService.GetById(id);
+            var userDto = _serviceFactory.Create<IUserService>().GetById(id);
             var user = Mapper.Map<UpdateUserViewModel>(userDto);
             ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
 
@@ -59,9 +58,9 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            _userService.Delete(id);
+            _serviceFactory.Create<IUserService>().Delete(id);
             var listOfUsersForView =
-                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_userService.GetAll());
+                Mapper.Map<IEnumerable<UserDto>, IEnumerable<UpdateUserViewModel>>(_serviceFactory.Create<IUserService>().GetAll());
 
             return View("Index", listOfUsersForView);
         }
@@ -76,11 +75,11 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
             {
                 if (user.UserId != 0)
                 {
-                    _userService.Update(Mapper.Map<UpdateUserViewModel, UserDto>(user));
+                    _serviceFactory.Create<IUserService>().Update(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
                 else
                 {
-                    _userService.Add(Mapper.Map<UpdateUserViewModel, UserDto>(user));
+                    _serviceFactory.Create<IUserService>().Add(Mapper.Map<UpdateUserViewModel, UserDto>(user));
                 }
 
                 return RedirectToAction("Index");
@@ -97,11 +96,11 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
 
         private void InitializeDictionary(UpdateUserViewModel user)
         {
-            user.DictionaryOfDepartments = _upsertService.GetDictionaryNameByIdDepartment();
-            user.DictionaryOfCategories = _upsertService.GetDictionaryNameByIdCategory();
-            user.DictionaryOfPositions = _upsertService.GetDictionaryNameByIdPosition();
-            user.DictionaryOfPositionLevels = _upsertService.GetDictionaryNameByIdPositionLevel();
-            user.DictionaryOfRoles = _upsertService.GetDictionaryNameByIdRole();
+            user.DictionaryOfDepartments = _serviceFactory.Create<IUpsertService>().GetListNameByIdDepartment();
+            user.DictionaryOfCategories = _serviceFactory.Create<IUpsertService>().GetListNameByIdCategory();
+            user.DictionaryOfPositions = _serviceFactory.Create<IUpsertService>().GetListNameByIdPosition();
+            user.DictionaryOfPositionLevels = _serviceFactory.Create<IUpsertService>().GetListNameByIdPositionLevel();
+            user.DictionaryOfRoles = _serviceFactory.Create<IUpsertService>().GetListNameByIdRole();
         }
 
         private void SetErrorsInModelState(IEnumerable<ValidationFailure> errors)
