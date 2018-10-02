@@ -95,6 +95,7 @@
     <Compile Include="Services\AuthorizationServiceJWT.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\ConfigurationManagerService.cs" />
     <Compile Include="Services\DepartmentService.cs" />
     <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\PositionLevelService.cs" />

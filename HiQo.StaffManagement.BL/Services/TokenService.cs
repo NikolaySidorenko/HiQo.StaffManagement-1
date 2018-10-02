@@ -18,23 +18,22 @@ namespace HiQo.StaffManagement.BL.Services
     public class TokenService : ITokenService
     {
         private readonly IRepository _repository;
-        private readonly IServiceFactory  _factory;
+        private readonly IServiceFactory  _serviceFactory;
 
-
-        public TokenHandler(IServiceFactory factory, IRepository repository)
+        public TokenService(IServiceFactory serviceFactory, IRepository repository)
         {
-            _factory = factory;
+            _serviceFactory = serviceFactory;
             _repository = repository;
         }
 
         public JWT CreateJwt(string role, string username, int id, string secretKey)
         {
             var expireAccessTokenTime =
-                DateTime.UtcNow.AddMinutes(Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesAccessToken"]));
+                DateTime.UtcNow.AddMinutes(Convert.ToDouble(_serviceFactory.Create<IConfigurationManager>().GetAppSettings("expiryMinutesAccessToken")));
 
             var expireRefreshTokenTime =
                 DateTime.UtcNow.AddMinutes(
-                    Convert.ToDouble(ConfigurationManager.AppSettings["expiryMinutesRefreshToken"]));
+                    Convert.ToDouble(_serviceFactory.Create<IConfigurationManager>().GetAppSettings("expiryMinutesRefreshToken")));
 
             var jwt = new JWT
             {

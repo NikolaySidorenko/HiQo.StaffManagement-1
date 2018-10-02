@@ -77,6 +77,7 @@
     <Compile Include="Services\IAuthorizationServiceJWT.cs" />
     <Compile Include="Services\IAuthService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IConfigurationManager.cs" />
     <Compile Include="Services\IDepartmentService.cs" />
     <Compile Include="Services\ILogService.cs" />
     <Compile Include="Services\IPositionLevelService.cs" />

@@ -38,7 +38,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         {
             var userDto = _serviceFactory.Create<IUserService>().GetById(id);
             var user = Mapper.Map<UpdateUserViewModel>(userDto);
-            ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
+            ViewBag.Key = _serviceFactory.Create<IConfigurationManager>().GetAppSettings("APIBingMaps");
 
             InitializeDictionary(user);
 
@@ -49,7 +49,7 @@ namespace HiQo.StaffManagement.WEB.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var user = new UpdateUserViewModel();
-            ViewBag.Key = ConfigurationManager.AppSettings["APIBingMaps"];
+            ViewBag.Key = _serviceFactory.Create<IConfigurationManager>().GetAppSettings("APIBingMaps");
             InitializeDictionary(user);
 
             return View("Creation", user);

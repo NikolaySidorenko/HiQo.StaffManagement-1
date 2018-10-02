@@ -84,6 +84,9 @@ namespace HiQo.StaffManagement.Configuration.Shared
 
             container.Register(Component.For<ITokenService>().ImplementedBy<TokenService>()
                 .LifestylePerWebRequest());
+
+            container.Register(Component.For<IConfigurationManager>().ImplementedBy<ConfigurationManagerService>()
+                .LifestylePerWebRequest());
         }
 
         private static void DependencyRepositoriesResolver(IWindsorContainer container)

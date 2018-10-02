@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    interface IConfigurationManager
+    public interface IConfigurationManager : IService
     {
+        string GetAppSettings(string key);
     }
 }

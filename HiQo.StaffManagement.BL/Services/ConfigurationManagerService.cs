@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
+using HiQo.StaffManagement.BL.Domain.Services;
 
 namespace HiQo.StaffManagement.BL.Services
 {
-    class ConfigurationManagerService
+    public class ConfigurationManagerService : IConfigurationManager
     {
+        public string GetAppSettings(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
     }
 }
