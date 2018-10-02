@@ -82,7 +82,7 @@ namespace HiQo.StaffManagement.Configuration.Shared
             container.Register(Component.For<IAuthorizationServiceJWT>().ImplementedBy<AuthorizationServiceJWT>()
                 .LifestylePerWebRequest());
 
-            container.Register(Component.For<ITokenHandler>().ImplementedBy<TokenHandler>()
+            container.Register(Component.For<ITokenService>().ImplementedBy<TokenService>()
                 .LifestylePerWebRequest());
         }
 

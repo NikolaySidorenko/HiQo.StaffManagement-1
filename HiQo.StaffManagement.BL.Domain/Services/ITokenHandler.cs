@@ -3,7 +3,7 @@ using HiQo.StaffManagement.BL.Domain.Entities;
 
 namespace HiQo.StaffManagement.BL.Domain.Services
 {
-    public interface ITokenHandler
+    public interface ITokenService
     {
         string CreateRefreshToken(int id, DateTime expire, string secretKey);
 

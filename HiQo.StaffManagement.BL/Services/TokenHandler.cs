@@ -15,10 +15,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HiQo.StaffManagement.BL.Services
 {
-    public class TokenHandler : ITokenHandler
+    public class TokenService : ITokenService
     {
         private readonly IRepository _repository;
         private readonly IServiceFactory  _factory;
+
 
         public TokenHandler(IServiceFactory factory, IRepository repository)
         {
