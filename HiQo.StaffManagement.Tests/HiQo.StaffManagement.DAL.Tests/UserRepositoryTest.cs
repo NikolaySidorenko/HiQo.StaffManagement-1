@@ -9,23 +9,23 @@ namespace HiQo.StaffManagement.DAL.Tests
 {
     public class UserRepositoryTest
     {
-        private readonly Repository _Repository = new Repository(new StaffManagementContext());
-        private readonly IRepository _fakeRepository;
+        //private readonly Repository _Repository = new Repository(new StaffManagementContext());
+        //private readonly IRepository _fakeRepository;
 
-        public UserRepositoryTest()
-        {
-            _fakeRepository = A.Fake<IRepository>();
-        }
+        //public UserRepositoryTest()
+        //{
+        //    _fakeRepository = A.Fake<IRepository>();
+        //}
 
-        [Theory]
-        [InlineData(1)]
-        public void GetById_Id_ObjFound(int id)
-        {
-            var objUser = _Repository.GetById<User>(id);
+        //[Theory]
+        //[InlineData(1)]
+        //public void GetById_Id_ObjFound(int id)
+        //{
+        //    var objUser = _Repository.GetById<User>(id);
 
-            A.CallTo(() => _fakeRepository.GetById<User>(id)).Returns(objUser);
+        //    A.CallTo(() => _fakeRepository.GetById<User>(id)).Returns(objUser);
 
-            Assert.Equal(objUser, _fakeRepository.GetById<User>(id));
-        }
+        //    Assert.Equal(objUser, _fakeRepository.GetById<User>(id));
+        //}
     }
 }

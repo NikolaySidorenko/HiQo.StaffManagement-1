@@ -88,7 +88,6 @@ namespace HiQo.StaffManagement.DAL.Repositories
         {
             try
             {
-                throw new SaveChangesException();
                 _context.SaveChanges();
             }
             catch (SaveChangesException exception) //Network safe  // TODO:Custom exception
