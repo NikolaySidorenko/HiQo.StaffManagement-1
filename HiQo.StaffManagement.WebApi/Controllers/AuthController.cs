@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
@@ -10,7 +7,6 @@ using FluentValidation;
 using HiQo.StaffManagement.BL.Domain.Entities;
 using HiQo.StaffManagement.BL.Domain.ServiceResolver;
 using HiQo.StaffManagement.BL.Domain.Services;
-using HiQo.StaffManagement.Core.Filters;
 using HiQo.StaffManagement.Core.Providers;
 using HiQo.StaffManagement.Core.ViewModels;
 
@@ -21,8 +17,9 @@ namespace HiQo.StaffManagement.WebApi.Controllers
     {
         private readonly ICookieProvider _provider;
 
-        public AuthController(IValidatorFactory validatorFactory, IServiceFactory serviceFactory,ICookieProvider provider) 
-            : base(serviceFactory,validatorFactory)
+        public AuthController(IValidatorFactory validatorFactory, IServiceFactory serviceFactory,
+            ICookieProvider provider)
+            : base(serviceFactory, validatorFactory)
         {
             _provider = provider;
         }
@@ -34,10 +31,7 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             var validator = ValidatorFactory.GetValidator<LoginViewModel>();
             var result = validator.Validate(user);
 
-            if (!result.IsValid)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
+            if (!result.IsValid) return Request.CreateResponse(HttpStatusCode.BadRequest);
 
             var authService = ServiceFactory.Create<IAuthService>();
             var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
@@ -47,11 +41,11 @@ namespace HiQo.StaffManagement.WebApi.Controllers
             if (isUserCredentialsValid)
             {
                 var token = jwtAuthService.SingIn(Mapper.Map<UserAuthDto>(user));
-           
+
                 var cookie = _provider.GetCookie(ActionContext, token.AccessToken);
 
                 var response = Request.CreateResponse(HttpStatusCode.OK, token);
-                response.Headers.AddCookies(new[] { cookie });
+                response.Headers.AddCookies(new[] {cookie});
                 return response;
             }
 
@@ -64,19 +58,14 @@ namespace HiQo.StaffManagement.WebApi.Controllers
         {
             var jwtAuthService = ServiceFactory.Create<IAuthorizationServiceJWT>();
             var jwt = jwtAuthService.UpdateToken(token);
+        
+            var cookie = _provider.GetCookie(ActionContext, jwt.AccessToken);
 
-            if (jwt != null)
-            {
-                var cookie = _provider.GetCookie(ActionContext, jwt.AccessToken);
-                
-                var response = Request.CreateResponse(HttpStatusCode.OK, jwt);
-                Request.Headers.Remove("Set-Cookie");
-                response.Headers.AddCookies(new[] { cookie });
+            var response = Request.CreateResponse(HttpStatusCode.OK, jwt);
+            Request.Headers.Remove("Set-Cookie");
+            response.Headers.AddCookies(new[] {cookie});
 
-                return response;
-            }
-
-            return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            return response;
         }
 
         [Route("logout")]

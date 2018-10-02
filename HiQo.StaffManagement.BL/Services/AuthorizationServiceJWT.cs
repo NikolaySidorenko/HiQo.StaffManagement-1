@@ -7,13 +7,13 @@ namespace HiQo.StaffManagement.BL.Services
 {
     public class AuthorizationServiceJWT : IAuthorizationServiceJWT
     {
-        private readonly ITokenHandler _tokenHandler;
+        private readonly ITokenService _tokenService;
         private readonly IUserService _userService;
 
-        public AuthorizationServiceJWT(IUserService userService, ITokenHandler tokenHandler)
+        public AuthorizationServiceJWT(IUserService userService, ITokenService tokenService)
         {
             _userService = userService;
-            _tokenHandler = tokenHandler;
+            _tokenService = tokenService;
         }
 
         public JWT SingIn(UserAuthDto user)
@@ -23,12 +23,12 @@ namespace HiQo.StaffManagement.BL.Services
 
         public bool ValidateRefreshToken(string token)
         {
-            return _tokenHandler.IsValidTokenLifetime(token);
+            return _tokenService.IsValidTokenLifetime(token);
         }
 
         public JWT UpdateToken(string token)
         {
-            return _tokenHandler.UpdateAccessAndRefreshToken(token);
+            return _tokenService.UpdateAccessAndRefreshToken(token);
         }
 
         public void Logout(string token)
@@ -40,10 +40,10 @@ namespace HiQo.StaffManagement.BL.Services
         {
             var userModel = _userService.GetAll().First(dto => dto.Username == user.UserName);
 
-            var jwt = _tokenHandler.CreateJwt(userModel.Role.Name, user.UserName, userModel.UserId,
+            var jwt = _tokenService.CreateJwt(userModel.Role.Name, user.UserName, userModel.UserId,
                 userModel.SecurityStamp);
 
-            _tokenHandler.PassTokenToDb(jwt.RefreshToken, userModel);
+            _tokenService.PassTokenToDb(jwt.RefreshToken, userModel);
 
             return jwt;
         }

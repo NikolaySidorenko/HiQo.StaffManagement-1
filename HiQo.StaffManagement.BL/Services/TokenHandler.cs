@@ -14,12 +14,12 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HiQo.StaffManagement.BL.Services
 {
-    public class TokenHandler : ITokenHandler
+    public class TokenService : ITokenService
     {
         private readonly IRepository _repository;
         private readonly IUserService _userService;
 
-        public TokenHandler(IUserService userService, IRepository repository)
+        public TokenService(IUserService userService, IRepository repository)
         {
             _userService = userService;
             _repository = repository;
